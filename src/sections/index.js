@@ -4,8 +4,7 @@ import {client, q} from "../../sdk/services/fauna";
 const App  = () => {
     useEffect(() => {
 
-        fetch('https://api.ipify.org?format=json')
-            .then(response => response.json())
+        fetch('https://api.ipify.org?format=jsonp&callback=getIP')
             .then(data => console.log(data));
 
 
