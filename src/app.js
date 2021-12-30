@@ -1,4 +1,5 @@
 import { render } from "react-dom";
+import {useEffect} from "react";
 import {
     BrowserRouter,
     Routes,
@@ -8,12 +9,21 @@ import {
 import App from './sections/index';
 import Home from './sections/home'
 
+const Layout = () => {
+    useEffect(() => {
+        console.log('initializing...')
+    },[])
+    return(
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<App />}/>
+                <Route path={"home"} element={<Home/>}></Route>
+            </Routes>
+        </BrowserRouter>
+        )
+
+}
+
 render(
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<App />}/>
-            <Route path={"home"} element={<Home/>}></Route>
-        </Routes>
-    </BrowserRouter>,
-    document.getElementById("root")
+    <Layout/>, document.getElementById("root")
 );
