@@ -8,11 +8,25 @@ import {
 // import your route components too
 import App from './sections/index';
 import Home from './sections/home'
+import {initAnalytics} from "../sdk/api/analytics";
+import { nanoid } from 'nanoid'
+
 
 const Layout = () => {
     useEffect(() => {
+        if(!localStorage.getItem('id')){
+            localStorage.setItem('id',nanoid())
+        }
+
         console.log('initializing...')
+        const trackPage = async () => {
+           await initAnalytics(localStorage.getItem('id'),window.location.origin,'index')
+        }
+
+        trackPage()
+
     },[])
+
     return(
         <BrowserRouter>
             <Routes>
