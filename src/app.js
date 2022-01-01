@@ -20,7 +20,7 @@ const Layout = () => {
 
         console.log('initializing...')
         const trackPage = async () => {
-           await initAnalytics(localStorage.getItem('id'),window.location.origin,'index')
+           await initAnalytics(localStorage.getItem('id'),window.location.origin,'index',document.referrer)
         }
 
         trackPage()

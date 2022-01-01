@@ -3,10 +3,10 @@ import {pageAnalytics} from "./model";
 import {create} from "../../services/fauna";
 
 
-const initAnalytics = async (id, domain, page) => {
+const initAnalytics = async (id, domain, page,referer) => {
 
    return  await create(
-        pageAnalytics(id,domain,Temporal.Now.timeZone().toJSON(),page),
+        pageAnalytics(id,domain,Temporal.Now.timeZone().toJSON(),page,referer),
         'analytics'
     )
 }

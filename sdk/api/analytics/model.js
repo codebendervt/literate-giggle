@@ -1,12 +1,13 @@
 
-const pageAnalytics = (id,domain, timezone, page) => {
+const pageAnalytics = (id,domain, timezone, page,referer) => {
     return (
         {
             id,
             type: 'page',
             domain,
             timezone,
-            page
+            page,
+            referer
         }
     )
 }
