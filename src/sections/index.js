@@ -36,7 +36,7 @@ const App  = () => {
                    <p className={'text-3xl lg:text-5xl w-80 lg:w-full lg:max-w-lg font-black'}>
                        {pages[pageCount].title}
                    </p>
-                    <div className={'text-sm lg:text-3xl w-52 lg:w-full lg:max-w-md text-center font-book'}>
+                    <div className={'text-sm lg:text-xl w-52 lg:w-full lg:max-w-xs text-center font-book'}>
                         {pages[pageCount].action}
                     </div>
 
