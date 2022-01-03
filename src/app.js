@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 // import your route components too
 import App from './sections/index';
-import Home from './sections/home'
+import Lead from './sections/lead'
 import {initAnalytics} from "../sdk/api/analytics";
 import { nanoid } from 'nanoid'
 
@@ -23,7 +23,7 @@ const Layout = () => {
            await initAnalytics(localStorage.getItem('id'),window.location.origin,'index',document.referrer)
         }
 
-        trackPage()
+        // trackPage()
 
     },[])
 
@@ -31,7 +31,7 @@ const Layout = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}/>
-                <Route path={"home"} element={<Home/>}></Route>
+                <Route path={"lead"} element={<Lead/>}></Route>
             </Routes>
         </BrowserRouter>
         )
