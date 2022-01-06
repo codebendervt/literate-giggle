@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+
+.input-style{
+    @apply bg-transparent appearance-none outline-none;
+}
+@tailwind utilities;

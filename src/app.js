@@ -1,14 +1,15 @@
 import { render } from "react-dom";
-import {useEffect} from "react";
+import {useEffect,useState} from "react";
 import {
     BrowserRouter,
     Routes,
-    Route
+    Route,
 } from "react-router-dom";
 // import your route components too
 import App from './sections/index';
-import Lead from './sections/lead'
-import {initAnalytics} from "../sdk/api/analytics";
+import Lead from './sections/lead';
+import Home from './sections/home';
+import {trackPage} from "../sdk/api/analytics";
 import { nanoid } from 'nanoid'
 
 
@@ -18,12 +19,18 @@ const Layout = () => {
             localStorage.setItem('id',nanoid())
         }
 
-        console.log('initializing...')
-        const trackPage = async () => {
-           await initAnalytics(localStorage.getItem('id'),window.location.origin,'index',document.referrer)
+
+        if(localStorage.getItem('lead') && window.location.pathname != '/home'){
+            window.location = '/home'
         }
 
-        // trackPage()
+
+
+        if(!document.location.hostname.includes('localhost')){
+            console.log('your visit is welcome')
+            trackPage('index')
+        }
+
 
     },[])
 
@@ -32,6 +39,7 @@ const Layout = () => {
             <Routes>
                 <Route path="/" element={<App />}/>
                 <Route path={"lead"} element={<Lead/>}></Route>
+                <Route path={"home"} element={<Home/>}></Route>
             </Routes>
         </BrowserRouter>
         )

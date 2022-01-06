@@ -1,15 +1,54 @@
-// import * as sdk from '@codebenderhq/canvas'
-//
-// console.log(sdk.Services)
-
-
+import {useEffect, useState} from 'react';
+import StudioForm from '../../sdk/studio/form'
+import {initLead} from '../../sdk/api/lead'
+import {trackPage} from "../../sdk/api/analytics";
+import StudioComponents from '../../sdk/studio/components'
+import {useNavigate} from "react-router-dom";
 
 const Lead  = () => {
+    let navigate = useNavigate();
+    const [lead, setLead] = useState()
+    const [loading, isLoading] = useState(true);
 
+    useEffect(() => {
+        const searchParams1 = new URLSearchParams(document.location.search);
+
+        setLead(searchParams1.get('id'))
+
+        if(!document.location.hostname.includes('localhost')){
+            console.log('we would like you to come back')
+            trackPage('lead')
+        }
+
+        isLoading(false)
+        
+    },[])
+
+    const handleSubmit = (data) => {
+        isLoading(true)
+        const submitResponse = initLead(data);
+
+        const handeResponse = async() => {
+
+            const response = await submitResponse
+            if(response.data){
+                localStorage.setItem('lead',JSON.stringify(response.data))
+                navigate('/home', { replace: true });
+                // window.location = '/home'
+            }
+        }
+
+        handeResponse();
+
+    }
+    
     return(
-        <div className={'w-screen h-screen bg-black'}>
 
+        loading ? <StudioComponents.Loader msg={'the next decade is yours'}/>  :      <div className={'w-screen h-screen bg-black text-white'}>
+            <StudioForm submitHandler={handleSubmit}/>
         </div>
+
+
     )
 }
 
