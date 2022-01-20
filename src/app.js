@@ -9,6 +9,7 @@ import {
 import App from './sections/index';
 import Lead from './sections/lead';
 import Home from './sections/home';
+import Pay from './sections/pay';
 import Dashboard from './sections/dashboard';
 import {trackPage} from "../sdk/api/analytics";
 import { nanoid } from 'nanoid'
@@ -21,7 +22,7 @@ const Layout = () => {
         }
 
 
-        if(localStorage.getItem('lead') && window.location.pathname != '/dashboard'){
+        if(localStorage.getItem('lead') && window.location.pathname != '/dashboard' && window.location.pathname == '/'){
             window.location = '/dashboard'
         }
 
@@ -41,6 +42,7 @@ const Layout = () => {
                 <Route path="/" element={<App />}/>
                 <Route path={"lead"} element={<Lead/>}></Route>
                 <Route path={"home"} element={<Home/>}></Route>
+                <Route path={"pay"} element={<Pay/>}></Route>
                 <Route path={'dashboard'} element={<Dashboard/>}/>
             </Routes>
         </BrowserRouter>
