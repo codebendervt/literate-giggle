@@ -28,6 +28,6 @@ var options = {
 };
 
 const data = (hash) => new Identicon(hash, options).toString();
-export default icon =  (hash) =>  <img className={'w-8 h-8'} src={`data:image/svg+xml;base64,${data(hash)}`}/>
+export default (hash) =>  <img className={'w-12 h-12'} src={`data:image/svg+xml;base64,${data(hash)}`}/>
 
 // document.write('<img src="data:image/svg+xml;base64,' + data + '">');
