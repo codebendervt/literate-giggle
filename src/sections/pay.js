@@ -27,7 +27,7 @@ const Pay  = () => {
         switchCard()
     }
     return(
-        <div className={'w-screen h-screen flex flex-col-reverse lg:flex-row  text-white'}>
+        <div className={'w-screen h-screen flex flex-col-reverse lg:flex-row  text-white select-none'}>
             <div className={'w-full lg:w-1/2 bg-black'}>
             {/*    for decoration puporses right now */}
             </div>
@@ -55,15 +55,16 @@ const Pay  = () => {
 
                         <div className={'w-full h-16 font-bold bg-black rounded flex items-center px-2 my-2'}>
                             <div className={'w-3/4 text-lg'}>Design</div>
-                            <p className={'w-1/4 text-lg text-right'}>R5000</p>
+                            <p className={'w-1/4 text-lg text-right'}>5 000</p>
                         </div>
 
                         <div className={'w-full h-16 font-bold bg-black rounded flex items-center px-2 my-2'}>
                             <div className={'w-3/4 text-lg'}>Develop</div>
-                            <p className={'w-1/4 text-lg text-right'}>R5000</p>
+                            <p className={'w-1/4 text-lg text-right'}>5 000</p>
                         </div>
 
 
+                        {/*view more still in development*/}
                         <div className={'text-black w-full text-center'}>
                             <p>
                                 view more
@@ -89,7 +90,7 @@ const Pay  = () => {
 
 
                 <div className={'w-full h-32 relative'}>
-                    <div className={'w-full h-full items-center justify-center flex bg-black rounded-t-xl shadow absolute'}>
+                    <div className={'w-full h-full items-center justify-center flex bg-black lg:bg-transparent rounded-t-xl shadow absolute'}>
                         <div className={'items-center text-gray-700 rounded-lg bg-green-200 p-2'}>
                             Pay R10 000
                         </div>
