@@ -17,7 +17,7 @@ const Pay  = () => {
             </div>
 
             <div className={'w-full h-full lg:w-1/2 bg-white flex justify-start lg:justify-center p-4'}>
-                <div className={"w-24 h-16 lg:h-24 bg-black rounded mx-2 flex items-center justify-center"}>
+                <div className={"w-24 h-16 lg:h-24 bg-black rounded mx-2 flex items-center justify-center rounded-full"}>
                     <div className={'rounded-full bg-black p-2 w-12 h-12 flex items-center justify-center'}>
                         {iconGenerator(nanoid())}
                     </div>
