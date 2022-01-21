@@ -13,6 +13,7 @@ import Pay from './sections/pay';
 import Dashboard from './sections/dashboard';
 import {trackPage} from "../sdk/api/analytics";
 import { nanoid } from 'nanoid'
+import 'animate.css';
 
 
 const Layout = () => {
