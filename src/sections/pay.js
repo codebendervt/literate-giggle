@@ -91,9 +91,9 @@ const Pay  = () => {
 
                 <div className={'w-full h-32 relative'}>
                     <div className={'w-full h-full items-center justify-center flex bg-black lg:bg-transparent rounded-t-xl shadow absolute'}>
-                        <div className={'items-center text-gray-700 rounded-lg bg-green-200 p-2'}>
+                        <a href={'https://paystack.com/pay/mjeji67eer'} className={'items-center text-gray-700 rounded-lg bg-green-200 p-2'}>
                             Pay R10 000
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
