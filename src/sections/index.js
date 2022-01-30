@@ -35,7 +35,19 @@ const App  = () => {
     }
 
     return(
-         <StudioComponents.Loader msg={'the next decade is yours'}/>
+
+        <div className={'flex w-scree h-screen justify-center items-center bg-black text-white'}>
+            <div classname={'flex flex-col'}>
+                <div className={'max-w-xl w-64 lg:w-full font-black text-2xl lg:text-6xl text-center py-2'}>
+                    Reimagining the web as it should be!
+                </div>
+                <div className={"text-center"}>
+                    <a href={'https://www.notion.so/codebenderhq/9a839bce03a34954b7b58af6d23dd939?v=70197b85ee784ab8a00257b86762bd28'} className={'text-xl font-black p-2 text-blue-300'}>Show Me How</a>
+                </div>
+
+            </div>
+
+        </div>
 
     )
 }
