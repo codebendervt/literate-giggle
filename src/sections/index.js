@@ -41,7 +41,7 @@ const App  = () => {
             <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-8 '}>
 
                 <div className={'flex flex-col lg:flex-col-reverse w-full h-auto'}>
-                    <div className={'max-w-xl w-84 lg:w-full font-black text-5xl lg:text-6xl  py-2'}>
+                    <div className={'max-w-2xl w-84 lg:w-full font-black text-4xl lg:text-6xl  py-2'}>
                         No Code.<br className={'lg:hidden'}/> No Design.<br/> Just Business.
                     </div>
 
