@@ -36,12 +36,12 @@ const App  = () => {
 
     return(
 
-        <div className={'flex  flex-col w-screen h-screen bg-black text-white relative p-2 font-book'}>
+        <div className={'flex  flex-col w-screen h-screen bg-black text-gray-200 relative p-2 font-book'}>
 
             <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-8 '}>
 
                 <div className={'flex flex-col lg:flex-col-reverse w-full h-auto'}>
-                    <div className={'max-w-2xl w-84 lg:w-full font-black text-4xl lg:text-6xl  py-2'}>
+                    <div className={'max-w-2xl w-84 lg:w-full font-black text-4xl lg:text-6xl  py-2 '}>
                         No Code.<br className={'lg:hidden'}/> No Design.<br/> Just Business.
                     </div>
 
@@ -54,7 +54,7 @@ const App  = () => {
 
 
                 <div className={'w-64 lg:w-full text-xs lg:text-lg py-2 flex items-center'}>
-                    <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access'} className={'p-2 bg-blue-400 rounded text-white'}>
+                    <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access'} className={'p-2 bg-blue-400 rounded '}>
                         Request Early Access
                     </a>
 
