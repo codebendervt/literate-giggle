@@ -54,11 +54,11 @@ const App  = () => {
 
 
                 <div className={'w-64 lg:w-full text-xs lg:text-lg py-2 flex items-center'}>
-                    <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access'} className={'p-2 bg-blue-400 rounded '}>
+                    <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access'} className={'p-2 bg-blue-400 rounded text-gray-900 '}>
                         Request Early Access
                     </a>
 
-                    <a href={'https://codebenderhq.notion.site/Learn-More-8bd3ee22270b41c99c30f162751c28d6'} className={'mx-4 text-blue-400'}>
+                    <a href={'https://codebenderhq.notion.site/Learn-More-8bd3ee22270b41c99c30f162751c28d6'} className={'mx-6 lg:mx-8 text-blue-400'}>
                         Learn More
                     </a>
                 </div>
