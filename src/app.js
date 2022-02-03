@@ -11,7 +11,7 @@ import Lead from './sections/lead';
 import Home from './sections/home';
 import Pay from './sections/pay';
 import Dot from './dot/';
-import DotDashboard from './dot/dashboard';
+import About from './about';
 import Dashboard from './sections/dashboard';
 import {trackPage} from "../sdk/api/analytics";
 import { nanoid } from 'nanoid'
@@ -47,7 +47,7 @@ const Layout = () => {
                 <Route path={"lead"} element={<Lead/>}></Route>
                 <Route path={"home"} element={<Home/>}></Route>
                 <Route path={"pay"} element={<Pay/>}></Route>
-                <Route path={"dot"} element={<DotDashboard/>}></Route>
+                <Route path={"content"} element={<About/>}></Route>
                 <Route path={'dashboard'} element={<Dashboard/>}/>
             </Routes>
         </BrowserRouter>
