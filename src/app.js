@@ -24,13 +24,6 @@ const Layout = () => {
             localStorage.setItem('id',nanoid())
         }
 
-
-        if(localStorage.getItem('lead') && window.location.pathname != '/dashboard' && window.location.pathname == '/'){
-            window.location = '/dashboard'
-        }
-
-
-
         if(!document.location.hostname.includes('localhost')){
             console.log('your visit is welcome')
             trackPage('index')
