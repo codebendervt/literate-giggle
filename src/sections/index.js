@@ -38,7 +38,7 @@ const App  = () => {
 
         <div className={'flex  flex-col w-screen h-screen bg-black text-gray-200 relative p-2 font-book'}>
 
-            <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-8 '}>
+            <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-12 '}>
 
                 <div className={'flex flex-col lg:flex-col-reverse w-full h-auto'}>
                     <div className={'max-w-2xl w-84 lg:w-full font-black text-4xl lg:text-6xl  py-2 '}>
