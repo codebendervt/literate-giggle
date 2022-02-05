@@ -12,6 +12,7 @@ import Home from './sections/home';
 import Pay from './sections/pay';
 import Dot from './dot/';
 import Buy from './buy';
+import Bala from './bala';
 import About from './about';
 import Dashboard from './sections/dashboard';
 import {trackPage} from "../sdk/api/analytics";
@@ -37,7 +38,8 @@ const Layout = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}/>
-                <Route path={":brand"} element={<Dot/>}></Route>
+                {/*<Route path={":brand"} element={<Dot/>}></Route>*/}
+                <Route path={"bala"} element={<Bala/>}></Route>
                 <Route path={"lead"} element={<Lead/>}></Route>
                 <Route path={"home"} element={<Home/>}></Route>
                 <Route path={"pay"} element={<Pay/>}></Route>
