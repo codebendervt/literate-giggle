@@ -8,7 +8,7 @@ const Bala  = () => {
     const [toggle, setToggle] = useState(false)
 
     return(
-        <div className={'w-screen h-screen flex flex-col  text-white select-none  items-center justify-center md:justify-center md:items-center text-gray-900 p-2'}>
+        <div className={'w-screen h-screen flex flex-col  text-white select-none  items-center justify-center md:justify-center md:items-center text-gray-900 p-4'}>
 
             {
                 toggle ? <p className={'text-sm w-64 md:max-w-md md:w-full md:text-lg text-center font-book'}>
