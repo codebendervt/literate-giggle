@@ -8,9 +8,9 @@ import {useState, useEffect, useReducer} from "react";
 
 
 const formConfig = [
-    {type: 'input', values: {name:'name', placeholder:'Your Name'}},
-    {type: 'input', values: {name:'cell', placeholder: 'Your Number'}},
-    {type: 'input', values: {name:'email', placeholder: 'Your email'}}
+    {type: 'options', title:'How Many Grams', values:[{value:'1G'},{value:'2G'},{value:'3G'},{value:'4G'},{value:'5G'}]},
+    {type: 'input', title:'Enter Your Number', values: {name:'cell', placeholder: 'Your Number'}},
+    {type: 'input', title:'Your Name', values: {name:'name', placeholder: 'Your name'}}
 ]
 
 const handleEvent = (state, action) => {
@@ -93,10 +93,10 @@ const Engine = ({submitHandler}) => {
     }
 
     return (
-        <div className={'w-full h-screen flex flex-col p-8'}>
+        <div className={'w-full h-screen flex flex-col p-8 py-56'}>
 
 
-            <Comp values={formConfig[pos].values} handleEvent={dispatch} config={formConfig} custom={setCustom}/>
+            <Comp values={formConfig[pos].values} handleEvent={dispatch} config={formConfig[pos]} custom={setCustom}/>
             <div className={'w-full text-white flex flex-grow items-end justify-center'}>
                 {
                     pos == len - 1 ?

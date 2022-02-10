@@ -34,7 +34,7 @@ const Dot  = () => {
 
 
             <div className={'max-w-2xl w-full flex flex-col justify-center font-book  my-4 text-xs md:text-xl items-center '}>
-                <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access%20to%20bala'} className={'p-2 rounded bg-slate-500 text-white mx-2 lg:cursor-pointer '}>Request Early Access</a>
+                <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access%20to%20dot'} className={'p-2 rounded bg-slate-500 text-white mx-2 lg:cursor-pointer '}>Request Early Access</a>
 
                 <p className={'text-slate-500 md:text-lg lg:cursor-pointer my-4 m-2 outline-none'} onClick={() =>  setToggle(!toggle)}>{toggle ? 'Learn Less' : 'Learn More'} </p>
             </div>
