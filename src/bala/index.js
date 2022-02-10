@@ -25,14 +25,14 @@ const Bala  = () => {
             }
 
 
-            <div className={'max-w-2xl w-full flex justify-center  font-book  py-4 text-sm md:text-xl cursor-pointer'}>
+            <div className={'max-w-2xl w-full flex justify-center  font-book  py-4 text-sm md:text-xl cursor-pointer items-center'}>
                 <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access%20to%20bala'} className={'p-2 rounded bg-purple-500 text-white mx-2 '}>Request Early Access</a>
-                <a href={'/list'} className={'p-2 rounded bg-purple-500 text-white mx-2 '}>Join Waiting List</a>
+                <div className={'text-purple-500 text-lg cursor-pointer mx-2'} onClick={() =>  setToggle(!toggle)}>{toggle ? 'Learn Less' : 'Learn More'} </div>
             </div>
 
-            <div className={'max-w-2xl w-full flex justify-center py-2 font-black'}>
-                <div className={'text-purple-500 text-sm cursor-pointer'} onClick={() =>  setToggle(!toggle)}>{toggle ? 'Learn Less' : 'Learn More'} </div>
-            </div>
+            {/*<div className={'max-w-2xl w-full flex justify-center py-2 font-black'}>*/}
+            {/*    <div className={'text-purple-500 text-sm cursor-pointer'} onClick={() =>  setToggle(!toggle)}>{toggle ? 'Learn Less' : 'Learn More'} </div>*/}
+            {/*</div>*/}
 
         </div>
     )
