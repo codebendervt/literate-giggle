@@ -38,7 +38,7 @@ const Layout = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}/>
-                {/*<Route path={":brand"} element={<Dot/>}></Route>*/}
+                <Route path={":brand"} element={<Dot/>}></Route>
                 <Route path={"bala"} element={<Bala/>}></Route>
                 <Route path={"lead"} element={<Lead/>}></Route>
                 <Route path={"home"} element={<Home/>}></Route>

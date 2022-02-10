@@ -9,4 +9,6 @@
 .font-black{
     font-family: geomanistblack;
 }
+
+
 @tailwind utilities;
