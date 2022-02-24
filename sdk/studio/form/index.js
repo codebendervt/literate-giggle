@@ -7,12 +7,6 @@ import Components from '../components'
 import {useState, useEffect, useReducer} from "react";
 
 
-const formConfig = [
-    {type: 'options', title:'How Many Grams', values:[{value:'1G'},{value:'2G'},{value:'3G'},{value:'4G'},{value:'5G'}]},
-    {type: 'input', title:'Enter Your Number', values: {name:'cell', placeholder: 'Your Number'}},
-    {type: 'input', title:'Your Name', values: {name:'name', placeholder: 'Your name'}}
-]
-
 const handleEvent = (state, action) => {
 
     try{
@@ -38,7 +32,7 @@ const handleEvent = (state, action) => {
 
 }
 
-const Engine = ({submitHandler}) => {
+const Engine = ({submitHandler, formConfig, title}) => {
 
     const [isCustom, setCustom] = useState(true);
     // const [type] = useState(NativeService.getUriParams({param:'type'}))
@@ -47,26 +41,27 @@ const Engine = ({submitHandler}) => {
     const [state, dispatch] = useReducer(handleEvent, []);
     let {[formConfig[pos].type]: Comp} = Core
 
-    // useEffect(() => {
-    //     // const {[formConfig[0].type]: core} = Core
-    //     // try{
-    //     //     setAppState(localStorage.getItem(('domain')))
-    //     //     isLoading(false)
-    //     // }catch (e) {
-    //     //     console.error('unable to load',e.message)
-    //     // }
-    //
-    //
-    // }, [])
+
 
     useEffect(() => {
 
-        if(state.length > pos && state.length < len && isCustom)
-            setPos(pos + 1)
+        try{
+            //to auto change
+            if(state.length > pos && state.length < len && isCustom){
+                setPos(pos + 1)
+            }
+            else if( pos == len - 1 && isCustom){
+                handleSubmit()
+            }
+        }catch(e){
+            console.error('unable to change form',e)
+        }
+
 
     },[state])
 
     const handleSubmit = async () => {
+
 
         let _data = {}
         state.map((x) => {
@@ -88,24 +83,37 @@ const Engine = ({submitHandler}) => {
         // window.location = '/'
 
     }
+
     const nextSubmit = () => {
+        //support for optional values
+        // if(state[formConfig[pos].name]){
+        //     // if field is required if not at least add empty field
+        // }else{
+        //     dispatch({
+        //         [formConfig[pos].name]: ''
+        //     })
+        // }
+
         setPos(pos + 1)
+
     }
 
     return (
-        <div className={'w-full h-screen flex flex-col p-8 py-56'}>
+        <div className={`w-auto h-screen flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-56' }`}>
 
 
-            <Comp values={formConfig[pos].values} handleEvent={dispatch} config={formConfig[pos]} custom={setCustom}/>
+            <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>
+            <Comp key={`Comp${formConfig[pos].name}`} values={formConfig[pos].values} handleEvent={dispatch} config={formConfig[pos]} custom={setCustom}/>
             <div className={'w-full text-white flex flex-grow items-end justify-center'}>
                 {
-                    pos == len - 1 ?
+                     isCustom ? <></> : pos == len - 1 ?
                         <div onClick={handleSubmit}>
-                            <img className={'w-8 h-8 cursor-pointer'} src={icons.submit_icon}/>
+                            <img className={'w-8 h-8 cursor-pointer'} src={icons.submit_icon.src || icons.submit_icon}/>
 
 
-                        </div> : isCustom ? <></> : <div onClick={nextSubmit}>
-                            <img className={'w-8 h-8 cursor-pointer'} src={icons.next_icon}/>
+                        </div> : <div onClick={nextSubmit}>
+                            {/*there is going to need to be a new configuration for nextjs*/}
+                            <img className={'w-8 h-8 cursor-pointer'} src={icons.next_icon.src || icons.next_icon}/>
                         </div>
                 }
 

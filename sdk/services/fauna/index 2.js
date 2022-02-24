@@ -2,7 +2,7 @@ let faunadb = require('faunadb'),
     q = faunadb.query
 
 const faunaSDK = new faunadb.Client({
-    secret: process.env.FAUNASDK,
+    secret: 'fnAEbszNIGACTHJLDOzFvk2Sw9JBJYXTZQNlHA6E',
     domain: 'db.fauna.com',
     // NOTE: Use the correct domain for your database's Region Group.
     port: 443,

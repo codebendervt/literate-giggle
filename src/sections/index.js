@@ -58,7 +58,7 @@ const App  = () => {
                         Request Early Access
                     </a>
 
-                    <a href={'https://codebenderhq.notion.site/Learn-More-8bd3ee22270b41c99c30f162751c28d6'} className={'mx-6 lg:mx-8 text-blue-400'}>
+                    <a href={'https://www.notion.so/codebenderhq/9a839bce03a34954b7b58af6d23dd939?v=70197b85ee784ab8a00257b86762bd28'} className={'mx-6 lg:mx-8 text-blue-400'}>
                         Learn More
                     </a>
                 </div>

@@ -17,4 +17,4 @@ const trackPage = async (page) => {
 }
 
 
-export default {initAnalytics,trackPage}
+export {initAnalytics,trackPage}

@@ -1,0 +1,19 @@
+type Data_2 = record {
+    "graph": vec text;
+    "data": text;
+    "last_update": int64;
+};
+type Data = Data_2;
+
+
+ 
+service : {
+    "greeting": (text) -> (text) query;
+    "leaving": (text) -> (text) query;
+    "get_data": (text) -> (Data_2) query;
+    "get_id": () -> (text) query;
+    "update_data": (text,Data_2) -> ();
+    "remove_data": (text) -> ();
+    "data_exist": (text) -> (bool) query;
+    "get_all_data": () -> (vec Data_2) query;
+}
