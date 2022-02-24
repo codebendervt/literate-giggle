@@ -17,7 +17,7 @@ const Lead  = () => {
 
         if(!document.location.hostname.includes('localhost')){
             console.log('we would like you to come back')
-            trackPage('lead')
+            trackPage(document.location)
         }
 
         isLoading(false)
