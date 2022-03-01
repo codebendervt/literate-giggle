@@ -18,7 +18,8 @@ const Buy  = () => {
         <>
             {buy ?
                 <div className={'w-screen h-screen bg-black'}>
-                    <StudioForm submitHandler={handleSubmit} />
+
+                    {/*<StudioForm submitHandler={handleSubmit} />*/}
                 </div>
 
                :
@@ -48,8 +49,9 @@ const Buy  = () => {
                                 </div>
 
                                 <div className={'w-full h-auto flex'}>
+                                    {/*onClick={() => isBuy(true)}*/}
 
-                                    <div className={'w-full p-2 bg-black rounded h-12 text-white text-center text-lg'} onClick={() => isBuy(true)}>
+                                    <div className={'w-full p-2 bg-black rounded h-12 text-white text-center text-lg'} >
                                         Buy Now
                                     </div>
 
