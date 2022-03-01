@@ -1,3 +1,5 @@
+import {useEffect,useState} from 'react';
+import pages from '../pages';
 
 
 const Dashboard  = () => {
@@ -16,4 +18,76 @@ const Dashboard  = () => {
     )
 }
 
-export default Dashboard;
+const Container = ({Comp}) => {
+
+    useEffect(() => {
+        // console.log(Comp(), 'comp')
+    })
+    if(Comp()){
+        return (
+           <Comp></Comp>
+        )
+    }else{
+        return (<>loading</>)
+    }
+
+}
+
+//main route engine
+const DashboardApp = () => {
+
+    const [paths, setPaths] = useState()
+    const [page, setPage] = useState()
+
+    useEffect(() => {
+        const path = document.location.pathname.split('/');
+        path.shift()
+        setPaths(path)
+
+    },[])
+
+    const loadPage = (path, prePath) => {
+        return prePath[path]
+    }
+
+    useEffect(() => {
+
+        if(paths)
+        {
+            console.log(paths)
+            let _page;
+            try{
+                paths.map((path,index) => {
+
+                    if(path === '') {
+                        _page = pages['index']
+                    }else if(paths.length === 1){
+                        _page = pages[path]['index']
+                    }else if(index === 0){
+                        _page = pages[path]
+                    }
+                    else{
+                        _page = loadPage(path,_page)
+                    }
+
+                })
+            }catch{
+                _page = <>404</>
+            }
+
+            setPage(_page)
+            console.log('page loaded')
+
+        }
+    },[paths])
+
+
+    return(
+
+        <Container Comp={() => page }/>
+    )
+}
+
+
+
+export default DashboardApp;

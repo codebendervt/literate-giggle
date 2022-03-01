@@ -29,27 +29,29 @@ const Layout = () => {
 
         if(!document.location.hostname.includes('localhost')){
             console.log('your visit is welcome')
-            trackPage(document.location)
+            trackPage(document.location.pathname)
         }
 
 
     },[])
 
     return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App />}/>
-                <Route path={":brand"} element={<Dot/>}></Route>
-                <Route path={"bala"} element={<Bala/>}></Route>
-                <Route path={"lead"} element={<Lead/>}></Route>
-                <Route path={"home"} element={<Home/>}></Route>
-                <Route path={"pay"} element={<Pay/>}></Route>
-                <Route path={"buy"} element={<Buy/>}></Route>
-                <Route path={"order"} element={<Order/>}></Route>
-                <Route path={"content"} element={<About/>}></Route>
-                <Route path={'dashboard'} element={<Dashboard/>}/>
-            </Routes>
-        </BrowserRouter>
+
+        <Dashboard/>
+        // <BrowserRouter>
+        //     <Routes>
+        //         <Route path="/" element={<App />}/>
+        //         <Route path={":brand"} element={<Dot/>}></Route>
+        //         <Route path={"bala"} element={<Bala/>}></Route>
+        //         <Route path={"lead"} element={<Lead/>}></Route>
+        //         <Route path={"home"} element={<Home/>}></Route>
+        //         <Route path={"pay"} element={<Pay/>}></Route>
+        //         <Route path={"buy"} element={<Buy/>}></Route>
+        //         <Route path={"order"} element={<Order/>}></Route>
+        //         <Route path={"content"} element={<About/>}></Route>
+        //         <Route path={'dash'} element={<Dashboard/>}/>
+        //     </Routes>
+        // </BrowserRouter>
         )
 
 }
