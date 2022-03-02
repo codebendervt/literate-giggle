@@ -1,4 +1,4 @@
-import {useEffect,useState} from 'react';
+import {useEffect,useState,useRef} from 'react';
 import pages from '../pages';
 
 
@@ -18,18 +18,11 @@ const Dashboard  = () => {
     )
 }
 
-const Container = ({Comp}) => {
+const Container = ({Comp,param}) => {
 
-    useEffect(() => {
-        // console.log(Comp(), 'comp')
-    })
-    if(Comp()){
-        return (
-           <Comp></Comp>
-        )
-    }else{
-        return (<>loading</>)
-    }
+    return (
+        <Comp param={param}></Comp>
+    )
 
 }
 
@@ -37,7 +30,10 @@ const Container = ({Comp}) => {
 const DashboardApp = () => {
 
     const [paths, setPaths] = useState()
-    const [page, setPage] = useState()
+    const [page, setPage] = useState( )
+    const [param, setParam] = useState('')
+    const [pageName, setPageName]= useState()
+
 
     useEffect(() => {
         const path = document.location.pathname.split('/');
@@ -47,45 +43,99 @@ const DashboardApp = () => {
     },[])
 
     const loadPage = (path, prePath) => {
-        return prePath[path]
+        return  prePath[path]
+    }
+
+    const initPage = (_page) => {
+        setPage(_page)
     }
 
     useEffect(() => {
-
+        let _page = () => <>loading</>;
+        // console.log(paths)
         if(paths)
         {
-            console.log(paths)
-            let _page;
+
             try{
                 paths.map((path,index) => {
 
-                    if(path === '') {
-                        _page = pages['index']
-                    }else if(paths.length === 1){
-                        _page = pages[path]['index']
-                    }else if(index === 0){
+                    if(path === '' && index === 0 ) {
+                        _page = pages
+                        setPageName('index')
+                    }
+                    else if(paths.length === 1){
+
+                        if(pages[path]){
+                            _page = pages[path]
+                            setPageName('index')
+                        }else{
+                            _page = pages
+                            setPageName('index')
+                            throw 'send through param or fail';
+                        }
+                    }
+                    else if(index === 0){
                         _page = pages[path]
                     }
                     else{
-                        _page = loadPage(path,_page)
+                        const isPage = loadPage(path,_page)
+
+                        if(isPage){
+                          setPageName(path)
+                        }  else
+
+                        {
+                            if(_page['index'] && index !== 2){
+                                setPageName('index')
+                            }
+                            throw 'send through param or fail';
+                        }
                     }
 
-                })
-            }catch{
-                _page = <>404</>
-            }
 
+                })
+
+
+
+            }
+            catch{
+
+                try{
+                    _page['index']()
+                }catch(err) {
+
+                    if(err instanceof TypeError ){
+                        setParam(paths.pop())
+                        console.log('send through params')
+                    }else{
+                        console.log('return 404')
+                        // // _page = <>404</>
+                    }
+
+                }
+
+            }
             setPage(_page)
-            console.log('page loaded')
 
         }
+
+
     },[paths])
 
 
-    return(
 
-        <Container Comp={() => page }/>
-    )
+        if(page){
+            return(
+
+                <Container param={param} Comp={page[pageName]}/>
+            )
+        }else{
+            return(
+                <></>
+                )
+
+        }
+
 }
 
 
