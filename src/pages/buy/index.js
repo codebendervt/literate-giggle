@@ -3,30 +3,19 @@ import product_image from '../../../assets/product.jpg'
 import StudioForm from '../../../sdk/studio/form';
 import cart from './cart'
 
-
-// const index = ({param}) => {
-//     const [test, setTest] = useState()
-//     useEffect(() => {
-//         console.log(param)
-//     },[])
-//     return(
-//         <div className={''}>
-//
-//         </div>
-//     )
-// }
-
-
-const index  = () => {
+const index  = ({param}) => {
 
     const [buy, isBuy] = useState(false)
+
+    useEffect(() => {
+        console.log(param)
+    },[])
 
     const handleSubmit = (e) => {
 
         window.location = `/order?name=${e.name}`
     }
 
-    //FYI this needs to be a page in studio
     return(
 
         <>
