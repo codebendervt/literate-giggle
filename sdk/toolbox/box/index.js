@@ -1,5 +1,6 @@
 import buy from './buy'
 import dash from './dash'
+import bala from './bala'
 
 
 const index  = () => {
@@ -7,6 +8,11 @@ const index  = () => {
     return(
 
         <div className={'flex  flex-col w-screen h-screen bg-black text-gray-200 relative p-2 font-book'}>
+            <div className={'w-full h-12 flex justify-end p-2'}>
+                <a href={'/dash'} className={''}>
+                    sign in
+                </a>
+            </div>
 
             <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-12 '}>
 
@@ -15,9 +21,9 @@ const index  = () => {
                         No Code.<br className={'lg:hidden'}/> No Design.<br/> Just Business.
                     </div>
 
-                    <div className={'w-72 lg:w-full text-sm lg:text-xl py-1 lg:px-0'}>
-                        You have a dream app, We craft it and<br className={'lg:hidden'}/> You execute your vision!
-                    </div>
+                    {/*<div className={'w-72 lg:w-full text-sm lg:text-xl py-1 lg:px-0'}>*/}
+                    {/*    You have a dream app, We craft it and<br className={'lg:hidden'}/> You execute your vision!*/}
+                    {/*</div>*/}
 
                 </div>
 
@@ -42,4 +48,4 @@ const index  = () => {
 }
 
 
-export default {index, dash, buy}
+export default {index, dash, buy, bala}

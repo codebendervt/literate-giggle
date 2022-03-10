@@ -1,3 +1,4 @@
 import * as profile from './profile'
+import * as bye from './bye';
 
-export default {profile}
+export default {profile, bye}

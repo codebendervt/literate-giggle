@@ -1,6 +1,6 @@
 import {useEffect,useState} from 'react'
-import product_image from '../../../assets/product.jpg'
-import StudioForm from '../../../sdk/studio/form';
+import product_image from '../../../../assets/product.jpg'
+import StudioForm from '../../../studio/form';
 import cart from './cart'
 
 const index  = ({param}) => {

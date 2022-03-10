@@ -1,4 +1,11 @@
+import { useEffect } from 'react'
+import {backend_service} from '../../../'
+
 const index = () => {
+
+    useEffect(() => {
+        console.log(backend_service)
+    },[])
     return (
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white'}>
             {/* dashbpard drawer*/}

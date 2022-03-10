@@ -12,6 +12,9 @@
   "license": "ISC",
   "dependencies": {
     "@azure/storage-blob": "^12.8.0",
+    "@dfinity/agent": "^0.10.3",
+    "@dfinity/candid": "^0.10.3",
+    "@dfinity/principal": "^0.10.3",
     "@js-temporal/polyfill": "^0.3.0",
     "animate.css": "^4.1.1",
     "faunadb": "^4.4.1",

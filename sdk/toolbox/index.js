@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-
+import pages from './box'
 
 const Container = ({Comp,param}) => {
 
@@ -10,7 +10,7 @@ const Container = ({Comp,param}) => {
 }
 
 //main route engine
-const App = ({pages}) => {
+const App = ( ) => {
 
     const [paths, setPaths] = useState()
     const [page, setPage] = useState( )

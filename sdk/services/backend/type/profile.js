@@ -53,6 +53,7 @@ const removeSocial = async (pos,data,socials,id,setSocials,setProfile) => {
         setSocials([..._socials])
 
 }
+
 const goPublic = async (username,id) => {
     try{
         let isExist = await config.isExist(username)

@@ -5,7 +5,6 @@ import {trackPage} from "../sdk/api/analytics";
 import { nanoid } from 'nanoid'
 import 'animate.css';
 import App from "../sdk/toolbox";
-import pages from "./pages";
 
 
 const Layout = () => {
@@ -24,7 +23,7 @@ const Layout = () => {
 
     return(
 
-        <App pages={pages}></App>
+        <App></App>
 
         )
 
