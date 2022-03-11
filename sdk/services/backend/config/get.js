@@ -4,6 +4,7 @@ import dfx from './dfx'
 const get = async (id) => {
     try{
 
+        console.log('for id',id)
         return await dfx.hello.get_data(id)
 
     }catch (e) {
