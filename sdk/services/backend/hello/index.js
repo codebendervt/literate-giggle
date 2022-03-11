@@ -5,8 +5,15 @@ import { idlFactory } from './hello.did.js';
 export { idlFactory } from './hello.did.js';
 // CANISTER_ID is replaced by webpack based on node environment
 
-export const canisterId = "bcab4-uqaaa-aaaah-aaq2q-cai";
-// export const canisterId = process.env.HELLO_CANISTER_ID;
+export const getCanisterID = () => {
+    if(process.env.NODE_ENV !== "production") {
+        return process.env.DEV_CANISTER_ID
+    }else{
+        return process.env.HELLO_CANISTER_ID
+    }
+}
+
+export const canisterId = getCanisterID();
 
 /**
  * 

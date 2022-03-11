@@ -7,7 +7,7 @@ const get = async (id) => {
         return await dfx.hello.get_data(id)
 
     }catch (e) {
-        console.error('failing to save',e.message)
+        console.error('failing to get',e.message)
         return false
     }
 

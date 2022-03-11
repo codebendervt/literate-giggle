@@ -3,8 +3,8 @@ import {backend_service} from '../../../'
 
 const index = () => {
 
-    useEffect(() => {
-        console.log(backend_service)
+    useEffect(async () => {
+        console.log(await backend_service.hello.get_data('hello'))
     },[])
     return (
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white'}>
