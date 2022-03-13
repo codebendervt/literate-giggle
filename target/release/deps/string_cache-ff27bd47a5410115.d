@@ -1,0 +1,11 @@
+/Users/codebender/codebenderhq/sauveur/target/release/deps/string_cache-ff27bd47a5410115.rmeta: /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/lib.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/atom.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/dynamic_set.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/static_sets.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/trivial_impls.rs
+
+/Users/codebender/codebenderhq/sauveur/target/release/deps/libstring_cache-ff27bd47a5410115.rlib: /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/lib.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/atom.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/dynamic_set.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/static_sets.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/trivial_impls.rs
+
+/Users/codebender/codebenderhq/sauveur/target/release/deps/string_cache-ff27bd47a5410115.d: /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/lib.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/atom.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/dynamic_set.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/static_sets.rs /Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/trivial_impls.rs
+
+/Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/lib.rs:
+/Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/atom.rs:
+/Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/dynamic_set.rs:
+/Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/static_sets.rs:
+/Users/codebender/.cargo/registry/src/github.com-1ecc6299db9ec823/string_cache-0.8.3/src/trivial_impls.rs:

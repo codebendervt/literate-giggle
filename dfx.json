@@ -1,7 +1,15 @@
 {
   "canisters": {
-
+    "backend": {
+      "build": "sudo ./generate-wasm.sh hello",
+      "candid": "backend/src/hello.did",
+      "wasm": "target/wasm32-unknown-unknown/release/hello-opt.wasm",
+      "type": "custom"
+    },
     "sauveur": {
+      "dependencies": [
+        "hello"
+      ],
       "frontend": {
         "entrypoint": "index.html"
       },
