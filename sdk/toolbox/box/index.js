@@ -55,4 +55,4 @@ const error = () => {
 
 
 
-export default {index, dash, buy, bala,error,test}
+export default {index, dash, buy, bala,error}

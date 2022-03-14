@@ -82,6 +82,7 @@ const App = ( ) => {
 
             }
             catch{
+                // TODO revisit in the near future
                 const _index = paths.length - 2
                 try{
                     console.log(_index)
@@ -91,7 +92,6 @@ const App = ( ) => {
                     }
                     if(_index < 0){
                         _page['index']()
-                        console.log('supposed to enter here')
                         _page[paths[0]]()
                     }else if(paths.length > 1) {
 
@@ -103,7 +103,6 @@ const App = ( ) => {
 
                 }catch(err) {
 
-                    console.log(err)
                     if(err.message.includes('param') ){
                         setParam(paths.pop())
                     }else{
