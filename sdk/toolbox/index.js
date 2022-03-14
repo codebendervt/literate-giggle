@@ -82,17 +82,37 @@ const App = ( ) => {
 
             }
             catch{
-
+                const _index = paths.length - 2
                 try{
-                    _page['index']()
+                    console.log(_index)
+                    if (paths.lenfth == 0 || _index == 0){
+
+                        _page['index']()
+                    }
+                    if(_index < 0){
+                        _page['index']()
+                        console.log('supposed to enter here')
+                        _page[paths[0]]()
+                    }else if(paths.length > 1) {
+
+                        _page[paths[_index]]()
+                        throw Error()
+                    }
+
+
+
                 }catch(err) {
 
-                    if(err instanceof TypeError ){
+                    console.log(err)
+                    if(err.message.includes('param') ){
                         setParam(paths.pop())
-                        console.log('send through params')
                     }else{
-                        console.log('return 404')
-                        // // _page = <>404</>
+                        try{
+                            _page['error']()
+                        }catch{
+                            _page = pages;
+                        }
+                        setPageName('error')
                     }
 
                 }

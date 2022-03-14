@@ -7,7 +7,9 @@
       "type": "custom"
     },
     "sauveur": {
-
+      "dependencies": [
+        "backend"
+      ],
       "frontend": {
         "entrypoint": "index.html"
       },

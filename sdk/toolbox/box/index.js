@@ -47,5 +47,12 @@ const index  = () => {
     )
 }
 
+const error = () => {
+    return(
+        <>404</>
+    )
+}
 
-export default {index, dash, buy, bala}
+
+
+export default {index, dash, buy, bala,error,test}
