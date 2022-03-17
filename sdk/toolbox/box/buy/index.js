@@ -1,4 +1,5 @@
 import {useEffect,useState} from 'react'
+import services from '../../../services';
 import product_image from '../../../../assets/product.jpg'
 import StudioForm from '../../../studio/form';
 import cart from './cart'
@@ -9,12 +10,37 @@ const index  = ({param}) => {
     const [product, setProduct] = useState();
 
 
+    //inittialize product to show
     useEffect(() => {
-        setProduct({
-            name:'hello world',
-            org: 'Gmabata'
-        })
-        console.log(param)
+        try{
+
+            let _product = {}
+
+            console.log(param, services.native.getUriParams({query:'name'}))
+
+            if(param === 'demo'){
+                const org = services.native.getUriParams({query:'name'});
+                _product = {
+                    name: 'Demo Product',
+                    price: 200,
+                    org
+                }
+            }else{
+                _product = {
+                    name:'Orange Haze',
+                    price: 450,
+                    // desc: 'The sativa-dominant hybrid Orange Haze by Green Devil Genetics combines a flavorful Orange Bud with the classic Haze',
+                    org: 'Gmabata',
+
+                }
+            }
+            // setProduct(_product)
+
+        }catch(err){
+            services.system.ErrorHandling({msg:'unable to load',err})
+        }
+
+
     },[])
 
     const handleSubmit = (e) => {
@@ -56,6 +82,7 @@ const index  = ({param}) => {
                 <div className={'w-screen h-screen flex flex-col lg:flex-row  text-white select-none p-4 lg:p-0 bg-transparent  md:justify-center '}>
 
                     <div className={'w-full h-2/3 md:h-1/2 lg:h-full lg:w-1/2 flex justify-center'}>
+                        {/*product  image*/}
                         <div className={'w-full h-full flex md:max-w-lg lg:max-w-full'}>
                             <div className={'w-full h-full  bg-black rounded lg:rounded-none bg-cover '}>
                                 { product.image ?
@@ -80,11 +107,16 @@ const index  = ({param}) => {
 
                                 {/*<div className={'rounded w-full h-96 bg-gray-200'}></div>*/}
                                 <div className={'flex-grow md:flex-none h-auto w-full flex-col py-2'}>
-                                    <h1 className={'text-3xl lg:text-4xl font-bold'}>Orange Haze</h1>
-                                    <h2 className={'text-xl lg:text-2xl font-bold'}>From ZAR 450</h2>
+                                    <h1 className={'text-3xl lg:text-4xl font-bold py-1'}>{product.name}</h1>
+                                    <h2 className={'text-xl lg:text-2xl font-bold py-1'}>From ZAR {product.price}</h2>
 
-                                    <p className={'text-lg'}>
-                                        The sativa-dominant hybrid Orange Haze by Green Devil Genetics combines a flavorful Orange Bud with the classic Haze.
+
+                                    <p className={'text-lg py-1'}>
+                                        {
+                                            product.desc ? product.desc :
+                                                `trust in ${product.org} they believe in the value they're providing so much that it did not come with a description
+                                                but a faith that you are here because you know what you want`
+                                        }
                                     </p>
                                 </div>
 
@@ -103,7 +135,6 @@ const index  = ({param}) => {
                     </div>
 
                 </div>
-
 
                 :
 

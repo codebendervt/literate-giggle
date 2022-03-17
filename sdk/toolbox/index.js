@@ -85,7 +85,6 @@ const App = ( ) => {
                 // TODO revisit in the near future
                 const _index = paths.length - 2
                 try{
-                    console.log(_index)
                     if (paths.lenfth == 0 || _index == 0){
 
                         _page['index']()

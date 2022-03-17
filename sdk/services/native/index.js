@@ -1,10 +1,10 @@
 
 
-const getUriParams = ({uri= window.location,param}) => {
+const getUriParams = ({uri= window.location,query}) => {
 
     let url = new URL(uri)
     let searchParams = new URLSearchParams(url.search);
-    return searchParams.get(param)
+    return searchParams.get(query)
 }
 
 const getLocalStorage = (key) => {
