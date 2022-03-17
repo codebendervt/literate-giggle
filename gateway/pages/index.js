@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import Head from 'next/head';
 import {nanoid} from "nanoid";
-import {trackPage} from "../../sdk/api/analytics";
+import {trackPage} from "../sdk/api/analytics";
 
 export default function Home() {
 
