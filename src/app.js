@@ -1,8 +1,5 @@
 import { render } from "react-dom";
 // import {useEffect,useState} from "react";
-// // import your route components too
-// import {trackPage} from "../sdk/api/analytics";
-// import { nanoid } from 'nanoid'
 import 'animate.css';
 import App from "../sdk/toolbox";
 import pages from './'

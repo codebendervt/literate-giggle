@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import pages from './box'
 
 const Container = ({Comp,param}) => {
 

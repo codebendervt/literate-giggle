@@ -1,6 +1,7 @@
 import bye from './bye';
 import bala from './bala';
 import dash from './dash';
+import form from './form';
 import service from 'local-service';
 import {useEffect} from 'react';
 
@@ -31,4 +32,4 @@ const error = () => {
 
 
 
-export default {index, dash, bye, bala,error}
+export default {index, dash, bye, bala, form,error}
