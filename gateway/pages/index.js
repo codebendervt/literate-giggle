@@ -26,9 +26,9 @@ export default function Home() {
           </Head>
 
           <div className={'w-full h-12 flex justify-end p-2'}>
-              {/*<a href={'/dash'} className={''}>*/}
-              {/*    sign in*/}
-              {/*</a>*/}
+              <a href={'https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/dash'} className={''}>
+                  sign in
+              </a>
           </div>
 
           <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-12 '}>
