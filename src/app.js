@@ -5,25 +5,14 @@ import { render } from "react-dom";
 // import { nanoid } from 'nanoid'
 import 'animate.css';
 import App from "../sdk/toolbox";
+import pages from './'
 
 
 const Layout = () => {
-    // useEffect(() => {
-    //     if(!localStorage.getItem('id')){
-    //         localStorage.setItem('id',nanoid())
-    //     }
-    //
-    //     if(!document.location.hostname.includes('localhost')){
-    //         console.log('your visit is welcome')
-    //         trackPage(document.location.pathname)
-    //     }
-    //
-    //
-    // },[])
 
     return(
 
-        <App></App>
+        <App pages={pages}></App>
 
         )
 

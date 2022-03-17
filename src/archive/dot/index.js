@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
-import {update, create} from "../../sdk/services/fauna";
+import {update, create} from "../../../sdk/services/fauna";
 import downIcon from 'url:../../assets/icons/down-circle.svg';
-import StudioComponents from '../../sdk/studio/components'
+import StudioComponents from '../../../sdk/studio/components'
 
 const Dot  = () => {
     let params = useParams();

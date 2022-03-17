@@ -1,7 +1,9 @@
+import iconGenerator from '../../../sdk/services/icons'
 import {useEffect,useState} from "react";
-import poweredby from '../../assets/powered3.svg'
+import { nanoid } from 'nanoid'
+import poweredby from '../../../assets/powered3.svg'
 
-const index  = () => {
+const Bala  = () => {
 
     const [toggle, setToggle] = useState(false)
 
@@ -42,4 +44,4 @@ const index  = () => {
     )
 }
 
-export default {index};
+export default Bala;

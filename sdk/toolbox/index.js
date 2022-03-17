@@ -10,7 +10,7 @@ const Container = ({Comp,param}) => {
 }
 
 //main route engine
-const App = ( ) => {
+const App = ({pages}) => {
 
     const [paths, setPaths] = useState()
     const [page, setPage] = useState( )

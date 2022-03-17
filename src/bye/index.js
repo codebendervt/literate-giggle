@@ -1,7 +1,7 @@
 import {useEffect,useState} from 'react'
-import services from '../../../services';
-import product_image from '../../../../assets/product.jpg'
-import StudioForm from '../../../studio/form';
+import services from '../../sdk/services';
+import product_image from '../../assets/product.jpg'
+import StudioForm from '../../sdk/studio/form';
 import cart from './cart'
 
 const index  = ({param}) => {
@@ -21,7 +21,7 @@ const index  = ({param}) => {
             if(param === 'demo'){
                 const org = services.native.getUriParams({query:'name'});
                 _product = {
-                    name: 'Demo Product',
+                    name: `${org ? org : 'Demo'} Product`,
                     price: 200,
                     org
                 }
@@ -38,6 +38,7 @@ const index  = ({param}) => {
 
         }catch(err){
             services.system.ErrorHandling({msg:'unable to load',err})
+            console.log('error')
         }
 
 
@@ -50,28 +51,33 @@ const index  = ({param}) => {
 
     const GetOrg = ({product}) => {
 
-        const _org = product.org.split(' ');
+        try{
+            const _org = product.org.split(' ');
 
-        return(
-            <>
-                {_org[0]}
-                <br/>
-                {
-                    _org.length > 0 ?
-                        <div>
-                            {
-                                _org.map((i,k) => {
-                                    if(k !== 0){
-                                        return i + ' '
-                                    }
-                                })
-                            }
-                        </div>
-                        : ''
-                }
-            </>
+            return(
+                <>
+                    {_org[0]}
+                    <br/>
+                    {
+                        _org.length > 0 ?
+                            <div>
+                                {
+                                    _org.map((i,k) => {
+                                        if(k !== 0){
+                                            return i + ' '
+                                        }
+                                    })
+                                }
+                            </div>
+                            : ''
+                    }
+                </>
 
-        )
+            )
+        }catch{
+            return (<>Demo</>)
+        }
+
     }
 
     return(
