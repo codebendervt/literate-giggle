@@ -5,17 +5,17 @@ import {trackPage} from "../sdk/api/analytics";
 
 export default function Home() {
 
-    useEffect(() => {
-        if(!localStorage.getItem('id')){
-            localStorage.setItem('id',nanoid())
-        }
-
-        if(!document.location.hostname.includes('localhost')){
-            console.log('your visit is welcome')
-            trackPage(document.location.pathname)
-        }
-
-    },[])
+    // useEffect(() => {
+    //     if(!localStorage.getItem('id')){
+    //         localStorage.setItem('id',nanoid())
+    //     }
+    //
+    //     if(!document.location.hostname.includes('localhost')){
+    //         console.log('your visit is welcome')
+    //         trackPage(document.location.pathname)
+    //     }
+    //
+    // },[])
 
   return (
       <div className={'flex  flex-col w-screen h-screen bg-black text-gray-200 relative p-2 font-book'}>
