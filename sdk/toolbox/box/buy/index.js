@@ -6,8 +6,14 @@ import cart from './cart'
 const index  = ({param}) => {
 
     const [buy, isBuy] = useState(false)
+    const [product, setProduct] = useState();
+
 
     useEffect(() => {
+        setProduct({
+            name:'hello world',
+            org: 'Gmabata'
+        })
         console.log(param)
     },[])
 
@@ -16,22 +22,53 @@ const index  = ({param}) => {
         window.location = `/order?name=${e.name}`
     }
 
+    const GetOrg = ({product}) => {
+
+        const _org = product.org.split(' ');
+
+        return(
+            <>
+                {_org[0]}
+                <br/>
+                {
+                    _org.length > 0 ?
+                        <div>
+                            {
+                                _org.map((i,k) => {
+                                    if(k !== 0){
+                                        return i + ' '
+                                    }
+                                })
+                            }
+                        </div>
+                        : ''
+                }
+            </>
+
+        )
+    }
+
     return(
 
         <>
-            {buy ?
-                <div className={'w-screen h-screen bg-black'}>
+            {product ?
 
-                    {/*<StudioForm submitHandler={handleSubmit} />*/}
-                </div>
-
-                :
                 <div className={'w-screen h-screen flex flex-col lg:flex-row  text-white select-none p-4 lg:p-0 bg-transparent  md:justify-center '}>
 
                     <div className={'w-full h-2/3 md:h-1/2 lg:h-full lg:w-1/2 flex justify-center'}>
                         <div className={'w-full h-full flex md:max-w-lg lg:max-w-full'}>
                             <div className={'w-full h-full  bg-black rounded lg:rounded-none bg-cover '}>
-                                <img className={'object-cover w-full h-full rounded'} src={product_image}/>
+                                { product.image ?
+                                    <img className={'object-cover w-full h-full rounded'} src={product.image}/> :
+
+                                    <div className={'w-full h-full flex justify-center items-center'}>
+
+                                        <div className={'text-3xl lg:text-5xl font-bold w-64 text-center'}>
+                                            <GetOrg product={product}/>
+                                        </div>
+
+                                    </div>
+                                }
                             </div>
                         </div>
                         {/*product image*/}
@@ -66,6 +103,16 @@ const index  = ({param}) => {
                     </div>
 
                 </div>
+
+
+                :
+
+                <div className={'w-screen h-screen bg-black'}>
+                    {/*no product to show page*/}
+                    {/*<StudioForm submitHandler={handleSubmit} />*/}
+                </div>
+
+
             }
 
         </>

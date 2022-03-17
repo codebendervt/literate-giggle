@@ -1,6 +1,6 @@
 import { Temporal } from '@js-temporal/polyfill';
 import {pageAnalytics} from "./model";
-import {create} from "../../services/fauna";
+import {create} from "../../../sdk/services/fauna";
 
 
 const initAnalytics = async (id, domain, page,referer) => {
