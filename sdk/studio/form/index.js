@@ -1,7 +1,5 @@
 import icons from '../style/assets/icons'
 import Core from './core'
-// import BackendService from '../src/services/backend'
-// import NativeService from '../src/services/native'
 import Components from '../components'
 
 import {useState, useEffect, useReducer} from "react";
@@ -42,17 +40,19 @@ const Engine = ({submitHandler, formConfig, title}) => {
     let {[formConfig[pos].type]: Comp} = Core
 
 
-
     useEffect(() => {
 
         try{
+
             //to auto change
             if(state.length > pos && state.length < len && isCustom){
                 setPos(pos + 1)
+
             }
             else if( pos == len - 1 && isCustom){
                 handleSubmit()
             }
+
         }catch(e){
             console.error('unable to change form',e)
         }
@@ -62,15 +62,20 @@ const Engine = ({submitHandler, formConfig, title}) => {
 
     const handleSubmit = async () => {
 
+        let _data = null
 
-        let _data = {}
-        state.map((x) => {
-            Object.entries(x).map(([key,value]) => {
-                _data[key] = value
+        if(state.length > 0){
+            _data = {}
+            state.map((x) => {
+                Object.entries(x).map(([key,value]) => {
+
+                    _data[key] = value
+                })
             })
-        })
+        }
 
-        submitHandler(_data)
+        if(_data !== null)
+            submitHandler(_data)
 
         // let _id = NativeService.getLocalStorage('id')
         // let store = await BackendService.Type[type].get(_id)
@@ -85,21 +90,13 @@ const Engine = ({submitHandler, formConfig, title}) => {
     }
 
     const nextSubmit = () => {
-        //support for optional values
-        // if(state[formConfig[pos].name]){
-        //     // if field is required if not at least add empty field
-        // }else{
-        //     dispatch({
-        //         [formConfig[pos].name]: ''
-        //     })
-        // }
 
         setPos(pos + 1)
 
     }
 
     return (
-        <div className={`w-auto h-screen flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-56' }`}>
+        <div className={`w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-32' }`}>
 
 
             <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>

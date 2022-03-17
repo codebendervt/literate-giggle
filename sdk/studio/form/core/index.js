@@ -44,20 +44,29 @@ const Options = ({values,handleEvent,custom,config}) => {
     )
 }
 
-
-const Input = ({handleEvent,values,custom,support, config}) => {
+const Input = ({handleEvent,values,custom,support, config, defaultValue = true}) => {
 
     useEffect(() => {
+
+        if(defaultValue){
+            handleEvent({
+                [config.name]: ''
+            })
+        }
+
         custom(false)
-    })
+
+    },[])
 
     //turn into global function
     const setValue = (val) => {
 
         try{
+
             handleEvent({
                 [config.name]:val
             })
+
         }catch(e){
             console.error(e)
         }
@@ -89,8 +98,13 @@ const Search = ({handleEvent,values,custom,config}) => {
 
     const startSearch = (e) => {
 
-        const searchResult = values.data.filter((i) => i.toLowerCase().includes(e[config.name].toLowerCase()))
-        setResults(searchResult)
+      try{
+          const searchResult = values.data.filter((i) => i.toLowerCase().includes(e[config.name].toLowerCase()))
+          setResults(searchResult)
+      }
+      catch (err){
+          console.log('I am searching for some reason')
+      }
     }
 
     const selectResult = (e) => {
@@ -108,7 +122,7 @@ const Search = ({handleEvent,values,custom,config}) => {
     return(
         <>
 
-            <Input values={values} handleEvent={startSearch} custom={custom} config={config}></Input>
+            <Input values={values} handleEvent={startSearch} custom={custom} config={config} defaultValue={false}></Input>
             <div className={'w-full flex flex-col overflow-hidden '}>
 
                 {searchResults.map((i,k) => {
@@ -122,7 +136,5 @@ const Search = ({handleEvent,values,custom,config}) => {
 
     )
 }
-
-
 
 export default {options: Options, input: Input, search: Search, upload: Upload}

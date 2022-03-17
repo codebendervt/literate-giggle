@@ -1,0 +1,13 @@
+@import url("./fonts/Geomanist-Book-Webfont/stylesheet.css");
+@import url("./fonts/Geomanist-Black-Webfont/stylesheet.css");
+@tailwind base;
+@tailwind components;
+
+.font-book{
+    font-family: geomanistregular;
+}
+.font-black{
+    font-family: geomanistblack;
+}
+
+@tailwind utilities;
