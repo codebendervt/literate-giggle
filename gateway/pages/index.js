@@ -22,7 +22,7 @@ export default function Home() {
           <Head>
               <title>Sauveur - Dev House In Your Pocket</title>
               <meta name="description" content="The Dev House In Your Pocket, Allowing you to focus on your business" />
-              <link rel="icon"  type="image/png" href="/favicon.png" />
+              <link rel="icon"   href="/favicon.png" />
           </Head>
 
           <div className={'w-full h-12 flex justify-end p-2'}>
@@ -43,6 +43,7 @@ export default function Home() {
                   {/*</div>*/}
 
               </div>
+
 
 
               <div className={'w-64 lg:w-full text-xs lg:text-lg py-2 flex items-center'}>
