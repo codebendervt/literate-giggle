@@ -4,6 +4,7 @@ dist
 .npmrc
 .idea
 sandbox
+public
 .dfx
 target
 
