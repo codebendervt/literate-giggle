@@ -15,7 +15,6 @@ export default function Home() {
             trackPage(document.location.pathname)
         }
 
-
     },[])
 
   return (
@@ -44,7 +43,6 @@ export default function Home() {
                   {/*</div>*/}
 
               </div>
-
 
 
               <div className={'w-64 lg:w-full text-xs lg:text-lg py-2 flex items-center'}>
