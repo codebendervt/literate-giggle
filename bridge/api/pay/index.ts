@@ -2,10 +2,8 @@ import {getUriParams} from '../../../sdk/services/native/index.js';
 const env = Deno.env.toObject();
 
 //figure out what is the env
-console.log(Deno.env.get('PAYSTACK_SECRET_KEY'))
 const _uri = 'https://api.paystack.co/'
-let key = 'sk_live_065943ad1e728f6544f009ab7e0ea4d20f1671fb';
-console.log(env)
+let key = env.PAYSTACK_SECRET_KEY || 'sk_live_065943ad1e728f6544f009ab7e0ea4d20f1671fb';
 
 
 const paystack_api = {
