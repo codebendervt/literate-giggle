@@ -44,7 +44,7 @@ const index = async (data:JSON, req:any) => {
 
     let response = {};
     const uri = `${_uri}charge`
-    // response = await _fetch({uri, data});
+    response = await _fetch({uri, data});
 
     return response;
 }
