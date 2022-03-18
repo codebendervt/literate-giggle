@@ -5,6 +5,7 @@
   "source": "index.html",
   "scripts": {
     "start": "parcel",
+    "server": "deno run --allow-net --allow-env bridge/server.js",
     "build": "parcel build --dist-dir public",
     "deploy": "dfx deploy --network ic sauveur",
     "deploy-backend": "dfx deploy --network ic sauveur",

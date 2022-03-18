@@ -1,6 +1,6 @@
 
 
-const getUriParams = ({uri= window.location,query}) => {
+export const getUriParams = ({uri= window.location,query}) => {
 
     let url = new URL(uri)
     let searchParams = new URLSearchParams(url.search);

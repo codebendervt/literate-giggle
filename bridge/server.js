@@ -4,9 +4,17 @@ import API from './api/index.ts'
 const port = 8080;
 
 
-const apiHandler =(API, urlPaths,data) => {
-    let apiCall = API[urlPaths[1]]['index'];
+const apiHandler = async ({API, urlPaths,data,request}) => {
 
+    let apiCall;
+    const req = request;
+
+    if(urlPaths[1] === ""){
+        //    return html page
+        apiCall = API['index']
+    }else{
+        apiCall = API[urlPaths[1]]['index']
+    }
 
     const hasFunction = urlPaths.length > 2
     //
@@ -14,7 +22,7 @@ const apiHandler =(API, urlPaths,data) => {
         apiCall =  API[urlPaths[1]][urlPaths[2]];
 
 
-    return  data ? apiCall(data) :apiCall();
+    return  data ? apiCall(data,req) : apiCall(req);
 }
 
 const handler = async (request) => {
@@ -28,12 +36,11 @@ const handler = async (request) => {
         // console.log('headers',request.headers.get('authorization'));
         let url = new URL(request.url)
 
-
         let urlPaths = url.pathname.split('/')
 
-
         if(request.method == 'GET'){
-            response = new Response(JSON.stringify(apiHandler(API,urlPaths)), {
+            let _response  = await apiHandler({API,urlPaths,request});
+            response = await new Response(JSON.stringify(_response), {
                 headers:{
                     "content-type": "application/json"
                 },
@@ -41,8 +48,8 @@ const handler = async (request) => {
 
         }else if(request.method == 'POST'){
             const data = await request.json()
-
-            response = new Response(JSON.stringify((apiHandler(API,urlPaths,data))), {
+            let _response  = await apiHandler({API,urlPaths,data});
+            response = new Response(JSON.stringify((_response)), {
                 headers:{
                     "content-type": "application/json"
                 },
@@ -51,7 +58,11 @@ const handler = async (request) => {
 
     }catch(err){
         // look into support for logging service or build own
-        return new Response(JSON.stringify({status:'error', msg:err.message}), {
+        let msg = err.message;
+        if(err.message.includes('Cannot read')){
+            msg = 'Route does not exist'
+        }
+        return new Response(JSON.stringify({status:'error', msg}), {
             headers:{
                 "content-type": "application/json"
             },
