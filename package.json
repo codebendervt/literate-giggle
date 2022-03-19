@@ -36,6 +36,7 @@
   },
   "alias": {
     "local-service": "./sdk/services",
-    "assets": "./assets"
+    "assets": "./assets",
+    "studio": "./sdk/studio"
   }
 }

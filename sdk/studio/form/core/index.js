@@ -48,13 +48,14 @@ const Input = ({handleEvent,values,custom,support, config, defaultValue = true})
 
     useEffect(() => {
 
+        custom(false)
         if(defaultValue){
             handleEvent({
                 [config.name]: ''
             })
         }
 
-        custom(false)
+
 
     },[])
 

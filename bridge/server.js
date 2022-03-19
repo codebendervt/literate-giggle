@@ -38,6 +38,8 @@ const handler = async (request) => {
 
         let urlPaths = url.pathname.split('/')
 
+        // const headers = {...request.headers};
+        // console.log(request.headers.get('authorization'))
         if(request.method == 'GET'){
             let _response  = await apiHandler({API,urlPaths,request});
             response = await new Response(JSON.stringify(_response), {
@@ -58,10 +60,10 @@ const handler = async (request) => {
 
     }catch(err){
         // look into support for logging service or build own
-        let msg = err.message;
-        if(err.message.includes('Cannot read')){
-            msg = 'Route does not exist'
-        }
+        let msg = 'Route does not exist';
+        // if(err.message.includes('Cannot read')){
+        //     msg = 'Route does not exist'
+        // }
         return new Response(JSON.stringify({status:'error', msg}), {
             headers:{
                 "content-type": "application/json"

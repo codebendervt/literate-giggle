@@ -29,38 +29,42 @@ const index  = () => {
     // You currently do not have any goods or services that you
     // offer to the world
     return (
-        <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white p-2'}>
+        <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
 
 
-            {acc ?
-                <div className={'w-full h-12  px-4 mt-4 flex justify-center'}>
-                    <div className={'w-full h-full rounded bg-gray-400 p-2 flex'}>
-                        <div className={'w-auto flex-grow h-full bg-gray-300 rounded flex justify-center items-center text-black text-lg'}>
-                            https://sauveur.xyz/gmabata
-                        </div>
-                        <div className={'w-12 h-full flex items-center justify-center '}>
-                            <img className={'p-2'} src={share}/>
-                        </div>
-                    </div>
-                </div>
-                :
-                <></>
-            }
-
-
-            <div className={'w-full h-auto flex flex-grow items-center justify-center'}>
-
-                <div className={'flex-col flex justify-center items-center'}>
-                    <img className={'w-12 h-12 p-2 '} src={microphone}/>
-                    <p className={'text-sm text-center w-64'}>
-                        {msg}
-                    </p>
-                </div>
-
+            <div className={'hidden lg:w-1/2 lg:flex bg-gray-700 p-2'}>
 
             </div>
 
+            <div className={'w-full h-full lg:w-1/2 flex flex-col p-2'}>
+                {acc ?
 
+                    <div className={'w-full h-12  px-4 mt-4 flex justify-center'}>
+                        <div className={'w-full h-full rounded bg-gray-400 p-2 flex'}>
+                            <div className={'w-auto flex-grow h-full bg-gray-300 rounded flex justify-center items-center text-black text-lg'}>
+                                https://sauveur.xyz/gmabata
+                            </div>
+                            <div className={'w-12 h-full flex items-center justify-center '}>
+                                <img className={'p-2'} src={share}/>
+                            </div>
+                        </div>
+                    </div>
+                    :
+                    <></>
+                }
+
+
+                <div className={'w-full h-auto flex flex-grow items-center justify-center'}>
+
+                    <div className={'flex-col flex justify-center items-center'}>
+                        <img className={'w-12 h-12 p-2 '} src={microphone}/>
+                        <p className={'text-sm text-center w-64'}>
+                            {msg}
+                        </p>
+                    </div>
+
+
+                </div>
 
 
                 <div className={'h-12 w-full flex mb-4 items-center justify-center'  }>
@@ -74,6 +78,8 @@ const index  = () => {
 
 
                 </div>
+            </div>
+
 
 
             {/* dashbpard drawer*/}

@@ -1,4 +1,6 @@
 import icons from '../style/assets/icons'
+import loader from 'assets/icons/loader.svg';
+
 import Core from './core'
 import Components from '../components'
 
@@ -37,6 +39,7 @@ const Engine = ({submitHandler, formConfig, title}) => {
     const [pos, setPos] = useState(0)
     const [len] = useState(formConfig.length)
     const [state, dispatch] = useReducer(handleEvent, []);
+    const [done,setDone] = useState(false)
     let {[formConfig[pos].type]: Comp} = Core
 
 
@@ -62,6 +65,7 @@ const Engine = ({submitHandler, formConfig, title}) => {
 
     const handleSubmit = async () => {
 
+        setDone(true)
         let _data = null
 
         if(state.length > 0){
@@ -96,7 +100,7 @@ const Engine = ({submitHandler, formConfig, title}) => {
     }
 
     return (
-        <div className={`w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-32' }`}>
+        <div className={`w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-64' }`}>
 
 
             <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>
@@ -105,7 +109,7 @@ const Engine = ({submitHandler, formConfig, title}) => {
                 {
                      isCustom ? <></> : pos == len - 1 ?
                         <div onClick={handleSubmit}>
-                            <img className={'w-8 h-8 cursor-pointer'} src={icons.submit_icon.src || icons.submit_icon}/>
+                            <img className={`w-8 h-8 cursor-pointer ${done ? 'animate-spin': ''}`} src={done ? loader : icons.submit_icon.src || icons.submit_icon}/>
 
 
                         </div> : <div onClick={nextSubmit}>

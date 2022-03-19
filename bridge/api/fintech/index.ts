@@ -4,11 +4,13 @@ const env = Deno.env.toObject();
 //figure out what is the env
 const _uri = 'https://api.paystack.co/'
 let key = env.PAYSTACK_SECRET_KEY || 'sk_live_065943ad1e728f6544f009ab7e0ea4d20f1671fb';
-
+let response = {};
 
 const paystack_api = {
     verify : 'transaction/verify/',
-    update_log: 'transaction/update_log/'
+    update_log: 'transaction/update_log/',
+    bank: 'bank',
+    subaccount: 'subaccount'
 }
 
 const _fetch = async ({uri = _uri, data = {}, method = 'POST'}) => {
@@ -18,8 +20,6 @@ const _fetch = async ({uri = _uri, data = {}, method = 'POST'}) => {
         options = {body: JSON.stringify(data)}
     }
 
-
-    console.log(key)
     const _response =  await fetch(uri,
         {
             method, // *GET, POST, PUT, DELETE, etc.
@@ -66,9 +66,6 @@ const log = async(data:any, req:any) => {
 
 const verify = async (req:any) => {
 
-    let response = {};
-    console.log();
-
     // let url = new URL(req.url)
     // let searchParams = new URLSearchParams(url.search);
     // searchParams.get('ref')
@@ -81,5 +78,28 @@ const verify = async (req:any) => {
     return response;
 }
 
+const bank = async (req:any) => {
+    const uri = `${_uri}${paystack_api.bank}?currency=ZAR`
 
-export default {index,verify,log}
+    const method = req.method;
+    response = await _fetch({uri, method});
+    return response
+}
+
+
+const create_account = async (data:any, req:any) => {
+    const uri = `${_uri}${paystack_api.subaccount}`
+
+    response = await _fetch({uri, data});
+    return response
+}
+
+const list_accounts = async (req:any) => {
+    const uri = `${_uri}${paystack_api.subaccount}`
+
+    const method = req.method;
+    response = await _fetch({uri, method});
+    return response
+}
+
+export default {index,verify,log,bank,create_account,list_accounts}
