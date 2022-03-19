@@ -28,6 +28,8 @@ const model = [
 
 const index  = ({param}) => {
 
+    const [banks, setbanks] = useState()
+
     useEffect(async () => {
 
 
@@ -50,14 +52,10 @@ const index  = ({param}) => {
         const e_data = service.native.encrypt('12345',JSON.stringify(data))
 
         console.log(process.env.DEV_URL)
-        const banks = await fetch(`https://cors.deno.dev/https://api.sauveur.xyz/fin/bank`,{
-            headers:{
-                "access-control-allow-origin": "*",
-                "content-type": "application/json",
-            }
-        })
-
-        console.log( await banks.json())
+        const banks_res = await fetch(`https://clear-donkey-10-y9vwxf88wvhg.deno.dev/fin/bank`)
+        const banks = await banks_res.json()
+        setbanks(banks.data)
+        model[2].values.data = banks.data.map((bank) => bank.name)
         console.log(service.native.decrypt('12345',e_data))
         console.log(param,_id)
         console.log(_acc,'acc')
@@ -65,9 +63,27 @@ const index  = ({param}) => {
         console.table(await service.backend.Config.get(_id),'getting data')
     },[])
 
-    const submitHandler = (e) =>{
+    const submitHandler = async (e) =>{
+        e.bank  = banks[e.bank];
 
-        console.log(e)
+        const create_account = {
+            "business_name": e.company_name,
+            "settlement_bank": e.bank.code,
+            "account_number": e.acc_no,
+            "percentage_charge": 5
+        }
+
+        const res = await fetch(`https://clear-donkey-10-y9vwxf88wvhg.deno.dev/fin/create_account`,{
+            method: 'POST',
+            body:JSON.stringify(create_account)
+        })
+
+        const _res = await res.json()
+
+        if(_res.status)
+            window.location = '/dash'
+
+
     }
 
     return (
