@@ -3,15 +3,6 @@ import API from './api/index.ts'
 
 const port = 8080;
 
-const addCorsIfNeeded(response) {
-    const headers = new Headers(response.headers);
-
-    if (!headers.has("access-control-allow-origin")) {
-        headers.set("access-control-allow-origin", "*");
-    }
-
-    return headers;
-}
 
 const apiHandler = async ({API, urlPaths,data,request}) => {
 
