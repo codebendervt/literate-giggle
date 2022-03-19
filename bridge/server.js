@@ -83,11 +83,11 @@ const handler = async (request) => {
             status: 404 });;
     }
 
-    const headers = new Headers(response.headers)
-    if (!headers.has("access-control-allow-origin")) {
-        headers.set("access-control-allow-origin", "*");
+
+    if (!response.headers.has("access-control-allow-origin")) {
+        response.headers.set("access-control-allow-origin","*");
     }
-    response.headers = headers;
+
 
     return response;
 };
