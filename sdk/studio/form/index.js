@@ -105,7 +105,7 @@ const Engine = ({submitHandler, formConfig, title}) => {
 
             <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>
             <Comp key={`Comp${formConfig[pos].name}`} values={formConfig[pos].values} handleEvent={dispatch} config={formConfig[pos]} custom={setCustom}/>
-            <div className={'w-full text-white flex flex-grow items-end justify-center'}>
+            <div className={`w-full text-white flex ${isCustom ? '':'flex-grow '}items-end justify-center`}>
                 {
                      isCustom ? <></> : pos == len - 1 ?
                         <div onClick={handleSubmit}>

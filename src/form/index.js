@@ -5,6 +5,13 @@ import {useEffect} from 'react';
 
 
 const model = [
+    {type: 'info',name:'terms_conditions',title:'Let us create your business but first',
+        values: [
+            {name:'Your Business Name',desc:'The name which you would like to be recognized on the platform'},
+            {name:'Your Bank Account',desc:'The bank account you would like your money to be paid out too'},
+            {name:'Agreement',desc:'To continue creating your business you agree to codebenderhq terms & conditions'}
+        ]
+    },
     {type: 'input',name:'company_name',title:'Your Business Name', values: {placeholder:'business name', type:'text'}},
     {type: 'search',
         name:'bank',
@@ -31,8 +38,9 @@ const index  = ({param}) => {
         console.table(await service.backend.Config.get(_id),'getting data')
     },[])
 
-    const submitHandler = () =>{
+    const submitHandler = (e) =>{
 
+        console.log(e)
     }
 
     return (

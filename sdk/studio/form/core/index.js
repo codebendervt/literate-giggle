@@ -138,4 +138,68 @@ const Search = ({handleEvent,values,custom,config}) => {
     )
 }
 
-export default {options: Options, input: Input, search: Search, upload: Upload}
+const Info  = ({handleEvent,values,custom, config}) => {
+
+    useEffect(() => {
+
+        custom(true)
+
+    },[])
+
+    //turn into global function
+    const setValue = () => {
+
+        try{
+
+            handleEvent({
+                [config.name]:true
+            })
+
+        }catch(e){
+            console.error(e)
+        }
+
+    }
+
+    return(
+        <div className={'flex flex-grow w-full h-auto flex-col justify-center items-center'}>
+
+            <div className={'flex flex-col'}>
+
+                <div className={'my-2 font-bold text-2xl text-blue-500 '}>
+                    {config.title}
+                </div>
+
+                <div className={'w-full h-full flex flex-col max-w-sm'}>
+
+                    {
+                        values.map((val) => {
+
+                            return(
+                                <div className={'w-full flex flex-col max-w-xs my-2'}>
+                                    <h1 className={'font-bold text-xl'}>{val.name}</h1>
+                                    <p className={'text-lg font-italics'}>{val.desc}</p>
+                                </div>
+                            )
+                        })
+                    }
+
+                </div>
+
+                <div onClick={setValue} className={'p-2 bg-blue-500 rounded flex w-32 my-4'}>
+                    <div className={'flex w-2/3'}>
+                        Agree
+                    </div>
+                    <div className={'flex w-1/3 justify-end'}>
+                       ->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    )
+}
+
+export default {options: Options, input: Input, search: Search, upload: Upload, info:Info}
