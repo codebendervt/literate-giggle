@@ -4,7 +4,7 @@
   "description": "",
   "source": "index.html",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel --https",
     "server": "deno run --allow-net --allow-env bridge/server.js",
     "build": "parcel build --dist-dir public",
     "deploy": "dfx deploy --network ic sauveur",

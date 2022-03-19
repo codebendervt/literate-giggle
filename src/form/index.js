@@ -42,6 +42,7 @@ const index  = ({param}) => {
             method: 'GET',
             redirect: 'follow',
             headers : {
+                "access-control-allow-origin": "*",
                 "content-type": "application/json",
             },
             mode:'no-cors',
@@ -49,9 +50,14 @@ const index  = ({param}) => {
         const e_data = service.native.encrypt('12345',JSON.stringify(data))
 
         console.log(process.env.DEV_URL)
-        const banks = await fetch(`https://clear-donkey-10-bmsfaxst7qq0.deno.dev/`,requestOptions)
+        const banks = await fetch(`https://cors.deno.dev/https://api.sauveur.xyz/fin/bank`,{
+            headers:{
+                "access-control-allow-origin": "*",
+                "content-type": "application/json",
+            }
+        })
 
-        console.log( banks)
+        console.log( await banks.json())
         console.log(service.native.decrypt('12345',e_data))
         console.log(param,_id)
         console.log(_acc,'acc')

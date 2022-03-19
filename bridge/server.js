@@ -3,6 +3,15 @@ import API from './api/index.ts'
 
 const port = 8080;
 
+const addCorsIfNeeded = (response) => {
+    const headers = new Headers(response.headers);
+
+    if (!headers.has("access-control-allow-origin")) {
+        headers.set("access-control-allow-origin", "*");
+    }
+
+    return headers;
+}
 
 const apiHandler = async ({API, urlPaths,data,request}) => {
 
@@ -30,7 +39,7 @@ const handler = async (request) => {
 
     try{
         //need to add support for being able to handle the base path
-
+        const corsHeaders = addCorsIfNeeded(new Response());
 
         // for adding support for authorization
         // console.log('headers',request.headers.get('authorization'));
@@ -44,8 +53,8 @@ const handler = async (request) => {
             let _response  = await apiHandler({API,urlPaths,request});
             response = await new Response(JSON.stringify(_response), {
                 headers:{
-                    "access-control-allow-origin": "*",
-                    "content-type": "application/json"
+                    "content-type": "application/json",
+                    "Referrer-Policy": "no-referrer"
                 },
                 status: 200 });
 
@@ -54,8 +63,7 @@ const handler = async (request) => {
             let _response  = await apiHandler({API,urlPaths,data});
             response = new Response(JSON.stringify((_response)), {
                 headers:{
-                    "access-control-allow-origin": "*",
-                    "content-type": "application/json"
+                    "content-type": "application/json",
                 },
                 status: 200 });
         }
@@ -68,11 +76,18 @@ const handler = async (request) => {
         // }
         return new Response(JSON.stringify({status:'error', msg}), {
             headers:{
-                "access-control-allow-origin": "*",
-                "content-type": "application/json"
+                "content-type": "application/json",
+                "Referrer-Policy": "no-referrer",
+                "access-control-allow-origin": "*"
             },
             status: 404 });;
     }
+
+    const headers = new Headers(response.headers)
+    if (!headers.has("access-control-allow-origin")) {
+        headers.set("access-control-allow-origin", "*");
+    }
+    response.headers = headers;
 
     return response;
 };
