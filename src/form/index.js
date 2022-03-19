@@ -1,7 +1,7 @@
 import service from 'local-service';
 import StudioForm from 'studio/form';
 import share from 'assets/icons/share.svg';
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 
 
 const model = [
@@ -24,6 +24,8 @@ const model = [
             }},
     {type: 'input',name:'acc_no',title:'Business Account Number', values:{placeholder:'Account Number', type:'tel'}}
 ]
+
+
 const index  = ({param}) => {
 
     useEffect(async () => {
@@ -31,8 +33,27 @@ const index  = ({param}) => {
 
         let _id = service.native.uid()
         const _acc = service.native.getLocalStorage('acc')
-        console.log(param,_id)
 
+        const data = {
+            org:'codebenderhq'
+        }
+
+        var requestOptions = {
+            method: 'GET',
+            redirect: 'follow',
+            headers : {
+                "content-type": "application/json",
+            },
+            mode:'no-cors',
+        };
+        const e_data = service.native.encrypt('12345',JSON.stringify(data))
+
+        console.log(process.env.DEV_URL)
+        const banks = await fetch(`https://clear-donkey-10-bmsfaxst7qq0.deno.dev/`,requestOptions)
+
+        console.log( banks)
+        console.log(service.native.decrypt('12345',e_data))
+        console.log(param,_id)
         console.log(_acc,'acc')
         console.log(_id, 'id')
         console.table(await service.backend.Config.get(_id),'getting data')

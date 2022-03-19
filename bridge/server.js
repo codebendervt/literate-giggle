@@ -3,6 +3,15 @@ import API from './api/index.ts'
 
 const port = 8080;
 
+const addCorsIfNeeded(response) {
+    const headers = new Headers(response.headers);
+
+    if (!headers.has("access-control-allow-origin")) {
+        headers.set("access-control-allow-origin", "*");
+    }
+
+    return headers;
+}
 
 const apiHandler = async ({API, urlPaths,data,request}) => {
 
@@ -44,6 +53,7 @@ const handler = async (request) => {
             let _response  = await apiHandler({API,urlPaths,request});
             response = await new Response(JSON.stringify(_response), {
                 headers:{
+                    "access-control-allow-origin": "*",
                     "content-type": "application/json"
                 },
                 status: 200 });
@@ -53,6 +63,7 @@ const handler = async (request) => {
             let _response  = await apiHandler({API,urlPaths,data});
             response = new Response(JSON.stringify((_response)), {
                 headers:{
+                    "access-control-allow-origin": "*",
                     "content-type": "application/json"
                 },
                 status: 200 });
@@ -66,6 +77,7 @@ const handler = async (request) => {
         // }
         return new Response(JSON.stringify({status:'error', msg}), {
             headers:{
+                "access-control-allow-origin": "*",
                 "content-type": "application/json"
             },
             status: 404 });;
