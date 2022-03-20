@@ -9,6 +9,8 @@ const index  = () => {
     const [acc, setAcc] = useState()
     const [msg, setMsg] = useState()
     const [route, setRoute] = useState()
+    const [section, toggleSection] = useState('p')
+    const [drawer, toggleDrawer] = useState(false)
 
     useEffect(async () => {
 
@@ -32,27 +34,44 @@ const index  = () => {
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
 
 
-            <div className={'hidden lg:w-1/2 lg:flex bg-gray-700 p-2'}>
+             {/*dashbpard drawer*/}
+            <div className={`${drawer ? '':'hidden'} w-80 lg:w-1/4 h-screen flex flex-col bg-gray-200 rounded-r-lg shadow absolute lg:relative p-2 z-20 text-black`}>
 
-            </div>
+                {/*<div className={'w-full h-12  flex justify-center'}>*/}
+                {/*    <div className={'w-full h-full rounded bg-gray-300 p-2 flex'}>*/}
+                {/*        <div className={'w-auto flex-grow h-full bg-gray-100 rounded flex justify-center items-center text-black text-xs'}>*/}
+                {/*            https://sauveur.xyz/codebenderhq*/}
+                {/*        </div>*/}
+                {/*        <div className={'w-12 h-full flex items-center justify-center '}>*/}
+                {/*            <img className={'p-2'} src={share}/>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
 
-            <div className={'w-full h-full lg:w-1/2 flex flex-col p-2'}>
-                {acc ?
+                <div className={'w-full h-auto flex-grow flex flex-col'}>
 
-                    <div className={'w-full h-12  px-4 mt-4 flex justify-center'}>
-                        <div className={'w-full h-full rounded bg-gray-400 p-2 flex'}>
-                            <div className={'w-auto flex-grow h-full bg-gray-300 rounded flex justify-center items-center text-black text-lg'}>
-                                https://sauveur.xyz/gmabata
-                            </div>
-                            <div className={'w-12 h-full flex items-center justify-center '}>
-                                <img className={'p-2'} src={share}/>
-                            </div>
+
+                    <div className={'p-2 text-lg font-bold w-full '}>
+                        codebenderhq
+                    </div>
+
+                </div>
+
+                <div className={'w-full flex flex-col items-center p-2 justify-end'}>
+                    <div className={'p-2 w-full bg-gray-300 h-12 rounded flex cursor-pointer'}>
+                        <div onClick={() => toggleSection('p')} className={`w-1/2 ${section === 'p' ? 'bg-gray-700 text-white' : ''}  rounded p-2 items-center justify-center flex`}>
+                            Product
+                        </div>
+                        <div  onClick={() => toggleSection('s')} className={`w-1/2  ${section === 's' ? 'bg-gray-700 text-white' : ''}  rounded p-2 items-center justify-center flex`}>
+                            Service
                         </div>
                     </div>
-                    :
-                    <></>
-                }
 
+                    {/*<p className={'text-black text-xs my-2'}>A new edition to the creator economy</p>*/}
+                </div>
+            </div>
+
+            <div className={'w-full h-full lg:w-3/4 flex flex-col p-2'}>
 
                 <div className={'w-full h-auto flex flex-grow items-center justify-center'}>
 
@@ -68,12 +87,36 @@ const index  = () => {
 
 
                 <div className={'h-12 w-full flex mb-4 items-center justify-center'  }>
-                    {route ?
-                        <a href={route} className={'w-64 text-center p-2 bg-blue-500 rounded text-xl items-center text-gray-800'}>
-                            Create
-                        </a>
-                        :
-                        <></>
+
+                    {
+                        acc ?
+                            <div onClick={() => toggleDrawer(!drawer)} className={'w-full flex justify-end items-center'}>
+                                <div className={'flex-col'}>
+                                    <div className={'flex'}>
+                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
+                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
+                                    </div>
+
+                                    <div className={'flex'}>
+                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
+                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            :
+                            <div className={'w-full lg:w-2/3 flex justify-center'}>
+                                {
+                                    route ?
+                                        <a href={route} className={'w-64 text-center p-2 bg-blue-500 rounded text-xl items-center text-gray-800'}>
+                                Create
+                            </a>
+                                        :
+                                        <></>
+                                }
+                            </div>
                     }
 
 
@@ -82,13 +125,7 @@ const index  = () => {
 
 
 
-            {/* dashbpard drawer*/}
-            {/*<div className={'w-80 h-screen flex flex-col bg-gray-200 rounded-r-lg shadow absolute lg:relative p-2'}>*/}
-            {/*    <div className={'w-full h-auto flex-grow'}></div>*/}
-            {/*    <div className={'w-full flex items-end p-2 justify-center'}>*/}
-            {/*        <p className={'text-black text-sm'}>A new edition to the creator economy</p>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+
 
 
         </div>

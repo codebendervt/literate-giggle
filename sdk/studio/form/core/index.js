@@ -80,7 +80,12 @@ const Input = ({handleEvent,values,custom,support, config, defaultValue = true})
                 {config.title}
             </div>
             <div className={'w-full h-10 flex items-center p-2 border-l-2 appearance-none'} key={values.placeholder}>
-                <input key={config.name} className={'w-full h-12 input-style bg-transparent appearance-none outline-none'} type={values.type || type} placeholder={values.placeholder || placeholder} onChange={(e) => setValue(e.target.value)} accept={support}/>
+                <input key={config.name} className={'w-full h-12 input-style bg-transparent appearance-none outline-none'}
+                       type={values.type || type}
+                       placeholder={values.placeholder || placeholder}
+                       onChange={(e) => setValue(e.target.value)}
+                       accept={support}
+                       autoFocus={"autofocus"}/>
             </div>
         </div>
 
@@ -176,7 +181,7 @@ const Info  = ({handleEvent,values,custom, config}) => {
                         values.map((val) => {
 
                             return(
-                                <div className={'w-full flex flex-col max-w-xs my-2'}>
+                                <div key={val.name} className={'w-full flex flex-col max-w-xs my-2'}>
                                     <h1 className={'font-bold text-xl'}>{val.name}</h1>
                                     <p className={'text-lg font-italics'}>{val.desc}</p>
                                 </div>

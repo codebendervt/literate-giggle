@@ -100,7 +100,7 @@ const Engine = ({submitHandler, formConfig, title}) => {
     }
 
     return (
-        <div className={`w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-64' }`}>
+        <div className={`w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-48 lg:py-64' }`}>
 
 
             <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>

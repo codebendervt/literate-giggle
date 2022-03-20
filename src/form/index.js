@@ -1,90 +1,46 @@
 import service from 'local-service';
 import StudioForm from 'studio/form';
-import share from 'assets/icons/share.svg';
+import form_models from './models';
 import {useEffect,useState} from 'react';
-
-
-const model = [
-    {type: 'info',name:'terms_conditions',title:'Let us create your business but first',
-        values: [
-            {name:'Your Business Name',desc:'The name which you would like to be recognized on the platform'},
-            {name:'Your Bank Account',desc:'The bank account you would like your money to be paid out too'},
-            {name:'Agreement',desc:'To continue creating your business you agree to codebenderhq terms & conditions'}
-        ]
-    },
-    {type: 'input',name:'company_name',title:'Your Business Name', values: {placeholder:'business name', type:'text'}},
-    {type: 'search',
-        name:'bank',
-        title:'Select Bank',
-        values:
-            {
-                placeholder:'Select Bank',
-                type:'text',
-                data:['nedbank', 'absa']
-            }},
-    {type: 'input',name:'acc_no',title:'Business Account Number', values:{placeholder:'Account Number', type:'tel'}}
-]
-
 
 const index  = ({param}) => {
 
-    const [banks, setbanks] = useState()
+    const [model, setModel] = useState()
+    const submitHandler = form_models[param]({setModel})
 
     useEffect(async () => {
 
+        try{
+            if(model){
+                let _id = service.native.uid()
+                const _acc = service.native.getLocalStorage('acc')
 
-        let _id = service.native.uid()
-        const _acc = service.native.getLocalStorage('acc')
+                const data = {
+                    org:'codebenderhq'
+                }
 
-        const data = {
-            org:'codebenderhq'
+                var requestOptions = {
+                    method: 'GET',
+                    redirect: 'follow',
+                    headers : {
+                        "access-control-allow-origin": "*",
+                        "content-type": "application/json",
+                    },
+                    mode:'no-cors',
+                };
+                const e_data = service.native.encrypt('12345',JSON.stringify(data))
+
+                console.log(service.native.decrypt('12345',e_data))
+                console.log(param,_id)
+                console.log(_acc,'acc')
+                console.log(_id, 'id')
+                console.table(await service.backend.Config.get(_id),'getting data')
+            }
+        }catch(err){
+            console.error('unable to start form',err.message)
         }
 
-        var requestOptions = {
-            method: 'GET',
-            redirect: 'follow',
-            headers : {
-                "access-control-allow-origin": "*",
-                "content-type": "application/json",
-            },
-            mode:'no-cors',
-        };
-        const e_data = service.native.encrypt('12345',JSON.stringify(data))
-
-        console.log(process.env.DEV_URL)
-        const banks_res = await fetch(`https://clear-donkey-10-y9vwxf88wvhg.deno.dev/fin/bank`)
-        const banks = await banks_res.json()
-        setbanks(banks.data)
-        model[2].values.data = banks.data.map((bank) => bank.name)
-        console.log(service.native.decrypt('12345',e_data))
-        console.log(param,_id)
-        console.log(_acc,'acc')
-        console.log(_id, 'id')
-        console.table(await service.backend.Config.get(_id),'getting data')
-    },[])
-
-    const submitHandler = async (e) =>{
-        e.bank  = banks[e.bank];
-
-        const create_account = {
-            "business_name": e.company_name,
-            "settlement_bank": e.bank.code,
-            "account_number": e.acc_no,
-            "percentage_charge": 5
-        }
-
-        const res = await fetch(`https://clear-donkey-10-y9vwxf88wvhg.deno.dev/fin/create_account`,{
-            method: 'POST',
-            body:JSON.stringify(create_account)
-        })
-
-        const _res = await res.json()
-
-        if(_res.status)
-            window.location = '/dash'
-
-
-    }
+    },[model])
 
     return (
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
@@ -95,7 +51,7 @@ const index  = ({param}) => {
             </div>
 
             <div className={'w-full h-full lg:w-1/2 flex flex-col p-2'}>
-                <StudioForm submitHandler={submitHandler} formConfig={model}/>
+                {model ? <StudioForm submitHandler={submitHandler} formConfig={model}/> : <></>}
             </div>
 
         </div>)
