@@ -34,6 +34,7 @@ const handleEvent = (state, action) => {
 
 const Engine = ({submitHandler, formConfig, title}) => {
 
+    const [error,setError] = useState(false)
     const [isCustom, setCustom] = useState(true);
     // const [type] = useState(NativeService.getUriParams({param:'type'}))
     const [pos, setPos] = useState(0)
@@ -104,18 +105,24 @@ const Engine = ({submitHandler, formConfig, title}) => {
 
 
             <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>
-            <Comp key={`Comp${formConfig[pos].name}`} values={formConfig[pos].values} handleEvent={dispatch} config={formConfig[pos]} custom={setCustom}/>
+            <Comp key={`Comp${formConfig[pos].name}`}
+                  values={formConfig[pos].values}
+                  handleEvent={dispatch}
+                  config={formConfig[pos]}
+                  custom={setCustom}
+                  setError={setError} error={error}/>
             <div className={`w-full text-white flex ${isCustom ? '':'flex-grow '}items-end justify-center`}>
                 {
-                     isCustom ? <></> : pos == len - 1 ?
+                     error ? <></> : isCustom ? <></> : pos == len - 1 ?
 
                          done ?  <img className={`w-8 h-8 cursor-pointer animate-spin`} src={loader}/>
                              :
+
                              <div   onClick={handleSubmit} >
                             <img className={`w-8 h-8 cursor-pointer`} src={ icons.submit_icon.src || icons.submit_icon}/>
 
-
-                        </div> : <div onClick={nextSubmit}>
+                             </div> :
+                         <div onClick={nextSubmit}>
                             {/*there is going to need to be a new configuration for nextjs*/}
                             <img className={'w-8 h-8 cursor-pointer'} src={icons.next_icon.src || icons.next_icon}/>
                         </div>

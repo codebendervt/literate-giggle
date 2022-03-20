@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react'
+import service from 'local-service';
+import save from "../../../sdk/services/backend/config/save";
 
 const model = [
     {type: 'info',name:'terms_conditions',title:'Let us create your business but first what we need from you',
@@ -8,7 +10,7 @@ const model = [
             {name:'Agreement',desc:'To continue creating your business you agree to codebenderhq terms & conditions'}
         ]
     },
-    {type: 'input',name:'company_name',title:'Your Business Name', values: {placeholder:'business name', type:'text'}},
+    {type: 'input',name:'company_name',title:'Your Business Name',valid: () =>{} , values: {placeholder:'business name', type:'text'}},
     {type: 'search',
         name:'bank',
         title:'Select Bank',
@@ -26,6 +28,11 @@ const business =  ({setModel}) => {
     const [response, setResponse] = useState()
     const [banks, setbanks] = useState()
 
+    const validateBusinessName = async (val) => {
+        let isValid = await service.backend.Config.isExist(val)
+        return !isValid
+    }
+
     useEffect(async () => {
 
         try{
@@ -34,6 +41,7 @@ const business =  ({setModel}) => {
             const banks = await banks_res.json()
             setbanks(banks.data)
             model[2].values.data = banks.data.map((bank) => bank.name)
+            model[1].valid = validateBusinessName
             setModel(model)
 
         }catch(err){
@@ -43,7 +51,6 @@ const business =  ({setModel}) => {
 
 
     },[])
-
 
     const submitHandler = async (e) =>{
 
@@ -56,7 +63,6 @@ const business =  ({setModel}) => {
                 "account_number": e.acc_no,
                 "percentage_charge": 5
             }
-            console.log(create_account)
             const res = await fetch(`${process.env.DEV_API}fin/create_account`,{
                 method: 'POST',
                 body:JSON.stringify(create_account)
@@ -66,7 +72,7 @@ const business =  ({setModel}) => {
             if(_res.status) {
                 const bank_id = _res.data.id
                 create_account.id = bank_id
-                register_account(create_account)
+                await register_account(create_account)
             }
 
 
@@ -81,17 +87,27 @@ const business =  ({setModel}) => {
 
     }
 
-    const register_account = (acc) => {
+    const register_account = async (acc) => {
         let _acc =  localStorage.getItem('acc')
+        const device_id = localStorage.getItem('id')
+        let _data = await service.backend.Config.get(acc.business_name)
+        _data.data = JSON.stringify( {
+            device_id
+        })
 
-        if(_acc){
-            _acc = JSON.parse(_acc)
-            _acc.push(acc)
-        }else{
-            _acc = [acc]
+        let isSaved = await service.backend.Config.save(acc.business_name,_data)
+
+        if(isSaved){
+            if(_acc){
+                _acc = JSON.parse(_acc)
+                _acc.push(acc)
+            }else{
+                _acc = [acc]
+            }
+            console.log(_acc)
+            localStorage.setItem('acc',JSON.stringify(_acc))
         }
-        console.log(_acc)
-        localStorage.setItem('acc',JSON.stringify(_acc))
+
     }
 
     return submitHandler

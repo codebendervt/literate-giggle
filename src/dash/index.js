@@ -8,9 +8,12 @@ const index  = () => {
 
     const [acc, setAcc] = useState()
     const [msg, setMsg] = useState()
+    const [active_account, setActive] = useState()
     const [route, setRoute] = useState()
     const [section, toggleSection] = useState('p')
     const [drawer, toggleDrawer] = useState(false)
+    const [orders, setOrders]  = useState()
+    const [product, setProduct]  = useState()
 
     const registerDevice = async () => {
         let _id = service.native.uid()
@@ -22,6 +25,17 @@ const index  = () => {
             registerDevice()
         }
           return true
+    }
+
+    const getOrders = async () => {
+
+        const uri = `${active_account.business_name}/orders`;
+        console.log(uri)
+        let isValid = await service.backend.Config.isExist(uri)
+        if(isValid)
+            setOrders(await service.backend.Config.get(uri))
+
+
     }
 
     useEffect(async () => {
@@ -37,19 +51,30 @@ const index  = () => {
             setMsg('you currently have no virtual business linked to this device')
             setRoute('/form/business')
         }else{
-            setAcc(_acc)
-            const products = service.native.getLocalStorage('products')
-            if(!products){
-
-                setMsg('You currently do not have any goods or services that you offer to the world')
-            }
+            let stored_acc = JSON.parse(_acc)
+            setAcc(stored_acc)
+            setActive(stored_acc[0])
         }
-
-        // console.log(_acc,'acc')
-        // console.log(_id, 'id')
-        // console.table(await service.backend.Config.get(_id),'getting data')
     },[])
 
+    useEffect(async () => {
+        if(active_account) {
+            await getOrders()
+        }
+    },[active_account])
+
+    useEffect(async () => {
+        const products = service.native.getLocalStorage('products')
+
+        if(!orders && !products) {
+            setMsg('You currently do not have any orders and no goods that you offer to the world')
+            setRoute('/form/product')
+
+        }else if(!orders){
+            setProduct(products)
+            setMsg('You currently do not have any orders ')
+        }
+    },[orders])
 
     return (
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
@@ -73,7 +98,7 @@ const index  = () => {
 
 
                     <div className={'p-2 text-lg font-bold w-full '}>
-                        codebenderhq
+                        {active_account ? active_account.business_name : ''}
                     </div>
 
                 </div>
@@ -102,6 +127,14 @@ const index  = () => {
                         <p className={'text-sm text-center w-64'}>
                             {msg}
                         </p>
+
+                        {!product && route ?
+                            <a href={route} className={'p-2 text-blue-500 my-2'}>
+                            Create Product
+                            </a> :
+                            <></>
+                        }
+
                     </div>
 
 
@@ -144,11 +177,6 @@ const index  = () => {
 
                 </div>
             </div>
-
-
-
-
-
 
         </div>
     )

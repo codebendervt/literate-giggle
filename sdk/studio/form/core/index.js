@@ -44,7 +44,7 @@ const Options = ({values,handleEvent,custom,config}) => {
     )
 }
 
-const Input = ({handleEvent,values,custom,support, config, defaultValue = true}) => {
+const Input = ({handleEvent,values,custom,support, config,setError, error, defaultValue = true}) => {
 
     useEffect(() => {
 
@@ -60,13 +60,26 @@ const Input = ({handleEvent,values,custom,support, config, defaultValue = true})
     },[])
 
     //turn into global function
-    const setValue = (val) => {
+    const setValue = async (val) => {
 
         try{
 
-            handleEvent({
-                [config.name]:val
-            })
+            if(config.valid) {
+                if(await config.valid(val)){
+                    setError(false)
+                    handleEvent({
+                        [config.name]:val
+                    })
+                }else{
+                    setError(true)
+                }
+            }else{
+                handleEvent({
+                    [config.name]:val
+                })
+            }
+
+
 
         }catch(e){
             console.error(e)
@@ -79,7 +92,8 @@ const Input = ({handleEvent,values,custom,support, config, defaultValue = true})
             <div className={'mb-2 font-bold text-xl text-blue-500'}>
                 {config.title}
             </div>
-            <div className={'w-full h-10 flex items-center p-2 border-l-2 appearance-none'} key={values.placeholder}>
+            <div className={`w-full h-10 flex items-center p-2 border-l-2 ${error ? 'border-red-400' : ''} appearance-none`} key={values.placeholder}>
+
                 <input key={config.name} className={'w-full h-12 input-style bg-transparent appearance-none outline-none'}
                        type={values.type || type}
                        placeholder={values.placeholder || placeholder}
@@ -87,6 +101,7 @@ const Input = ({handleEvent,values,custom,support, config, defaultValue = true})
                        accept={support}
                        autoFocus={"autofocus"}/>
             </div>
+            {/*<p className={'text-xs w-full text-right'}>a quick error message</p>*/}
         </div>
 
     )
