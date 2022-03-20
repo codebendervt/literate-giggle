@@ -27,6 +27,7 @@ const business =  ({setModel}) => {
     const [banks, setbanks] = useState()
 
     useEffect(async () => {
+
         console.log('something starting')
         const banks_res = await fetch(`${process.env.DEV_API}fin/bank`)
         const banks = await banks_res.json()

@@ -12,8 +12,6 @@ const index  = ({param}) => {
 
         try{
             if(model){
-                let _id = service.native.uid()
-                const _acc = service.native.getLocalStorage('acc')
 
                 const data = {
                     org:'codebenderhq'

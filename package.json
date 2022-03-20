@@ -8,6 +8,7 @@
     "server": "deno run --allow-net --allow-env bridge/server.js",
     "build": "parcel build --dist-dir public",
     "deploy": "dfx deploy --network ic sauveur",
+    "isntall": "dfx canister --network ic install sauveur --mode reinstall ",
     "deploy-backend": "dfx deploy --network ic sauveur",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
