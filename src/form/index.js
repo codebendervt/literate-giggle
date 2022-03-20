@@ -29,10 +29,8 @@ const index  = ({param}) => {
                 const e_data = service.native.encrypt('12345',JSON.stringify(data))
 
                 console.log(service.native.decrypt('12345',e_data))
-                console.log(param,_id)
-                console.log(_acc,'acc')
-                console.log(_id, 'id')
-                console.table(await service.backend.Config.get(_id),'getting data')
+                //
+                // console.table(await service.backend.Config.get(_id),'getting data')
             }
         }catch(err){
             console.error('unable to start form',err.message)

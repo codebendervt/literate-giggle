@@ -108,8 +108,11 @@ const Engine = ({submitHandler, formConfig, title}) => {
             <div className={`w-full text-white flex ${isCustom ? '':'flex-grow '}items-end justify-center`}>
                 {
                      isCustom ? <></> : pos == len - 1 ?
-                        <div onClick={handleSubmit}>
-                            <img className={`w-8 h-8 cursor-pointer ${done ? 'animate-spin': ''}`} src={done ? loader : icons.submit_icon.src || icons.submit_icon}/>
+
+                         done ?  <img className={`w-8 h-8 cursor-pointer animate-spin`} src={loader}/>
+                             :
+                             <div   onClick={handleSubmit} >
+                            <img className={`w-8 h-8 cursor-pointer`} src={ icons.submit_icon.src || icons.submit_icon}/>
 
 
                         </div> : <div onClick={nextSubmit}>

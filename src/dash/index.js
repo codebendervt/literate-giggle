@@ -12,15 +12,37 @@ const index  = () => {
     const [section, toggleSection] = useState('p')
     const [drawer, toggleDrawer] = useState(false)
 
+    const registerDevice = async () => {
+        let _id = service.native.uid()
+        let isValid = await service.backend.Config.isExist(_id)
+
+        if(isValid)  {
+            localStorage.set('id',_id)
+        }else{
+            registerDevice()
+        }
+          return true
+    }
+
     useEffect(async () => {
 
         //this will be your principal id in the near future
-        let _id = service.native.uid()
-        const _acc = service.native.getLocalStorage('acc')
+        const id = service.native.getLocalStorage('id')
+        if(!id){
+            await registerDevice()
+        }
 
+        const _acc = service.native.getLocalStorage('acc')
         if(!_acc){
             setMsg('you currently have no virtual business linked to this device')
             setRoute('/form/business')
+        }else{
+            setAcc(_acc)
+            const products = service.native.getLocalStorage('products')
+            if(!products){
+
+                setMsg('You currently do not have any goods or services that you offer to the world')
+            }
         }
 
         // console.log(_acc,'acc')
@@ -28,8 +50,7 @@ const index  = () => {
         // console.table(await service.backend.Config.get(_id),'getting data')
     },[])
 
-    // You currently do not have any goods or services that you
-    // offer to the world
+
     return (
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
 
@@ -58,16 +79,17 @@ const index  = () => {
                 </div>
 
                 <div className={'w-full flex flex-col items-center p-2 justify-end'}>
-                    <div className={'p-2 w-full bg-gray-300 h-12 rounded flex cursor-pointer'}>
-                        <div onClick={() => toggleSection('p')} className={`w-1/2 ${section === 'p' ? 'bg-gray-700 text-white' : ''}  rounded p-2 items-center justify-center flex`}>
-                            Product
-                        </div>
-                        <div  onClick={() => toggleSection('s')} className={`w-1/2  ${section === 's' ? 'bg-gray-700 text-white' : ''}  rounded p-2 items-center justify-center flex`}>
-                            Service
-                        </div>
-                    </div>
 
-                    {/*<p className={'text-black text-xs my-2'}>A new edition to the creator economy</p>*/}
+                    {/*<div className={'p-2 w-full bg-gray-300 h-12 rounded flex lg:cursor-pointer'}>*/}
+                    {/*    <div onClick={() => toggleSection('p')} className={`w-1/2 ${section === 'p' ? 'bg-gray-700 text-white' : ''}  rounded p-2 items-center justify-center flex`}>*/}
+                    {/*        Product*/}
+                    {/*    </div>*/}
+                    {/*    <div  onClick={() => toggleSection('s')} className={`w-1/2  ${section === 's' ? 'bg-gray-700 text-white' : ''}  rounded p-2 items-center justify-center flex`}>*/}
+                    {/*        Service*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+
+                    <p className={'text-black text-sm my-2'}>A new edition to the creator economy</p>
                 </div>
             </div>
 
@@ -86,7 +108,7 @@ const index  = () => {
                 </div>
 
 
-                <div className={'h-12 w-full flex mb-4 items-center justify-center'  }>
+                <div className={`h-12 w-full flex ${acc ? '' : 'mb-4'} items-center justify-center`}>
 
                     {
                         acc ?
