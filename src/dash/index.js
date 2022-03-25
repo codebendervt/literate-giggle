@@ -20,7 +20,7 @@ const index  = () => {
         let isValid = await service.backend.Config.isExist(_id)
 
         if(isValid)  {
-            localStorage.set('id',_id)
+            localStorage.setItem('id',_id)
         }else{
             registerDevice()
         }
@@ -49,33 +49,42 @@ const index  = () => {
         const _acc = service.native.getLocalStorage('acc')
         if(!_acc){
             setMsg('you currently have no virtual business linked to this device')
-            setRoute('/form/business')
+            setRoute('/form/org')
         }else{
             let stored_acc = JSON.parse(_acc)
             setAcc(stored_acc)
+            console.log(stored_acc)
             setActive(stored_acc[0])
         }
     },[])
 
     useEffect(async () => {
         if(active_account) {
-            await getOrders()
+            setMsg('you are registered! Above is your custom link to share to your customers')
+            // await getOrders()
         }
     },[active_account])
 
-    useEffect(async () => {
-        const products = service.native.getLocalStorage('products')
+    //
+    // useEffect(async () => {
+    //     const products = service.native.getLocalStorage('products')
+    //
+    //     if(!orders && !products) {
+    //         setMsg('You currently do not have any orders and no goods that you offer to the world')
+    //         setRoute('/form/product')
+    //
+    //     }else if(!orders){
+    //         setProduct(products)
+    //         setMsg('You currently do not have any orders ')
+    //     }
+    // },[orders])
 
-        if(!orders && !products) {
-            setMsg('You currently do not have any orders and no goods that you offer to the world')
-            setRoute('/form/product')
+    const copyText = () => {
 
-        }else if(!orders){
-            setProduct(products)
-            setMsg('You currently do not have any orders ')
-        }
-    },[orders])
+        navigator.clipboard.writeText(`https://sauveur.xyz/${active_account.business_name}`)
 
+       setMsg('your unique business handle has been copied and is ready to share with your customers')
+    }
     return (
         <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
 
@@ -120,6 +129,22 @@ const index  = () => {
 
             <div className={'w-full h-full lg:w-3/4 flex flex-col p-2'}>
 
+                {/*url search bar*/}
+                {active_account ?
+                    <div className={'w-full h-12  flex justify-center'}>
+                        <div className={'w-full h-full rounded bg-gray-300 p-2 flex'}>
+                            <div className={'w-auto flex-grow h-full bg-gray-100 rounded flex justify-center items-center text-black text-sm'}>
+                                {`https://sauveur.xyz/${active_account.business_name}`}
+                            </div>
+                            <div className={'w-12 h-full flex items-center justify-center '} onClick={copyText}>
+                                <img className={'p-2'} src={share}/>
+                            </div>
+                        </div>
+                    </div>
+                    :<></>
+                }
+
+
                 <div className={'w-full h-auto flex flex-grow items-center justify-center'}>
 
                     <div className={'flex-col flex justify-center items-center'}>
@@ -128,12 +153,13 @@ const index  = () => {
                             {msg}
                         </p>
 
-                        {!product && route ?
-                            <a href={route} className={'p-2 text-blue-500 my-2'}>
-                            Create Product
-                            </a> :
-                            <></>
-                        }
+
+                        {/*{!product && route ?*/}
+                        {/*    <a href={route} className={'p-2 text-blue-500 my-2'}>*/}
+                        {/*    Create Product*/}
+                        {/*    </a> :*/}
+                        {/*    <></>*/}
+                        {/*}*/}
 
                     </div>
 
@@ -141,27 +167,27 @@ const index  = () => {
                 </div>
 
 
-                <div className={`h-12 w-full flex ${acc ? '' : 'mb-4'} items-center justify-center`}>
+                {/*<div className={`h-12 w-full flex ${acc ? '' : 'mb-4'} items-center justify-center`}>*/}
 
-                    {
-                        acc ?
-                            <div onClick={() => toggleDrawer(!drawer)} className={'w-full flex justify-end items-center'}>
-                                <div className={'flex-col'}>
-                                    <div className={'flex'}>
-                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
-                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
-                                    </div>
+                {/*    {*/}
+                {/*        acc ?*/}
+                {/*            <div onClick={() => toggleDrawer(!drawer)} className={'w-full flex justify-end items-center'}>*/}
+                {/*                <div className={'flex-col'}>*/}
+                {/*                    <div className={'flex'}>*/}
+                {/*                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>*/}
+                {/*                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>*/}
+                {/*                    </div>*/}
 
-                                    <div className={'flex'}>
-                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
-                                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>
-                                    </div>
-                                </div>
+                {/*                    <div className={'flex'}>*/}
+                {/*                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>*/}
+                {/*                        <div className={'w-2 h-2 rounded-full bg-white m-1'}></div>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
 
 
 
-                            </div>
-                            :
+                {/*            </div>*/}
+                {/*            :*/}
                             <div className={'w-full lg:w-2/3 flex justify-center'}>
                                 {
                                     route ?
@@ -172,10 +198,11 @@ const index  = () => {
                                         <></>
                                 }
                             </div>
-                    }
+                {/*    }*/}
 
 
-                </div>
+                {/*</div>*/}
+
             </div>
 
         </div>

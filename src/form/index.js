@@ -12,6 +12,7 @@ const index  = ({param}) => {
 
         useEffect(async () => {
 
+            console.log(param)
             try{
                 if(model){
 
@@ -30,6 +31,7 @@ const index  = ({param}) => {
                     };
                     const e_data = service.native.encrypt('12345',JSON.stringify(data))
 
+                    console.log(e_data)
                     console.log(service.native.decrypt('12345',e_data))
                     //
                     // console.table(await service.backend.Config.get(_id),'getting data')
@@ -53,7 +55,7 @@ const index  = ({param}) => {
                 </div>
 
             </div>)
-    }catch{
+    }catch(err){
         return (
             <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
                 form does not exist
