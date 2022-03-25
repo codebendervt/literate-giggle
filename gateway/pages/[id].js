@@ -9,6 +9,10 @@ export default function Home() {
     useEffect(() => {
 
         console.log(router.query)
+
+        if(router.query.id){
+            router.push(`https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/${router.query.id}`)
+        }
         // if(!localStorage.getItem('id')){
         //     localStorage.setItem('id',nanoid())
         // }
