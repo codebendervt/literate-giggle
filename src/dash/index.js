@@ -19,7 +19,8 @@ const index  = () => {
         let _id = service.native.uid()
         let isValid = await service.backend.Config.isExist(_id)
 
-        if(isValid)  {
+        console.log(isValid)
+        if(!isValid)  {
             localStorage.setItem('id',_id)
         }else{
             registerDevice()
@@ -42,6 +43,7 @@ const index  = () => {
 
         //this will be your principal id in the near future
         const id = service.native.getLocalStorage('id')
+        console.log(id,'id')
         if(!id){
             await registerDevice()
         }
