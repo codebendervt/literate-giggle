@@ -50,7 +50,7 @@ const index  = ({param}) => {
 
             <div className={'text-2xl font-bold animate flex flex items-center '}>
                 {param ?
-                <div className={'flex flex-col justify-center'}>
+                <div className={'flex flex-col items-center'}>
                     <span className={'animate__animated animate__fadeIn text-xs '}>welcome to</span>
                     <div className={'text-xl animate__animated animate__fadeIn animate__delay-1s'}> {param}</div>
 

@@ -18,7 +18,7 @@ const index =  ({setModel}) => {
     const [banks, setbanks] = useState()
 
     const validateBusinessName = async (val) => {
-        let isValid = await service.backend.Config.isExist(val)
+        let isValid = await service.backend.Config.isExist(val.toLowerCase())
         return !isValid
     }
 
