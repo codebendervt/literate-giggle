@@ -24,7 +24,18 @@ const index  = ({param}) => {
             }
 
         }catch(err){
-            console.log('unable to find customer',err.message)
+
+            const log = {
+                title: 'Home Page',
+                msg: err.message
+            }
+            const res = await fetch(`${process.env.PROD_API}logger`,{
+                method: 'POST',
+                body:JSON.stringify(log)
+            })
+            const _res = await res.json()
+
+            console.log('unable to find customer',_res)
         }
 
     },[])
