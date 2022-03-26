@@ -1,5 +1,6 @@
 import test from './test.ts'
 import fin from './fintech/index.ts'
+import logger from './logger/index.ts'
 
 const index = async () => {
 
@@ -7,4 +8,4 @@ const index = async () => {
 }
 
 
-export default {test,index,fin}
+export default {test,index,fin,logger}

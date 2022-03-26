@@ -88,7 +88,7 @@ const index  = () => {
        setMsg('your unique business handle has been copied and is ready to share with your customers')
     }
     return (
-        <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white '}>
+        <div className={'w-screen h-screen flex flex-col lg:flex-row bg-black text-white justify-center'}>
 
 
              {/*dashbpard drawer*/}
@@ -129,7 +129,7 @@ const index  = () => {
                 </div>
             </div>
 
-            <div className={'w-full h-full lg:w-3/4 flex flex-col p-2'}>
+            <div className={'w-full h-full  lg:max-w-lg flex justify-center items-center flex-col p-2'}>
 
                 {/*url search bar*/}
                 {active_account ?
