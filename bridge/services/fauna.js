@@ -3,7 +3,7 @@ import faunadb from 'https://cdn.skypack.dev/faunadb';
 let q = faunadb.query
 
 const faunaSDK = new faunadb.Client({
-    secret: Deno.env.get("FAUNA_SECRET"),
+    secret: Deno.env.get("FAUNA_SECRET") || 'fnAEimZoNZACTNucAAf6ZAlHWyRlR9HrHGVaRiGd',
     domain: 'db.fauna.com',
     // NOTE: Use the correct domain for your database's Region Group.
     port: 443,
@@ -86,4 +86,4 @@ const getAll = async (index = "genus") => {
     return data;
 }
 
-export {create,update}
+export {create,update,findByIndex}

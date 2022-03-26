@@ -70,7 +70,7 @@ const handler = async (request) => {
 
     }catch(err){
         // look into support for logging service or build own
-        console.log(err.message)
+        console.log(err)
         let msg = 'Route does not exist';
         if(!err.message.includes('Cannot read properties of undefined ')){
          msg = err.message
