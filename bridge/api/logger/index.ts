@@ -8,12 +8,14 @@ type Log = {
 
 const index = async (data: Log, req: any) => {
 
-    console.log(data)
+    try{
+        await create(data,'log')
+        return {status:200, msg: 'Logged'}
+    }catch(err){
+        console.log('state error ')
+        return {status:400, msg: 'Could not log',body:err}
+    }
 
-    const _logger = await create(data,'log')
-
-    console.log(_logger)
-    return {status:200, msg: 'Logged'}
 }
 
 

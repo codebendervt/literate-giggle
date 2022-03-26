@@ -70,11 +70,12 @@ const handler = async (request) => {
 
     }catch(err){
         // look into support for logging service or build own
-        console.log(err)
+        console.log(err.message)
         let msg = 'Route does not exist';
-        // if(err.message.includes('Cannot read')){
-        //     msg = 'Route does not exist'
-        // }
+        if(!err.message.includes('Cannot read properties of undefined ')){
+         msg = err.message
+        }
+
         return new Response(JSON.stringify({status:'error', msg}), {
             headers:{
                 "content-type": "application/json",
