@@ -28,11 +28,11 @@ export default function Home() {
               <link rel="icon"  type="image/png" href="/favicon.png" />
           </Head>
 
-          <div className={'w-full h-12 flex justify-end p-2'}>
-              <a href={'https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/dash'} className={''}>
-                  sign in
-              </a>
-          </div>
+          {/*<div className={'w-full h-12 flex justify-end p-2'}>*/}
+          {/*    <a href={'https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/dash'} className={''}>*/}
+          {/*        sign in*/}
+          {/*    </a>*/}
+          {/*</div>*/}
 
           <div className={'h-auto w-full flex flex-grow flex-col  justify-end lg:justify-center p-4 py-12 '}>
 
