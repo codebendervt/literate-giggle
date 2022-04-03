@@ -27,8 +27,6 @@ jobs:
       - run: npm run build:package
 #      - run: npm test
 
-  check:
-
   publish-sdk:
     needs: build
     runs-on: ubuntu-latest
