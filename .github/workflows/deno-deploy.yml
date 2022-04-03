@@ -1,4 +1,4 @@
-name: Deno Deploy
+name: Deploy Bridge
 on: [push]
 
 jobs:
