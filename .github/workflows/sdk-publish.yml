@@ -25,7 +25,7 @@ jobs:
 #      - run: npm run build:package
       - run: npm ci
       - run: npm run build:package
-      - run: npm test
+#      - run: npm test
 
   publish-sdk:
     needs: build
