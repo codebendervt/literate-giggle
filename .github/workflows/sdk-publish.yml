@@ -32,11 +32,12 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Check if version has been update
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - name: Check if version has been updated
+      - uses: EndBug/version-check@v1
         id: check
-        uses: EndBug/version-check@v1
+
 
       - name: Publish SDK
         if: steps.check.outputs.changed == 'true'
