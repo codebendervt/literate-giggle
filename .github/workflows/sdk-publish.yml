@@ -27,10 +27,6 @@ jobs:
       - run: npm run build:package
 #      - run: npm test
 
-      - name: Check package version
-        uses: technote-space/package-version-check-action@v1
-        with:
-          COMMIT_DISABLED: 1
 
   publish-sdk:
     needs: build
@@ -38,6 +34,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - name: Check if version has been updated
+        id: check
+        uses: EndBug/version-check@v1
+
+      - name: Publish SDK
+        if: steps.check.outputs.changed == 'true'
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
