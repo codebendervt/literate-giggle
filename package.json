@@ -4,7 +4,9 @@
   "description": "",
   "source": "sdk/index.js",
   "main": ".sdk/main.js",
-  "files": [".sdk/"],
+  "files": [
+    ".sdk/"
+  ],
   "scripts": {
     "start": "parcel index.html --dist-dir public ",
     "server": "deno run --allow-net --allow-env bridge/server.js",
