@@ -1,16 +1,20 @@
 {
-  "name": "sauveur",
-  "version": "1.0.0",
+  "name": "sauveur.js",
+  "version": "0.0.1",
   "description": "",
-  "source": "index.html",
+  "source": "sdk/index.js",
+  "main": "dist/main.js",
+  "files": ["dist/"],
   "scripts": {
-    "start": "parcel ",
+    "start": "parcel index.html --dist-dir public ",
     "server": "deno run --allow-net --allow-env bridge/server.js",
-    "build": "parcel build --dist-dir public",
+    "build": "parcel build index.html --dist-dir public",
+    "build:package": "parcel build",
     "deploy": "dfx deploy --network ic sauveur",
-    "install": "dfx canister --network ic install sauveur --mode reinstall ",
+    "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
     "deploy-backend": "dfx deploy --network ic sauveur",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "parcel watch"
   },
   "author": "",
   "license": "ISC",
@@ -19,14 +23,17 @@
     "@dfinity/candid": "^0.10.3",
     "@dfinity/principal": "^0.10.3",
     "@js-temporal/polyfill": "^0.3.0",
+    "@azure/storage-blob": "latest",
     "animate.css": "^4.1.1",
     "identicon.js": "^2.3.3",
     "jdenticon": "^3.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "@parcel/transformer-react-refresh-wrap": "latest"
   },
   "devDependencies": {
+    "@parcel/packager-js": "latest",
     "autoprefixer": "^10.4.0",
     "eslint": "^8.10.0",
     "eslint-plugin-react": "^7.29.2",

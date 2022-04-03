@@ -4,7 +4,7 @@ import service from 'local-service';
 const model = [
     {type: 'info',name:'terms_conditions',title:'Let us create your business but first what we need from you',
         values: [
-            {name:'Your Business Name',desc:'The name which you would like to be recognized on the platform'},
+            {name:'Your Business Name',desc:'The name which you would like your orginis be recognized as on the platform'},
             {name:'Your Business Cell',desc:'The whatsapp number you would like to get contacted on'},
         ]
     },
@@ -18,7 +18,7 @@ const index =  ({setModel}) => {
     const [banks, setbanks] = useState()
 
     const validateBusinessName = async (val) => {
-        let isValid = await service.backend.Config.isExist(val)
+        let isValid = await service.backend.Config.isExist(val.toLowerCase())
         return !isValid
     }
 
