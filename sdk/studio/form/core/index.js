@@ -2,7 +2,7 @@ import { useEffect,useState } from "react";
 import Upload from './components/form'
 // import icons from '../../style/assets/icons';
 //does not work with nextjs
-// import './index.css'
+import './index.css'
 // Todo turn into a react hook to handle the changes
 let placeholder = "";
 let type = "";
