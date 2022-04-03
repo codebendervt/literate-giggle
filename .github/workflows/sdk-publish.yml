@@ -27,19 +27,24 @@ jobs:
       - run: npm run build:package
 #      - run: npm test
 
+  check:
 
   publish-sdk:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Check if version has been update
+      - name: Check Changes
         uses: actions/checkout@v2
-      - uses: EndBug/version-check@v1
-        id: check
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+              sdk:
+                - './sdk/**'
 
 
-      - name: Publish SDK
-        if: steps.check.outputs.changed == 'true'
+      - name: Publish sauveur.js
+        if: steps.changes.outputs.sdk == 'true'
         uses: actions/setup-node@v2
         with:
           node-version: 14
