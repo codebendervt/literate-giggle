@@ -47,8 +47,8 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-        if: steps.changes.outputs.sdk == 'true'
 #      - run: npm ci
+        if: steps.changes.outputs.sdk == 'true'
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
