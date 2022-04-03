@@ -34,13 +34,13 @@ jobs:
     steps:
       - name: Check if version has been update
         uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
       - uses: EndBug/version-check@v1
         id: check
 
 
       - name: Publish SDK
         if: steps.check.outputs.changed == 'true'
+        uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
