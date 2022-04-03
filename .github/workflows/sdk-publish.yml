@@ -41,8 +41,8 @@ jobs:
                 - './sdk/**'
 
 
-      - name: Publish sauveur.js
         if: steps.changes.outputs.sdk == 'true'
+      - name: Publish sauveur.js
         uses: actions/setup-node@v2
         with:
           node-version: 14
