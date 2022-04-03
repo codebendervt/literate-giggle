@@ -11,11 +11,18 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - './bridge/**'
 
       # TODO(codebenderhq): add a build step here
 
       - name: Upload to Deno Deploy
+        if: steps.changes.outputs.src == 'true'
         uses: denoland/deployctl@v1
         with:
           project: "clear-donkey-10"
