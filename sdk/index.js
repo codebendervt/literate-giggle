@@ -1,3 +1,3 @@
-import backend_service from './services/backend'
+import studio_form from 'studio/form'
 
-export {backend_service}
+export {studio_form}
