@@ -27,6 +27,11 @@ jobs:
       - run: npm run build:package
 #      - run: npm test
 
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          COMMIT_DISABLED: 1
+
   publish-sdk:
     needs: build
     runs-on: ubuntu-latest
