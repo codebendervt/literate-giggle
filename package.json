@@ -4,7 +4,6 @@
   "description": "",
   "source": "sdk/index.js",
   "main": ".sdk/main.js",
-  "module": ".sdk/module.js",
   "files": [
     ".sdk"
   ],
