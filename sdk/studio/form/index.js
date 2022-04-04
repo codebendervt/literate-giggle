@@ -1,8 +1,5 @@
-import icons from '../style/assets/icons'
-import loader from 'assets/icons/loader.svg';
-
 import Core from './core'
-import Components from '../components'
+import {Loader, Next, Submit} from '../components'
 
 import {useState, useEffect, useReducer} from "react";
 
@@ -115,16 +112,15 @@ const Engine = ({submitHandler, formConfig, title}) => {
                 {
                      error ? <></> : isCustom ? <></> : pos == len - 1 ?
 
-                         done ?  <img className={`w-8 h-8 cursor-pointer animate-spin`} src={loader}/>
+                         done ? <Loader/>
                              :
-
-                             <div   onClick={handleSubmit} >
-                            <img className={`w-8 h-8 cursor-pointer`} src={ icons.submit_icon.src || icons.submit_icon}/>
+                             <div  onClick={handleSubmit} >
+                            <Submit/>
 
                              </div> :
                          <div onClick={nextSubmit}>
                             {/*there is going to need to be a new configuration for nextjs*/}
-                            <img className={'w-8 h-8 cursor-pointer'} src={icons.next_icon.src || icons.next_icon}/>
+                           <Next/>
                         </div>
                 }
 

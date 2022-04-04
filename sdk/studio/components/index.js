@@ -1,15 +1,5 @@
-import ColContainer from "./colContainer";
+import Loader from './loader'
+import Submit from './submit'
+import Next from './next'
 
-const Loader = ({msg = 'hello world'}) => {
-
-    return(
-        <div className={'w-screen h-screen flex justify-center items-center bg-black text-white'}>
-            <p className={' animate-pulse'}>
-                {msg}
-            </p>
-
-        </div>
-    )
-}
-
-export default {Loader,ColContainer}
+export {Loader,Submit,Next}
