@@ -1,6 +1,5 @@
 import Core from './core'
 import {Loader, Next, Submit} from '../components'
-
 import {useState, useEffect, useReducer} from "react";
 
 

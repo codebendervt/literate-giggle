@@ -1,4 +1,4 @@
-import icons from "../../../../style/assets/icons";
+import {Upload} from '../../../../components'
 import { useEffect,useState } from "react";
 import uploadFileToBlob from './azureUpload.ts';
 const Upload = ({handleEvent,values,custom,config}) => {
@@ -71,7 +71,7 @@ const Upload = ({handleEvent,values,custom,config}) => {
             </div>
             <div className={'flex flex-col p-2 h-1/2 w-full relative justify-center items-center'}>
 
-                <img className={'w-12 h-12'} src={icons.upload_icon.src}/>
+                <Upload/>
                 { isUploading ? 'uploading' :`Press here to upload ${values.placeholder}`}
                 <input key={config.name} className={'w-full h-full input-style bg-transparent appearance-none outline-none opacity-0 absolute'} type={'file'}  onChange={(e) => setValue(e.target.files)} accept={values.support}/>
 
