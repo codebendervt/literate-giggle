@@ -8,7 +8,6 @@ let type = "";
 
 
 //create a global handler for components
-
 const Options = ({values,handleEvent,custom,config}) => {
 
     useEffect(() => {
