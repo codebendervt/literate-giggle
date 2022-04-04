@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react";
 import Upload from './components/form'
-//does not work with nextjs
+//does not work with nextjs and now parcel mxm
 // import './index.css'
 // Todo turn into a react hook to handle the changes
 let placeholder = "";
