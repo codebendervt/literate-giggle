@@ -21,8 +21,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-#      - run: npm install
-#      - run: npm run build:package
       - run: npm ci
       - run: npm run build:package
 #      - run: npm test
@@ -47,11 +45,12 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-        - run: npm ci
-        - run: npm run build:package
 
 
       - if: steps.changes.outputs.sdk == 'true'
-        run: npm publish
+        run: npm ci
+      - run: npm run build:package
+      - run: npm publish
+
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
