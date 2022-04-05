@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 // import {useEffect,useState} from "react";
 import 'animate.css';
-import App from "../sdk/toolbox";
+import App from "../sdk/archive/toolbox";
 import pages from './'
 
 

@@ -1,4 +1,4 @@
-import iconGenerator from '../../../sdk/services/icons'
+import iconGenerator from '../../../sdk/archive/services/icons'
 import {useEffect,useState} from "react";
 import { nanoid } from 'nanoid'
 

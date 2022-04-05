@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
-import {update, create} from "../../../sdk/services/fauna";
+import {update, create} from "../../../sdk/archive/services/fauna";
 import downIcon from 'url:../../assets/icons/down-circle.svg';
-import StudioComponents from '../../../sdk/studio/components'
+import StudioComponents from '../../../sdk/archive/studio/components'
 
 const DotDashboard  = () => {
     const [loading, isLoading] = useState(true);

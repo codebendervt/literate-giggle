@@ -1,7 +1,7 @@
 import {useEffect,useState} from 'react'
-import services from '../../sdk/services';
+import services from '../../sdk/archive/services';
 import product_image from '../../assets/product.jpg'
-import StudioForm from '../../sdk/studio/form';
+import StudioForm from '../../sdk/archive/studio/form';
 import cart from './cart'
 
 const index  = ({param}) => {

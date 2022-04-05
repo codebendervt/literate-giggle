@@ -1,4 +1,4 @@
-import {getUriParams} from '../../../sdk/services/native/index.js';
+import {getUriParams} from '../../../sdk/archive/services/native/index.js';
 const env = Deno.env.toObject();
 
 //figure out what is the env

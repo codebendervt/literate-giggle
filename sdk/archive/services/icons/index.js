@@ -17,7 +17,7 @@
 //
 // //
 // export default icon =  (hash) => jdenticon.toSvg(hash, 100);
-import Identicon from 'identicon.js'
+import Identicon from '../../../../node_modules/identicon.js/identicon'
 
 var options = {
     foreground: [255, 255, 255, 255],
