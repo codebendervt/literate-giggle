@@ -1,6 +1,6 @@
 {
   "name": "sauveur.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "source": "sdk/index.js",
   "main": "core/index.js",

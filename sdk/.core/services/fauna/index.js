@@ -4,7 +4,6 @@ let faunadb = require('faunadb'),
 let faunaSDK;
 
 const init = (key) => {
-    console.log(key)
    faunaSDK = new faunadb.Client({
         secret: key,
         domain: 'db.fauna.com',
