@@ -12,8 +12,8 @@ const Layout = () => {
 
     const db_service = Studio.core_services.fauna;
 
-    useEffect(() => {
-         console.log(db_service)
+    useEffect(async () => {
+         console.log(await db_service.getAll('leads'))
     },[])
 
     const handleSubmit = () => {
