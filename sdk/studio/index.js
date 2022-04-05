@@ -1,6 +1,7 @@
 import Views from "./views";
 import {Loader, Next, Submit} from "../components";
 import {useState, useEffect, useReducer} from "react";
+// import './studio.css'
 
 const handleEvent = (state, action) => {
 
@@ -27,10 +28,9 @@ const handleEvent = (state, action) => {
 
 }
 
-function Studio({submitHandler, formConfig, title}){
-    //
+function Form({submitHandler, formConfig, title}){
     const [error,setError] = useState(false)
-    const [isCustom, setCustom] = useState(true);
+    const [isCustom, setCustom] = useState(false);
     const [pos, setPos] = useState(0)
     const [len] = useState(formConfig.length)
     const [state, dispatch] = useReducer(handleEvent, []);
@@ -95,7 +95,7 @@ function Studio({submitHandler, formConfig, title}){
     }
 
     return (
-        <div className={`w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-48 lg:py-64' }`}>
+        <div className={`w-full max-w-sm  h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-48 lg:py-64' }`}>
 
 
             <div className={'w-full font-bold text-2xl my-4 text-white'}>{title}</div>
@@ -111,7 +111,7 @@ function Studio({submitHandler, formConfig, title}){
 
                         done ? <Loader/>
                             :
-                            <div  onClick={handleSubmit} >
+                            <div  onClick={() => handleSubmit()} >
                                 <Submit/>
 
                             </div> :
@@ -127,4 +127,4 @@ function Studio({submitHandler, formConfig, title}){
     )
 }
 
-export default Studio
+export default Form

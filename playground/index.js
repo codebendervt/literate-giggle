@@ -1,24 +1,26 @@
 import { render } from "react-dom";
 import { useEffect } from "react";
-import SDK from '../core'
+import Studio from '../core'
 
 
 const model = [
-    {type: 'input',name:'primary_contact_phone',title:'Whatsapp Number', values:{placeholder:'Whatsapp Number', type:'tel'}},
-    {type: 'input',name:'test',title:'Whatsapp Number', values:{placeholder:'Whatsapp Number', type:'tel'}}
+    {type: 'input',name:'primary_contact_phone',title:'Whatsapp Number', values:{placeholder:'Whatsapp Number', type:'tel'}}
 
 ]
 const Layout = () => {
 
     useEffect(() => {
-        console.log(SDK)
+        // console.log(Form)
     },[])
 
     const handleSubmit = () => {
+
         console.log('submiting')
     }
     return(
-       <SDK.Studio submitHandler={handleSubmit} formConfig={model}/>
+        <div className={'w-full h-screen bg-black '}>
+          <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
+        </div>
 
         )
 

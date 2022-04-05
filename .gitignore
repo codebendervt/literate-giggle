@@ -13,4 +13,4 @@ target
 /gateway/node_modules
 /gateway/.next
 
-.sdk
+core

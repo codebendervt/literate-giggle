@@ -1,10 +1,9 @@
 {
   "name": "sauveur.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "source": "sdk/index.js",
   "main": "core/index.js",
-  "module": "core/module.js",
   "files": [
     "core"
   ],
@@ -12,13 +11,13 @@
     "start": "parcel index.html --dist-dir public ",
     "server": "deno run --allow-net --allow-env bridge/server.js",
     "build": "parcel build index.html --dist-dir public",
-    "build:package": "parcel build",
+    "build:package": "parcel build --no-cache",
     "deploy": "dfx deploy --network ic sauveur",
     "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
     "deploy-backend": "dfx deploy --network ic sauveur",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "parcel watch",
-    "playground": "parcel ./playground/index.html --dist-dir playground-dist "
+    "watch": "parcel watch --no-cache",
+    "playground": "parcel ./playground/index.html --dist-dir playground-dist --no-cache "
   },
   "author": "",
   "license": "ISC",
@@ -34,21 +33,25 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
-    "@parcel/transformer-react-refresh-wrap": "2.4.0"
+    "@parcel/transformer-react-refresh-wrap": "^2.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
     "eslint": "^8.10.0",
     "eslint-plugin-react": "^7.29.2",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "parcel": "2.4.0",
+    "parcel": "^2.4.1",
     "postcss": "^8.4.5",
     "postcss-modules": "^4.3.1",
-    "tailwindcss": "^3.0.23"
+    "tailwindcss": "^3.0.23",
+    "@parcel/transformer-css": "^2.4.1"
   },
   "alias": {
     "local-service": "./sdk/services",
     "assets": "./assets",
     "studio": "./sdk/studio"
+  },
+  "@parcel/transformer-css": {
+    "cssModules": false
   }
 }

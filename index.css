@@ -1,4 +1,4 @@
-/* @import url("assets/fonts/Geomanist-Book-Webfont/stylesheet.css");
+@import url("assets/fonts/Geomanist-Book-Webfont/stylesheet.css");
 @import url("assets/fonts/Geomanist-Black-Webfont/stylesheet.css");
 @tailwind base;
 @tailwind components;
@@ -11,23 +11,4 @@
 }
 
 
-@tailwind utilities; */
-@tailwind base;
-@tailwind components;
-
-/*.input-style{*/
-/*    @apply bg-transparent appearance-none outline-none;*/
-/*}*/
-
-/*!* Chrome, Safari, Edge, Opera *!*/
-/*input::-webkit-outer-spin-button,*/
-/*input::-webkit-inner-spin-button {*/
-/*    -webkit-appearance: none;*/
-/*    margin: 0;*/
-/*}*/
-
-/*!* Firefox *!*/
-/*input[type=number] {*/
-/*    -moz-appearance: textfield;*/
-/*}*/
 @tailwind utilities;

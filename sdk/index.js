@@ -1,4 +1,3 @@
-// import '../index.css';
-import Studio from './studio'
+import Form from './studio'
 
- export default {Studio}
+export {Form}

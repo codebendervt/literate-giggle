@@ -13,6 +13,7 @@ function Options ({values,handleEvent,custom,config}) {
     useEffect(() => {
         custom(true)
     })
+
     const setValue = (val) => {
         placeholder = val.placeholder;
         type = val.type;
@@ -45,8 +46,6 @@ function Options ({values,handleEvent,custom,config}) {
 function Input ({handleEvent,values,custom,support, config,setError, error, defaultValue = true}) {
 
     useEffect(() => {
-
-        custom(false)
         if(defaultValue){
             handleEvent({
                 [config.name]: ''

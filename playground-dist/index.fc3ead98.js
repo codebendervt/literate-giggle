@@ -1009,39 +1009,37 @@ const model = [
             placeholder: 'Whatsapp Number',
             type: 'tel'
         }
-    },
-    {
-        type: 'input',
-        name: 'test',
-        title: 'Whatsapp Number',
-        values: {
-            placeholder: 'Whatsapp Number',
-            type: 'tel'
-        }
     }
 ];
 const Layout = ()=>{
     _s();
     _react.useEffect(()=>{
-        console.log(_coreDefault.default);
+    // console.log(Form)
     }, []);
     const handleSubmit = ()=>{
         console.log('submiting');
     };
-    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_coreDefault.default.Studio, {
-        submitHandler: handleSubmit,
-        formConfig: model
+    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+        className: 'w-full h-screen bg-black ',
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_coreDefault.default.Form, {
+            submitHandler: handleSubmit,
+            formConfig: model
+        }, void 0, false, {
+            fileName: "playground/index.js",
+            lineNumber: 22,
+            columnNumber: 11
+        }, undefined)
     }, void 0, false, {
         fileName: "playground/index.js",
         lineNumber: 21,
-        columnNumber: 8
+        columnNumber: 9
     }, undefined);
 };
 _s(Layout, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 _c = Layout;
 _reactDom.render(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(Layout, {}, void 0, false, {
     fileName: "playground/index.js",
-    lineNumber: 28,
+    lineNumber: 30,
     columnNumber: 5
 }, undefined), document.getElementById("root"));
 var _c;
@@ -22669,12 +22667,6 @@ try {
 var _s = $RefreshSig$(), _s1 = $RefreshSig$(), _s2 = $RefreshSig$(), _s3 = $RefreshSig$(), _s4 = $RefreshSig$();
 var $fUJwp$reactjsxruntime = require("react/jsx-runtime");
 var $fUJwp$react = require("react");
-function $parcel$defineInteropFlag(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true,
-        configurable: true
-    });
-}
 function $parcel$export(e, n, v, s) {
     Object.defineProperty(e, n, {
         get: v,
@@ -22683,8 +22675,7 @@ function $parcel$export(e, n, v, s) {
         configurable: true
     });
 }
-$parcel$defineInteropFlag(module.exports);
-$parcel$export(module.exports, "default", ()=>$b3f4e283368079a4$export$2e2bcd8739ae039
+$parcel$export(module.exports, "Form", ()=>$268e121945ca8a55$export$2e2bcd8739ae039
 );
 // import Upload from './components/form'
 //does not work with nextjs and now parcel mxm
@@ -22734,7 +22725,6 @@ _s($29beb6d86bb3b8f3$var$Options, "OD7bBpZva5O2jO+Puf00hKivP7c=");
 function $29beb6d86bb3b8f3$var$Input({ handleEvent: handleEvent , values: values , custom: custom , support: support , config: config , setError: setError , error: error , defaultValue: defaultValue = true  }) {
     _s1();
     $fUJwp$react.useEffect(()=>{
-        custom(false);
         if (defaultValue) handleEvent({
             [config.name]: ''
         });
@@ -23006,6 +22996,7 @@ function $bd7cd710d7391546$var$Upload() {
     });
 }
 var $bd7cd710d7391546$export$2e2bcd8739ae039 = $bd7cd710d7391546$var$Upload;
+// import './studio.css'
 const $268e121945ca8a55$var$handleEvent = (state, action)=>{
     try {
         let isPos = 0;
@@ -23025,11 +23016,10 @@ const $268e121945ca8a55$var$handleEvent = (state, action)=>{
         console.error('unable to add form', e.message);
     }
 };
-function $268e121945ca8a55$var$Studio({ submitHandler: submitHandler , formConfig: formConfig , title: title  }) {
+function $268e121945ca8a55$var$Form({ submitHandler: submitHandler , formConfig: formConfig , title: title  }) {
     _s4();
-    //
     const [error, setError] = $fUJwp$react.useState(false);
-    const [isCustom, setCustom] = $fUJwp$react.useState(true);
+    const [isCustom, setCustom] = $fUJwp$react.useState(false);
     const [pos, setPos] = $fUJwp$react.useState(0);
     const [len] = $fUJwp$react.useState(formConfig.length);
     const [state, dispatch] = $fUJwp$react.useReducer($268e121945ca8a55$var$handleEvent, []);
@@ -23072,7 +23062,7 @@ function $268e121945ca8a55$var$Studio({ submitHandler: submitHandler , formConfi
         setPos(pos + 1);
     };
     return /*#__PURE__*/ $fUJwp$reactjsxruntime.jsxs("div", {
-        className: `w-auto h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-48 lg:py-64'}`,
+        className: `w-full max-w-sm  h-full flex flex-col p-8 bg-black text-white ${isCustom ? 'py-8' : 'py-48 lg:py-64'}`,
         children: [
             /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx("div", {
                 className: 'w-full font-bold text-2xl my-4 text-white',
@@ -23089,7 +23079,8 @@ function $268e121945ca8a55$var$Studio({ submitHandler: submitHandler , formConfi
             /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx("div", {
                 className: `w-full text-white flex ${isCustom ? '' : 'flex-grow '}items-end justify-center`,
                 children: error ? /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx($fUJwp$reactjsxruntime.Fragment, {}) : isCustom ? /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx($fUJwp$reactjsxruntime.Fragment, {}) : pos == len - 1 ? done ? /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx($f8a50a8f6e7fe935$export$2e2bcd8739ae039, {}) : /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx("div", {
-                    onClick: handleSubmit,
+                    onClick: ()=>handleSubmit()
+                    ,
                     children: /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx($83122a2a64fedaa7$export$2e2bcd8739ae039, {})
                 }) : /*#__PURE__*/ $fUJwp$reactjsxruntime.jsx("div", {
                     onClick: nextSubmit,
@@ -23099,11 +23090,8 @@ function $268e121945ca8a55$var$Studio({ submitHandler: submitHandler , formConfi
         ]
     });
 }
-_s4($268e121945ca8a55$var$Studio, "gx5u+c2LcA6NELNicpXQdwfh7To=");
-var $268e121945ca8a55$export$2e2bcd8739ae039 = $268e121945ca8a55$var$Studio;
-var $b3f4e283368079a4$export$2e2bcd8739ae039 = {
-    Studio: $268e121945ca8a55$export$2e2bcd8739ae039
-};
+_s4($268e121945ca8a55$var$Form, "+LuZBVc41MTZRRCEvKEU76Lep54=");
+var $268e121945ca8a55$export$2e2bcd8739ae039 = $268e121945ca8a55$var$Form;
 
   $parcel$ReactRefreshHelpers$b3fd.postlude(module);
 } finally {
