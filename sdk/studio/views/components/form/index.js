@@ -1,4 +1,4 @@
-import {Upload} from '../../../../components'
+import {Upload} from '../../../../app/components'
 import { useEffect,useState } from "react";
 import uploadFileToBlob from './azureUpload.ts';
 

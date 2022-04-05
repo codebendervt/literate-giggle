@@ -46,13 +46,13 @@ function Options ({values,handleEvent,custom,config}) {
 function Input ({handleEvent,values,custom,support, config,setError, error, defaultValue = true}) {
 
     useEffect(() => {
+
+        custom(false)
         if(defaultValue){
             handleEvent({
                 [config.name]: ''
             })
         }
-
-
 
     },[])
 
@@ -109,8 +109,6 @@ function Search ({handleEvent,values,custom,config}) {
     const [searchResults, setResults] = useState([])
 
     useEffect(() => {
-
-
         custom(true)
     })
 

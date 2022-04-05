@@ -1,4 +1,4 @@
-import {create} from "../../../sdk/archive/services/fauna";
+import {create} from "../../../archive/services/fauna";
 import {defaultLead} from "./model";
 
 const initLead = async (data) => {

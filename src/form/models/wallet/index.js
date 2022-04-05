@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import service from 'local-service';
-import save from "../../../../sdk/archive/services/backend/config/save";
+import save from "../../../../archive/services/backend/config/save";
 
 const model = [
     {type: 'info',name:'terms_conditions',title:'Let us create your business but first what we need from you',

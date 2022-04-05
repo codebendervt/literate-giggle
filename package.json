@@ -1,6 +1,6 @@
 {
   "name": "sauveur.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "",
   "source": "sdk/index.js",
   "main": "core/index.js",
@@ -11,13 +11,13 @@
     "start": "parcel index.html --dist-dir public ",
     "server": "deno run --allow-net --allow-env bridge/server.js",
     "build": "parcel build index.html --dist-dir public",
-    "build:package": "parcel build --no-cache",
+    "build:package": "parcel build",
     "deploy": "dfx deploy --network ic sauveur",
     "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
     "deploy-backend": "dfx deploy --network ic sauveur",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "parcel watch --no-cache",
-    "playground": "parcel ./playground/index.html --dist-dir playground-dist --no-cache "
+    "play": "parcel build && parcel ./playground/index.html --dist-dir playground-dist --no-cache "
   },
   "author": "",
   "license": "ISC",
@@ -28,8 +28,7 @@
     "@js-temporal/polyfill": "^0.3.0",
     "@azure/storage-blob": "latest",
     "animate.css": "^4.1.1",
-    "identicon.js": "^2.3.3",
-    "jdenticon": "^3.1.1",
+    "faunadb": "^4.5.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",

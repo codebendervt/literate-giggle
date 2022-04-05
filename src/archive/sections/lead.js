@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
-import StudioForm from '../../../sdk/archive/studio/form'
+import StudioForm from '../../../archive/studio/form'
 import {initLead} from '../../../bridge/api/lead'
 import {trackPage} from "../../../bridge/api/analytics";
-import StudioComponents from '../../../sdk/archive/studio/components'
+import StudioComponents from '../../../archive/studio/components'
 import {useNavigate} from "react-router-dom";
 
 const Lead  = () => {

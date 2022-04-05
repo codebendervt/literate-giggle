@@ -4,13 +4,16 @@ import Studio from '../core'
 
 
 const model = [
-    {type: 'input',name:'primary_contact_phone',title:'Whatsapp Number', values:{placeholder:'Whatsapp Number', type:'tel'}}
+    {type: 'input',name:'primary_contact_phone',title:'Whatsapp Number', values:{placeholder:'Whatsapp Number', type:'tel'}},
+    {type: 'input',name:'name',title:'Your Name', values:{placeholder:'Your Name', type:'tel'}}
 
 ]
 const Layout = () => {
 
+    const db_service = Studio.core_services.fauna;
+
     useEffect(() => {
-        // console.log(Form)
+         console.log(db_service)
     },[])
 
     const handleSubmit = () => {
