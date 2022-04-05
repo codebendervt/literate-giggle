@@ -13,6 +13,8 @@ const Layout = () => {
     const db_service = Studio.core_services.fauna;
 
     useEffect(async () => {
+        console.log(process.env.FAUNASDK)
+         db_service.init(process.env.FAUNASDK)
          console.log(await db_service.getAll('leads'))
     },[])
 

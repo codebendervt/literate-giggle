@@ -1,14 +1,18 @@
 let faunadb = require('faunadb'),
     q = faunadb.query
 
-const faunaSDK = new faunadb.Client({
-    secret: process.env.FAUNASDK,
-    domain: 'db.fauna.com',
-    // NOTE: Use the correct domain for your database's Region Group.
-    port: 443,
-    scheme: 'https',
-})
+let faunaSDK;
 
+const init = (key) => {
+    console.log(key)
+   faunaSDK = new faunadb.Client({
+        secret: key,
+        domain: 'db.fauna.com',
+        // NOTE: Use the correct domain for your database's Region Group.
+        port: 443,
+        scheme: 'https',
+    })
+}
 //add trycatch for devesive coding
 const create = async (data,col) => {
 
@@ -86,5 +90,5 @@ const getAll = async (index = "genus", size ={}) => {
 }
 
 
-export default {create,update,read,getAll,findByIndex}
+export default {create,update,read,getAll,findByIndex,init}
 
