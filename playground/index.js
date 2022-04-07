@@ -16,21 +16,21 @@ const Layout = () => {
 
     useEffect(async () => {
 
-        const socket = new WebSocket("ws://localhost:8080");
+        // const socket = new WebSocket("ws://localhost:8080");
+        //
+        //
+        // // Connection opened
+        // socket.addEventListener('open', function (event) {
+        //     socket.send('Hello Server!');
+        // });
+        //
+        // // Listen for messages
+        // socket.addEventListener('message', function (event) {
+        //     console.log('Message from server ', event.data);
+        // });
 
-
-        // Connection opened
-        socket.addEventListener('open', function (event) {
-            socket.send('Hello Server!');
-        });
-
-        // Listen for messages
-        socket.addEventListener('message', function (event) {
-            console.log('Message from server ', event.data);
-        });
-
-        // const subscription = await push_notification()
-        // setSub(subscription)
+        const subscription = await push_notification()
+        setSub(subscription)
 
 
     },[])
@@ -79,21 +79,21 @@ const Layout = () => {
     const handleSubmit = () => {
 
         console.log(sub)
-        askNotificationPermission()
+        // askNotificationPermission()
 
-        // if(sub){
-        //     fetch('/api/push', {
-        //         method: 'post',
-        //         headers: {
-        //             'Content-type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             subscription: sub,
-        //             delay: 1,
-        //             ttl: 0,
-        //         }),
-        //     });
-        // }
+        if(sub){
+            fetch('/api/push', {
+                method: 'post',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    subscription: sub,
+                    delay: 1,
+                    ttl: 0,
+                }),
+            });
+        }
 
         console.log('submiting')
     }

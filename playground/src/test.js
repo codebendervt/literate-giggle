@@ -42,6 +42,7 @@ const push_notification = async () => {
                     // urlBase64ToUint8Array() is defined in /tools.js
                     const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
 
+                    console.log(convertedVapidKey, 'key')
                     // Otherwise, subscribe the user (userVisibleOnly allows to specify that we don't plan to
                     // send notifications that don't have a visible effect for the user).
                     return registration.pushManager.subscribe({
@@ -50,6 +51,7 @@ const push_notification = async () => {
                     });
                 });
         }).then(function(subscription) {
+            _response = subscription;
         // Send the subscription details to the server using the Fetch API.
         fetch('/push/register', {
             method: 'post',

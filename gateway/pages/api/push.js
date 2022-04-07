@@ -4,12 +4,13 @@ const webPush = require('web-push');
 
 export default function handler(req, res) {
     // Set the keys used for encrypting the push messages.
-    webPush.setVapidDetails(
+    const auth  = webPush.setVapidDetails(
         'https://serviceworke.rs/',
         'BKam0YMDX-Nl83wHm7r9EJ-071i7qOPbd8CAZgM5fLU7X_zSXqtgI1JiRVoDrcINsYyCwc_FOSkuE4Y7pagAPLI',
         '_ejp58ylvxV4KcC2v3HIHQV8jlk6Zx9ZZpSGB9aLx6A'
     );
 
+    console.log(auth)
     const subscription = req.body.subscription;
     const payload = null;
     const options = {
