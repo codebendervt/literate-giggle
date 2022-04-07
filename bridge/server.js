@@ -38,6 +38,30 @@ const handler = async (request) => {
     let response;
 
     try{
+
+        if (request.headers.get("upgrade") === "websocket") {
+            const { socket: ws, response } = Deno.upgradeWebSocket(request);
+
+            const handleConnected = () => console.log("Connection established");
+            ws.onopen=()=>handleConnected();
+
+            const handleDisconnected = () => console.log("Connection closed");
+            ws.onclose=()=>handleDisconnected()
+
+            const handleError = e => console.log(e instanceof ErrorEvent ? e.message : e.type);
+            ws.onerror=e=>handleError(e);
+
+            const handleMessage = (ws, msg) => {
+                ws.send('You have a new message');
+                console.log(msg);
+            }
+
+            ws.onmessage=e=>handleMessage(ws, e.data);
+
+            console.log('created websocket connection as ws://localhost:8000')
+            return response;
+        }
+
         //need to add support for being able to handle the base path
         const corsHeaders = addCorsIfNeeded(new Response());
 
