@@ -1,3 +1,3 @@
-import fauna from './fauna'
+import fauna from './db/fauna'
 
 export default {fauna}

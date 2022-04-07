@@ -1,3 +1,3 @@
-import core_services from './services'
+import {fauna as db_services}  from './services'
 
-export {core_services}
+export {db_services}
