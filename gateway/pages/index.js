@@ -50,13 +50,13 @@ export default function Home() {
 
 
               <div className={'w-64 lg:w-full text-xs lg:text-lg py-2 flex items-center'}>
-                  <a href={'https://api.whatsapp.com/send?phone=27815206804&text=I%20would%20like%20early%20access'} className={'p-2 bg-blue-400 rounded text-gray-900 '}>
-                      Request Early Access
+                  <a href={'https://www.notion.so/codebenderhq/9a839bce03a34954b7b58af6d23dd939?v=70197b85ee784ab8a00257b86762bd28'} className={'p-2 bg-violet-600 rounded text-white '}>
+                  Discover More
                   </a>
 
-                  <a href={'https://www.notion.so/codebenderhq/9a839bce03a34954b7b58af6d23dd939?v=70197b85ee784ab8a00257b86762bd28'} className={'mx-6 lg:mx-8 text-blue-400'}>
+                  {/* <a href={'https://www.notion.so/codebenderhq/9a839bce03a34954b7b58af6d23dd939?v=70197b85ee784ab8a00257b86762bd28'} className={'mx-6 lg:mx-8 text-blue-400'}>
                       Learn More
-                  </a>
+                  </a> */}
               </div>
 
           </div>

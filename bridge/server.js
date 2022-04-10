@@ -39,6 +39,7 @@ const handler = async (request) => {
 
     try{
 
+
         if (request.headers.get("upgrade") === "websocket") {
             const { socket: ws, response } = Deno.upgradeWebSocket(request);
 
@@ -67,20 +68,31 @@ const handler = async (request) => {
 
         // for adding support for authorization
         // console.log('headers',request.headers.get('authorization'));
-        let url = new URL(request.url)
 
-        let urlPaths = url.pathname.split('/')
+        const { pathname } = new URL(request.url);
+
+        let urlPaths = pathname.split('/')
 
         // const headers = {...request.headers};
         // console.log(request.headers.get('authorization'))
         if(request.method == 'GET'){
             let _response  = await apiHandler({API,urlPaths,request});
-            response = await new Response(JSON.stringify(_response), {
-                headers:{
-                    "content-type": "application/json",
-                    "Referrer-Policy": "no-referrer"
-                },
-                status: 200 });
+
+            if (pathname.startsWith("/push")) {
+                response =  new Response(_response,{
+                    headers:{
+                        "content-type": "text/event-stream",
+                    },
+                    status: 200 });
+            }else{
+                response = await new Response(JSON.stringify(_response), {
+                    headers:{
+                        "content-type": "application/json",
+                        "Referrer-Policy": "no-referrer"
+                    },
+                    status: 200 });
+            }
+
 
         }else if(request.method == 'POST'){
             const data = await request.json()
@@ -106,7 +118,7 @@ const handler = async (request) => {
                 "Referrer-Policy": "no-referrer",
                 "access-control-allow-origin": "*"
             },
-            status: 404 });;
+            status: 404 });
     }
 
 

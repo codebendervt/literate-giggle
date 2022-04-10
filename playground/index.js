@@ -16,12 +16,12 @@ const Layout = () => {
 
     useEffect(async () => {
 
-        // const socket = new WebSocket("ws://localhost:8080");
+        // const socket = new WebSocket("ws://clear-donkey-10-7cvv1r7bn5q0.deno.dev");
         //
         //
         // // Connection opened
         // socket.addEventListener('open', function (event) {
-        //     socket.send('Hello Server!');
+        //     socket.send('Hello Server Again!');
         // });
         //
         // // Listen for messages
@@ -29,8 +29,8 @@ const Layout = () => {
         //     console.log('Message from server ', event.data);
         // });
 
-        const subscription = await push_notification()
-        setSub(subscription)
+        // const subscription = await push_notification()
+        // setSub(subscription)
 
 
     },[])

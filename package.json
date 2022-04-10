@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "start": "parcel index.html --dist-dir public ",
-    "server": "deno run --allow-net --allow-env bridge/server.js",
+    "server": "deno run --allow-net --allow-env --unstable bridge/server.js",
     "build": "parcel build index.html --dist-dir public",
     "build:package": "parcel build",
     "deploy": "dfx deploy --network ic sauveur",
