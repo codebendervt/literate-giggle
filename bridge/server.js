@@ -120,6 +120,16 @@ const handler = async (request) => {
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title> error</title>
+            <meta property="og:title" content="Sauveur - Dev House In Your Pocket">
+            <meta property="og:description" content="The Dev House In Your Pocket, Allowing you to focus on business">
+            <meta property="og:image" content="https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/background.png">
+            <meta property="og:image" content="../assets/background.png">
+            <meta property="og:url" content="https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/">
+        
+            <meta name="twitter:title" content="Sauveur - Dev House In Your Pocket">
+            <meta name="twitter:description" content="The Dev House In Your Pocket, Allowing you to focus on business">
+            <meta name="twitter:image" content="https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/background.png">
+            <meta name="twitter:card" content="summary_large_image">
           </head>
           <body>
           We are looking into the problem
