@@ -39,6 +39,7 @@ const handler = async (request) => {
 
     try{
 
+        console.log(request.headers.get("host"))
 
         if (request.headers.get("upgrade") === "websocket") {
             const { socket: ws, response } = Deno.upgradeWebSocket(request);
@@ -112,13 +113,28 @@ const handler = async (request) => {
          msg = err.message
         }
 
-        return new Response(JSON.stringify({status:'error', msg}), {
-            headers:{
-                "content-type": "application/json",
-                "Referrer-Policy": "no-referrer",
-                "access-control-allow-origin": "*"
-            },
-            status: 404 });
+        return new Response(`
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title> error</title>
+          </head>
+          <body>
+          We are looking into the problem
+          ${msg}
+          </body>
+        <html>
+        `, { headers: { "content-type": "text/html" } })
+
+        // return new Response(JSON.stringify({status:'error', msg}), {
+        //     headers:{
+        //         "content-type": "application/json",
+        //         "Referrer-Policy": "no-referrer",
+        //         "access-control-allow-origin": "*"
+        //     },
+        //     status: 404 });
     }
 
 
