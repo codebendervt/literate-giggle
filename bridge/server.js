@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.125.0/http/server.ts";
+import { decryptMessage } from "./.core/security.js";
 import API from './api/index.ts'
 
 const port = 8080;
@@ -40,7 +41,8 @@ const handler = async (request) => {
     try{
 
         console.log(request.headers.get("host"))
-
+        console.log(request)
+  
         if (request.headers.get("upgrade") === "websocket") {
             const { socket: ws, response } = Deno.upgradeWebSocket(request);
 
@@ -96,7 +98,10 @@ const handler = async (request) => {
 
 
         }else if(request.method == 'POST'){
-            const data = await request.json()
+            // request.json()
+            const _data = await request.arrayBuffer()
+            const data = await decryptMessage(_data);
+
             let _response  = await apiHandler({API,urlPaths,data});
             response = new Response(JSON.stringify((_response)), {
                 headers:{

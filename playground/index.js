@@ -1,6 +1,7 @@
 import { render } from "react-dom";
 import { useEffect,useState } from "react";
 import Studio from '../core'
+import { decryptMessage, encryptMessage } from "./src/security";
 import {push_notification} from './src/test'
 
 
@@ -15,6 +16,21 @@ const Layout = () => {
 
 
     useEffect(async () => {
+
+        const myArray = new Uint8Array(10);
+
+        const msg = {data:'hellow world'}
+        
+        let _encrypted
+        //Uint8Array
+        _encrypted =  await encryptMessage(JSON.stringify(msg));
+        // console.log(await decryptMessage(_encrypted));
+
+        console.log(_encrypted)
+        fetch('/push', {
+            method: 'POST',
+            body: _encrypted
+        })
 
         // const socket = new WebSocket("ws://clear-donkey-10-7cvv1r7bn5q0.deno.dev");
         //
