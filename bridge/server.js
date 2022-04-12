@@ -119,7 +119,11 @@ const handler = async (request) => {
       }
     } else {
 
-        console.log(Deno.env.get("ENV"))
+        const file = await Deno.readFile("./static/style.css");
+        // Respond to the request with the style.css file.
+        
+
+        console.log(file)
         if(env.DENO_ENV == "dev"){
             // Deno.chdir("../");
             dir = `../playground-dist`
