@@ -39,7 +39,7 @@ const apiHandler = async ({ API, urlPaths, data, request }) => {
 
 const handler = async (request) => {
   let response;
-  let dir = `./bridge/static`
+  let dir = `${Deno.cwd()}/static`
 
   try {
 
