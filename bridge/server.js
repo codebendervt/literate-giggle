@@ -1,5 +1,6 @@
 import { serve } from "https://deno.land/std@0.125.0/http/server.ts";
 import { serveFile } from "https://deno.land/std@0.120.0/http/file_server.ts";
+const env = Deno.env.toObject();
 
 import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
@@ -38,6 +39,7 @@ const apiHandler = async ({ API, urlPaths, data, request }) => {
 
 const handler = async (request) => {
   let response;
+  let dir = `${Deno.cwd()}/static`
 
   try {
 
@@ -116,14 +118,20 @@ const handler = async (request) => {
         }
       }
     } else {
+
+        console.log(Deno.env.get("ENV"))
+        if(env.DENO_ENV == "dev"){
+            // Deno.chdir("../");
+            dir = `../playground-dist`
+        }
       // Check if the request is for style.css.
    
       if (pathname.includes(".")) {
         console.log(pathname)
-        return await serveFile(request, `${Deno.cwd()}/static${pathname}`);
+        return await serveFile(request, `${dir}${pathname}`);
       }
  
-      return await serveFile(request, `${Deno.cwd()}/static/index.html`);
+      return await serveFile(request, `${dir}/index.html`);
     }
   } catch (err) {
     // look into support for logging service or build own
@@ -135,7 +143,7 @@ const handler = async (request) => {
       msg = err.message;
     }
 
-    return await serveFile(request, `${Deno.cwd()}/static/404.html`);
+    return await serveFile(request, `${dir}/static/404.html`);
 
     // return new Response(JSON.stringify({status:'error', msg}), {
     //     headers:{
