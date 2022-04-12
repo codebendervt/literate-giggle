@@ -27,4 +27,4 @@ jobs:
         with:
           project: "clear-donkey-10"
           entrypoint: "./bridge/server.js" # TODO(codebenderhq): update
-          cwd: bridge
+          cwd: "./bridge"
