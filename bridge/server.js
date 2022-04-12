@@ -1,167 +1,160 @@
 import { serve } from "https://deno.land/std@0.125.0/http/server.ts";
+import { serveFile } from "https://deno.land/std@0.120.0/http/file_server.ts";
+
 import { decryptMessage } from "./.core/security.js";
-import API from './api/index.ts'
+import API from "./api/index.ts";
 
 const port = 8080;
 
 const addCorsIfNeeded = (response) => {
-    const headers = new Headers(response.headers);
+  const headers = new Headers(response.headers);
 
-    if (!headers.has("access-control-allow-origin")) {
-        headers.set("access-control-allow-origin", "*");
-    }
+  if (!headers.has("access-control-allow-origin")) {
+    headers.set("access-control-allow-origin", "*");
+  }
 
-    return headers;
-}
+  return headers;
+};
 
-const apiHandler = async ({API, urlPaths,data,request}) => {
+const apiHandler = async ({ API, urlPaths, data, request }) => {
+  let apiCall;
+  const req = request;
 
-    let apiCall;
-    const req = request;
+  if (urlPaths[1] === "") {
+    //    return html page
+    apiCall = API["index"];
+  } else {
+    apiCall = API[urlPaths[1]]["index"];
+  }
 
-    if(urlPaths[1] === ""){
-        //    return html page
-        apiCall = API['index']
-    }else{
-        apiCall = API[urlPaths[1]]['index']
-    }
+  const hasFunction = urlPaths.length > 2;
+  //
+  if (hasFunction) {
+    apiCall = API[urlPaths[1]][urlPaths[2]];
+  }
 
-    const hasFunction = urlPaths.length > 2
-    //
-    if(hasFunction)
-        apiCall =  API[urlPaths[1]][urlPaths[2]];
-
-
-    return  data ? apiCall(data,req) : apiCall(req);
-}
+  return data ? apiCall(data, req) : apiCall(req);
+};
 
 const handler = async (request) => {
-    let response;
+  let response;
 
-    try{
+  try {
 
-        console.log(request.headers.get("host"))
-        console.log(request)
-  
-        if (request.headers.get("upgrade") === "websocket") {
-            const { socket: ws, response } = Deno.upgradeWebSocket(request);
+    const { pathname } = new URL(request.url);
+    const _current_header = new Headers(request.headers);
+    console.log(request.headers.get("host"));
 
-            const handleConnected = () => console.log("Connection established");
-            ws.onopen=()=>handleConnected();
+    if (request.headers.get("upgrade") === "websocket") {
+      const { socket: ws, response } = Deno.upgradeWebSocket(request);
 
-            const handleDisconnected = () => console.log("Connection closed");
-            ws.onclose=()=>handleDisconnected()
+      const handleConnected = () => console.log("Connection established");
+      ws.onopen = () => handleConnected();
 
-            const handleError = e => console.log(e instanceof ErrorEvent ? e.message : e.type);
-            ws.onerror=e=>handleError(e);
+      const handleDisconnected = () => console.log("Connection closed");
+      ws.onclose = () => handleDisconnected();
 
-            const handleMessage = (ws, msg) => {
-                ws.send('You have a new message');
-                console.log(msg);
-            }
+      const handleError = (e) =>
+        console.log(e instanceof ErrorEvent ? e.message : e.type);
+      ws.onerror = (e) => handleError(e);
 
-            ws.onmessage=e=>handleMessage(ws, e.data);
+      const handleMessage = (ws, msg) => {
+        ws.send("You have a new message");
+        console.log(msg);
+      };
 
-            console.log('created websocket connection as ws://localhost:8000')
-            return response;
-        }
+      ws.onmessage = (e) => handleMessage(ws, e.data);
 
+      console.log("created websocket connection as ws://localhost:8000");
+      return response;
+    }
+
+    if (_current_header.has("type")) {
+      if (request.headers.get("type") === "api") {
         //need to add support for being able to handle the base path
         const corsHeaders = addCorsIfNeeded(new Response());
 
         // for adding support for authorization
         // console.log('headers',request.headers.get('authorization'));
 
-        const { pathname } = new URL(request.url);
 
-        let urlPaths = pathname.split('/')
+        let urlPaths = pathname.split("/");
 
         // const headers = {...request.headers};
         // console.log(request.headers.get('authorization'))
-        if(request.method == 'GET'){
-            let _response  = await apiHandler({API,urlPaths,request});
+        if (request.method == "GET") {
+          let _response = await apiHandler({ API, urlPaths, request });
 
-            if (pathname.startsWith("/push")) {
-                response =  new Response(_response,{
-                    headers:{
-                        "content-type": "text/event-stream",
-                    },
-                    status: 200 });
-            }else{
-                response = await new Response(JSON.stringify(_response), {
-                    headers:{
-                        "content-type": "application/json",
-                        "Referrer-Policy": "no-referrer"
-                    },
-                    status: 200 });
-            }
+          if (pathname.startsWith("/push")) {
+            response = new Response(_response, {
+              headers: {
+                "content-type": "text/event-stream",
+              },
+              status: 200,
+            });
+          } else {
+            response = await new Response(JSON.stringify(_response), {
+              headers: {
+                "content-type": "application/json",
+                "Referrer-Policy": "no-referrer",
+              },
+              status: 200,
+            });
+          }
+        } else if (request.method == "POST") {
+          // request.json()
+          const _data = await request.arrayBuffer();
+          const data = await decryptMessage(_data);
 
-
-        }else if(request.method == 'POST'){
-            // request.json()
-            const _data = await request.arrayBuffer()
-            const data = await decryptMessage(_data);
-
-            let _response  = await apiHandler({API,urlPaths,data});
-            response = new Response(JSON.stringify((_response)), {
-                headers:{
-                    "content-type": "application/json",
-                },
-                status: 200 });
+          let _response = await apiHandler({ API, urlPaths, data });
+          response = new Response(JSON.stringify(_response), {
+            headers: {
+              "content-type": "application/json",
+            },
+            status: 200,
+          });
         }
+      }
+    } else {
+      // Check if the request is for style.css.
+   
+      if (pathname.includes(".")) {
+        console.log(pathname)
+        return await serveFile(request, `${Deno.cwd()}/static${pathname}`);
+      }
+ 
+      return await serveFile(request, `${Deno.cwd()}/static/index.html`);
+    }
+  } catch (err) {
+    // look into support for logging service or build own
+    // we will send it from here to our custom logger
+    console.log(err);
+    let msg = "Route does not exist";
 
-    }catch(err){
-        // look into support for logging service or build own
-        console.log(err)
-        let msg = 'Route does not exist';
-        if(!err.message.includes('Cannot read properties of undefined ')){
-         msg = err.message
-        }
-
-        return new Response(`
-        <!DOCTYPE html>
-        <html lang="en">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title> error</title>
-            <meta property="og:title" content="error">
-            <meta property="og:description" content="There is an error on this page">
-            <meta property="og:image" content="https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/background.png">
-            <meta property="og:image" content="../assets/background.png">
-            <meta property="og:url" content="https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/">
-        
-
-            <meta name="twitter:title" content="error">
-            <meta name="twitter:description" content="there is an error on this page">
-            <meta name="twitter:image" content="https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app/background.png">
-            <meta name="twitter:card" content="summary_large_image">
-            <meta http-equiv="refresh" content="0; url=https://bldka-cyaaa-aaaah-aaq3a-cai.raw.ic0.app" />
-          </head>
-          <body>
-          We are looking into the problem
-          ${msg}
-          </body>
-        <html>
-        `, { headers: { "content-type": "text/html" } })
-
-        // return new Response(JSON.stringify({status:'error', msg}), {
-        //     headers:{
-        //         "content-type": "application/json",
-        //         "Referrer-Policy": "no-referrer",
-        //         "access-control-allow-origin": "*"
-        //     },
-        //     status: 404 });
+    if (!err.message.includes("Cannot read properties of undefined ")) {
+      msg = err.message;
     }
 
+    return await serveFile(request, `${Deno.cwd()}/static/404.html`);
 
-    if (!response.headers.has("access-control-allow-origin")) {
-        response.headers.set("access-control-allow-origin","*");
-        response.headers.set("Access-Control-Allow-Headers","Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-    }
+    // return new Response(JSON.stringify({status:'error', msg}), {
+    //     headers:{
+    //         "content-type": "application/json",
+    //         "Referrer-Policy": "no-referrer",
+    //         "access-control-allow-origin": "*"
+    //     },
+    //     status: 404 });
+  }
 
+  if (!response.headers.has("access-control-allow-origin")) {
+    response.headers.set("access-control-allow-origin", "*");
+    response.headers.set(
+      "Access-Control-Allow-Headers",
+      "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers",
+    );
+  }
 
-    return response;
+  return response;
 };
 
 console.log(`HTTP webserver running. Access it at: http://localhost:8080/`);
