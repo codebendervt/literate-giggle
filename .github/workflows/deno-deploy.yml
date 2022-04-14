@@ -26,5 +26,4 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "clear-donkey-10"
-          entrypoint: server.js # TODO(codebenderhq): update
-          cwd: bridge
+          entrypoint: "./bridge/server.js" # TODO(codebenderhq): update

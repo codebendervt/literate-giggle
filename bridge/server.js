@@ -5,7 +5,10 @@ const env = Deno.env.toObject();
 import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
 
-const port = 8080;
+const isDev = env.DENO_ENV === "dev"
+const port = isDev ? 8080 : 80;
+
+console.log(env.DENO_ENV)
 
 const addCorsIfNeeded = (response) => {
   const headers = new Headers(response.headers);
@@ -39,7 +42,8 @@ const apiHandler = async ({ API, urlPaths, data, request }) => {
 
 const handler = async (request) => {
   let response;
-  let dir = `${Deno.cwd()}/static`
+  let dir = `./bridge/static`
+
 
   try {
 
@@ -121,14 +125,8 @@ const handler = async (request) => {
 
         // const file = await Deno.readFile("./static/style.css");
         // Respond to the request with the style.css file.
-        
-        for await (const file of Deno.readDir(`./`)) {
-            console.log(file)
-          }
-        
-
      
-        if(env.DENO_ENV == "dev"){
+        if(isDev){
             // Deno.chdir("../");
             dir = `../playground-dist`
         }
@@ -173,5 +171,5 @@ const handler = async (request) => {
   return response;
 };
 
-console.log(`HTTP webserver running. Access it at: http://localhost:8080/`);
+console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`);
 await serve(handler, { port });
