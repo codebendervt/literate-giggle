@@ -42,8 +42,7 @@ jobs:
         uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - name: Testing
-        run: npm test
+      - run: npm test
 
 
   deploy:
@@ -61,5 +60,22 @@ jobs:
       - name: Build
         run: npm run build
       
-  
+      - name: copy file via ssh key
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.APP_HOST }}
+          username: ${{ secrets.APP_USERNAME }}
+          port: ${{ secrets.APP_PORT }}
+          key: ${{ secrets.APP_KEY }}
+          source: "public/"
+          target: "test/"
+      
+      - name: update file on server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.APP_HOST }}
+          username: ${{ secrets.APP_USERNAME }}
+          port: ${{ secrets.APP_PORT }}
+          key: ${{ secrets.APP_KEY }}
+          script: ./server.sh
 
