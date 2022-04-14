@@ -77,5 +77,5 @@ jobs:
           username: ${{ secrets.APP_USERNAME }}
           port: ${{ secrets.APP_PORT }}
           key: ${{ secrets.APP_KEY }}
-          script: sh server.sh literate-giggle/
+          script: /bin/sh server.sh literate-giggle/
 
