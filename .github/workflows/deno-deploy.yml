@@ -40,4 +40,4 @@ jobs:
           username: ${{ secrets.APP_USERNAME }}
           port: ${{ secrets.APP_PORT }}
           key: ${{ secrets.APP_KEY }}
-          script: ./server.sh
+          script: sh server.sh
