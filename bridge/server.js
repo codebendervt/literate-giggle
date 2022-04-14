@@ -8,7 +8,6 @@ import API from "./api/index.ts";
 const isDev = env.DENO_ENV === "dev"
 const port = isDev ? 8080 : 80;
 
-console.log(env.DENO_ENV)
 
 const addCorsIfNeeded = (response) => {
   const headers = new Headers(response.headers);
@@ -149,7 +148,7 @@ const handler = async (request) => {
       msg = err.message;
     }
 
-    return await serveFile(request, `${dir}/static/404.html`);
+    return await serveFile(request, `${dir}/404.html`);
 
     // return new Response(JSON.stringify({status:'error', msg}), {
     //     headers:{
