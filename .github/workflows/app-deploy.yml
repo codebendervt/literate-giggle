@@ -18,8 +18,8 @@ jobs:
    name: Build App
    runs-on: ubuntu-latest
    steps:
-     - uses: actions/checkout@v2
-     - uses: actions/setup-node@v2
+     - uses: actions/checkout@v3
+     - uses: actions/setup-node@v3
        with:
          node-version: 14
      - run: npm build
@@ -29,10 +29,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
       - run: npm test
 
 
@@ -41,9 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy App
     steps:
-      - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
