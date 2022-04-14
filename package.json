@@ -46,9 +46,9 @@
     "@parcel/transformer-css": "^2.4.1"
   },
   "alias": {
-    "local-service": "./sdk/services",
-    "assets": "./assets",
-    "studio": "./sdk/studio"
+    "local-service": "./sdk",
+    "assets": "./sdk",
+    "studio": "./sdk"
   },
   "@parcel/transformer-css": {
     "cssModules": false
