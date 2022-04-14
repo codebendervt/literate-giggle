@@ -32,32 +32,25 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: Setup Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
           node-version: 14
-      - uses: denoland/setup-deno@v1
+      - name: Setup Deno
+        uses: denoland/setup-deno@v1
         with:
           deno-version: v1.x
-      - run: npm test
+      - name: Testing
+        run: npm test
 
 
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    name: Deploy App
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-          registry-url: https://registry.npmjs.org/
-      - name: Install
-        run: npm install
-      - name: Build
-        run: npm run build
-      
-      - name: copy file via ssh key
+        name: copy file via ssh key
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.APP_HOST }}
@@ -65,5 +58,7 @@ jobs:
           port: ${{ secrets.APP_PORT }}
           key: ${{ secrets.APP_KEY }}
           source: "public/"
-          target: "test/"
+          target: "app/"
+      
+  
 
