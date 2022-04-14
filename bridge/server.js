@@ -180,7 +180,6 @@ await serve(handler, { port });
 }else{
   console.log(`HTTP webserver running. Access it at: https://localhost:443/`);
   const options = {
-    hostname: "bridge.sauveur.xyz",
     port: 443,
     certFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/fullchain.pem",
     keyFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/privkey.pem",
