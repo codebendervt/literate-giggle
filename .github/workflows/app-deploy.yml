@@ -49,15 +49,17 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
+    name: Deploy App
     steps:
-        - uses: appleboy/scp-action@master
-          with:
-            host: ${{ secrets.APP_HOST }}
-            username: ${{ secrets.APP_USERNAME }}
-            port: ${{ secrets.APP_PORT }}
-            key: ${{ secrets.APP_KEY }}
-            source: "public/"
-            target: "app/"
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
       
   
 
