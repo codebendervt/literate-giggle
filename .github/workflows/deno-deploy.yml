@@ -29,3 +29,14 @@ jobs:
           entrypoint: "./bridge/server.js" # TODO(codebenderhq): update
 
       
+      - name: make server.sh executable 
+        run: chmod u+x server.sh 
+      
+      - name: update file on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.APP_HOST }}
+          username: ${{ secrets.APP_USERNAME }}
+          port: ${{ secrets.APP_PORT }}
+          key: ${{ secrets.APP_KEY }}
+          script: ./server.sh
