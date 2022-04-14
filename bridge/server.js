@@ -1,4 +1,4 @@
-import { serve } from "https://deno.land/std@0.125.0/http/server.ts";
+import { serve, serveTLS } from "https://deno.land/std@0.125.0/http/server.ts";
 import { serveFile } from "https://deno.land/std@0.120.0/http/file_server.ts";
 const env = Deno.env.toObject();
 
@@ -130,6 +130,10 @@ const handler = async (request) => {
             dir = `../playground-dist`
         }
       // Check if the request is for style.css.
+      //    hostname: "localhost",
+      // port: 443,
+      // certFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/fullchain.pem",
+      // keyFile: "etc/letsencrypt/live/bridge.sauveur.xyz/privkey.pem",
    
       if (pathname.includes(".")) {
         console.log(pathname)
@@ -170,5 +174,17 @@ const handler = async (request) => {
   return response;
 };
 
-console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`);
+if(isDev){
+  console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`);
 await serve(handler, { port });
+}else{
+  console.log(`HTTP webserver running. Access it at: https://localhost:443/`);
+  const options = {
+    hostname: "bridge.sauveur.xyz",
+    port: 443,
+    certFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/fullchain.pem",
+    keyFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/privkey.pem",
+  };
+  await serveTLS(handler,options);
+
+}
