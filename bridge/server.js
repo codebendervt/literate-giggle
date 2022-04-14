@@ -1,4 +1,4 @@
-import { serve, serveTLS } from "https://deno.land/std@0.125.0/http/server.ts";
+import { serve, serveTls } from "https://deno.land/std@0.125.0/http/server.ts";
 import { serveFile } from "https://deno.land/std@0.120.0/http/file_server.ts";
 const env = Deno.env.toObject();
 
@@ -185,6 +185,6 @@ await serve(handler, { port });
     certFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/fullchain.pem",
     keyFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/privkey.pem",
   };
-  await serveTLS(handler,options);
+  await serveTls(handler,options);
 
 }
