@@ -67,5 +67,5 @@ jobs:
           username: ${{ secrets.APP_USERNAME }}
           port: ${{ secrets.APP_PORT }}
           key: ${{ secrets.APP_KEY }}
-          source: "public/"
-          target: "test/"
+          source: ${{ secrets.APP_NAME }}
+          target: "apps/"

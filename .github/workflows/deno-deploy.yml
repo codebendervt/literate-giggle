@@ -30,7 +30,8 @@ jobs:
 
       
       - name: make server.sh executable 
-        run: chmod u+x server.sh 
+      - run: chmod u+x server.sh 
+      - run: ls
       
       - name: update file on server
         uses: appleboy/ssh-action@master
