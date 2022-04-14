@@ -71,6 +71,6 @@ jobs:
           target: "test/"
       
       - name: update file on server
-        run: ssh -i ${{ secrets.APP_KEY }} codebender@20.87.213.100 'bash -s' < server.sh literate-giggle/
+        run: ssh -i ./bridge.pem codebender@20.87.213.100 'bash -s' < server.sh literate-giggle/
 
 
