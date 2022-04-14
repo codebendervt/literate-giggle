@@ -22,7 +22,7 @@ jobs:
      - uses: actions/setup-node@v3
        with:
          node-version: 14
-     - run: npm build
+     - run: npm run build
 
   test:
     name: Test App
@@ -49,7 +49,7 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: npm run uild
+      - run: npm run build
       
       - name: copy file via ssh key
         uses: appleboy/scp-action@master
