@@ -6,7 +6,7 @@ import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
 
 const isDev = env.DENO_ENV === "dev"
-const port = isDev ? 8080 : 80;
+const port = isDev ? 8080 : 443;
 
 
 const addCorsIfNeeded = (response) => {
