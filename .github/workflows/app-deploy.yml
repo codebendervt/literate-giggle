@@ -71,11 +71,6 @@ jobs:
           target: "test/"
       
       - name: update file on server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.APP_HOST }}
-          username: ${{ secrets.APP_USERNAME }}
-          port: ${{ secrets.APP_PORT }}
-          key: ${{ secrets.APP_KEY }}
-          script: /bin/sh server.sh literate-giggle/
+        run: ssh -i ${{ secrets.APP_KEY }} codebender@20.87.213.100 'bash -s' < server.sh literate-giggle/
+
 
