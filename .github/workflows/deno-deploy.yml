@@ -27,3 +27,13 @@ jobs:
         with:
           project: "clear-donkey-10"
           entrypoint: "./bridge/server.js" # TODO(codebenderhq): update
+
+         
+      - name: update file on server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.APP_HOST }}
+          username: ${{ secrets.APP_USERNAME }}
+          port: ${{ secrets.APP_PORT }}
+          key: ${{ secrets.APP_KEY }}
+          script: ./server.sh
