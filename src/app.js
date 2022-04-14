@@ -1,15 +1,16 @@
 import { render } from "react-dom";
 // import {useEffect,useState} from "react";
-import 'animate.css';
-import App from "../archive/toolbox";
-import pages from './'
+// import 'animate.css';
+// import App from "../archive/toolbox";
+// import pages from './'
 
 
 const Layout = () => {
 
     return(
 
-        <App pages={pages}></App>
+        <div>hello world</div>
+        // <App pages={pages}></App>
 
         )
 
