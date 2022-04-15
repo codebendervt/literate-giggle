@@ -2,7 +2,8 @@
   "name": "sauveur.js",
   "version": "0.1.5",
   "description": "",
-  "source": "index.html",
+  "source": "sdk/index.js",
+  "main": "core/index.js",
   "files": [
     "core"
   ],
