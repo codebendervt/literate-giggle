@@ -1,0 +1,14 @@
+
+version: '3.7'
+services:
+  server:
+    container_name: bridge
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./bridge:/server/bridge
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080

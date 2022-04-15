@@ -2,12 +2,14 @@
   "name": "sauveur.js",
   "version": "0.1.5",
   "description": "",
+  "source": "sdk/index.js",
+  "main": "core/index.js",
   "files": [
     "core"
   ],
   "scripts": {
     "start": "parcel index.html --dist-dir public ",
-    "server": "cd bridge && deno run --allow-net --allow-read --allow-env server.js",
+    "server": "cd bridge && deno run --watch --allow-net --allow-read --allow-env server.js",
     "build": "parcel build index.html --dist-dir public",
     "build:package": "parcel build",
     "deploy": "dfx deploy --network ic sauveur",

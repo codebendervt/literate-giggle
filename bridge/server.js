@@ -50,6 +50,17 @@ const handler = async (request) => {
     const _current_header = new Headers(request.headers);
     console.log(request.headers.get("host"));
 
+    if (pathname == '/update') {
+      console.log(pathname,'ready to update')
+          return new Response(JSON.stringify({status:'error', msg:'update under construction'}), {
+        headers:{
+            "content-type": "application/json",
+            "Referrer-Policy": "no-referrer",
+            "access-control-allow-origin": "*"
+        },
+        status: 404 });
+    }
+
     if (request.headers.get("upgrade") === "websocket") {
       const { socket: ws, response } = Deno.upgradeWebSocket(request);
 
@@ -119,21 +130,19 @@ const handler = async (request) => {
             status: 200,
           });
         }
+
+        
       }
     } else {
-
         // const file = await Deno.readFile("./static/style.css");
         // Respond to the request with the style.css file.
      
         if(isDev){
             // Deno.chdir("../");
-            dir = `../playground-dist`
+            dir = `playground-dist`
         }
+
       // Check if the request is for style.css.
-      //    hostname: "localhost",
-      // port: 443,
-      // certFile: "/etc/letsencrypt/live/bridge.sauveur.xyz/fullchain.pem",
-      // keyFile: "etc/letsencrypt/live/bridge.sauveur.xyz/privkey.pem",
    
       if (pathname.includes(".")) {
         console.log(pathname)
@@ -153,14 +162,6 @@ const handler = async (request) => {
     }
 
     return await serveFile(request, `${dir}/404.html`);
-
-    // return new Response(JSON.stringify({status:'error', msg}), {
-    //     headers:{
-    //         "content-type": "application/json",
-    //         "Referrer-Policy": "no-referrer",
-    //         "access-control-allow-origin": "*"
-    //     },
-    //     status: 404 });
   }
 
   if (!response.headers.has("access-control-allow-origin")) {
