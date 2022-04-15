@@ -27,17 +27,13 @@ jobs:
         with:
           project: "clear-donkey-10"
           entrypoint: "./bridge/server.js" # TODO(codebenderhq): update
-
+          
       
-      - name: make server.sh executable 
-        run: chmod u+x server.sh 
-      - run: ls
-      
-      - name: update file on server
-        uses: appleboy/ssh-action@master
+      - name: Make Request
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1
         with:
-          host: ${{ secrets.APP_HOST }}
-          username: ${{ secrets.APP_USERNAME }}
-          port: ${{ secrets.APP_PORT }}
-          key: ${{ secrets.APP_KEY }}
-          script: server.sh literate-giggle/
+          url: "https://bridge.sauveur.xyz/update"
+      
+      - name: Show Response
+        run: echo ${{ steps.myRequest.outputs.response }}
