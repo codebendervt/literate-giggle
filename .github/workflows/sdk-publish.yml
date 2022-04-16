@@ -31,7 +31,7 @@ jobs:
         with:
           node-version: 14
       - run: npm ci
-      - run: npm run build:package
+      - run: npm run build
 
   publish-sdk:
     needs: build
@@ -57,7 +57,7 @@ jobs:
 
       - if: steps.changes.outputs.sdk == 'true'
         run: npm ci
-      - run: npm run build:package
+      - run: npm run build
       - run: npm publish
 
         env:

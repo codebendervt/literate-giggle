@@ -12,7 +12,7 @@ const index  = ({param}) => {
 
     useEffect( async () => {
         try{
-            console.table(package_json.version)
+            // console.table(package_json.version)
 
             if(param){
                 console.log(param)
@@ -40,9 +40,6 @@ const index  = ({param}) => {
         }
 
     },[])
-
-
-
 
     //https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API/Using_the_Notifications_API
 

@@ -8,9 +8,9 @@
     "core"
   ],
   "scripts": {
-    "start": "parcel index.html --dist-dir public ",
+    "start": "parcel watch",
     "server": "cd bridge && deno run --watch --allow-net --allow-read --allow-env server.js",
-    "build": "parcel build index.html --dist-dir public",
+    "build": "parcel build",
     "build:package": "parcel build",
     "deploy": "dfx deploy --network ic sauveur",
     "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
@@ -46,9 +46,9 @@
     "@parcel/transformer-css": "^2.4.1"
   },
   "alias": {
-    "local-service": "./sdk",
-    "assets": "./sdk",
-    "studio": "./sdk"
+    "local-service": "./archive/services",
+    "assets": "./assets",
+    "studio": "./sdk/app/studio"
   },
   "@parcel/transformer-css": {
     "cssModules": false

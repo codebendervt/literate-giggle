@@ -1,5 +1,5 @@
 import service from 'local-service';
-import StudioForm from 'studio/form';
+import StudioForm from 'studio';
 import form_models from './models';
 import {useEffect,useState} from 'react';
 

@@ -1,5 +1,5 @@
 import Views from "./views";
-import {Loader, Next, Submit} from "../app/components";
+import {Loader, Next, Submit} from "../components";
 import {useState, useEffect, useReducer} from "react";
 // import './studio.css'
 

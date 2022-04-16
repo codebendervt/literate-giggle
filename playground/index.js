@@ -3,7 +3,7 @@ import { useEffect,useState } from "react";
 import Studio from '../core'
 import { decryptMessage, encryptMessage } from "./src/security";
 import {push_notification} from './src/test'
-
+import pages from './src'
 
 const model = [
     {type: 'input',name:'primary_contact_phone',title:'Whatsapp Number', values:{placeholder:'Whatsapp Number', type:'tel'}},
@@ -17,20 +17,21 @@ const Layout = () => {
 
     useEffect(async () => {
 
-        const myArray = new Uint8Array(10);
+        console.log(pages)
+        // const myArray = new Uint8Array(10);
 
-        const msg = {data:'hellow world'}
+        // const msg = {data:'hellow world'}
         
-        let _encrypted
-        //Uint8Array
-        _encrypted =  await encryptMessage(JSON.stringify(msg));
-        // console.log(await decryptMessage(_encrypted));
+        // let _encrypted
+        // //Uint8Array
+        // _encrypted =  await encryptMessage(JSON.stringify(msg));
+        // // console.log(await decryptMessage(_encrypted));
 
-        console.log(_encrypted)
-        fetch('/push', {
-            method: 'POST',
-            body: _encrypted
-        })
+        // console.log(_encrypted)
+        // fetch('/push', {
+        //     method: 'POST',
+        //     body: _encrypted
+        // })
 
         // const socket = new WebSocket("ws://clear-donkey-10-7cvv1r7bn5q0.deno.dev");
         //
@@ -114,10 +115,11 @@ const Layout = () => {
         console.log('submiting')
     }
     return(
-        <div className={'w-full h-screen bg-black '}>
-          <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
-        </div>
-
+        // <div className={'w-full h-screen bg-black '}>
+        //   <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
+        // </div>
+ 
+        <Studio.App.Core pages={pages}></Studio.App.Core>
         )
 
 }
