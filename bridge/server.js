@@ -3,7 +3,7 @@ import { serveFile } from "https://deno.land/std@0.135.0/http/file_server.ts";
 import * as actions from '../src/actions/index.js'
 
 const env = Deno.env.toObject();
-
+ 
 import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
 
@@ -44,7 +44,7 @@ const apiHandler = async ({ API, urlPaths, data, request }) => {
 
 const handler = async (request) => {
   let response;
-  let dir = `./static`
+  let dir = `./bridge/static`
 
 
   try {
