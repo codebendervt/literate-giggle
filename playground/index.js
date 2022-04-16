@@ -1,6 +1,6 @@
 import { render } from "react-dom";
 import { useEffect,useState } from "react";
-import Studio from '../core'
+import {App, actions} from '../core'
 import { decryptMessage, encryptMessage } from "./src/security";
 import {push_notification} from './src/test'
 import pages from './src'
@@ -17,7 +17,7 @@ const Layout = () => {
 
     useEffect(async () => {
 
-        console.log(Studio.services.dfinity.backend.get_all_data())
+        console.log(actions.auth.log_in())
         // const myArray = new Uint8Array(10);
 
         // const msg = {data:'hellow world'}
@@ -119,7 +119,7 @@ const Layout = () => {
         //   <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
         // </div>
  
-        <Studio.App.Core pages={pages}></Studio.App.Core>
+        <App.Core pages={pages}></App.Core>
         )
 
 }

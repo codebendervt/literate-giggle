@@ -1,89 +1,93 @@
 import faunadb from 'https://cdn.skypack.dev/faunadb';
+import {create,update,read,getAll,findByIndex,init} from '../../src/.core/services/db/fauna/index.js';
 
-let q = faunadb.query
+ 
+init(Deno.env.get("FAUNA_SECRET"), faunadb)
 
-const faunaSDK = new faunadb.Client({
-    secret: Deno.env.get("FAUNA_SECRET") || 'fnAEimZoNZACTNucAAf6ZAlHWyRlR9HrHGVaRiGd',
-    domain: 'db.fauna.com',
-    // NOTE: Use the correct domain for your database's Region Group.
-    port: 443,
-    scheme: 'https',
-})
+// let q = faunadb.query
 
-//add trycatch for devesive coding
-const create = async (data,col) => {
+// const faunaSDK = new faunadb.Client({
+//     secret: Deno.env.get("FAUNA_SECRET") || 'fnAEimZoNZACTNucAAf6ZAlHWyRlR9HrHGVaRiGd',
+//     domain: 'db.fauna.com',
+//     // NOTE: Use the correct domain for your database's Region Group.
+//     port: 443,
+//     scheme: 'https',
+// })
 
-    return await faunaSDK.query(
-        q.Create(
-            q.Collection(col),
-            {data}
-        )
-    )
-}
+// //add trycatch for devesive coding
+// const create = async (data,col) => {
 
-const read = async (id,col="theplug") => {
+//     return await faunaSDK.query(
+//         q.Create(
+//             q.Collection(col),
+//             {data}
+//         )
+//     )
+// }
 
-    //console.log("id tp read",id)
-    return await faunaSDK.query(
-        q.Get(
-            q.Ref(
-                q.Collection(col), id)
-        )
+// const read = async (id,col="theplug") => {
 
-    )
-}
+//     //console.log("id tp read",id)
+//     return await faunaSDK.query(
+//         q.Get(
+//             q.Ref(
+//                 q.Collection(col), id)
+//         )
 
-const update = async (data, id,col) => {
+//     )
+// }
 
-
-    return await faunaSDK.query(
-        q.Update(
-            q.Ref(q.Collection(col), id),
-            {data}
-        )
-    )
-}
-
-const remove = async (id,col="theplug") => {
-
-    console.log("removing the data",id)
-    return await faunaSDK.query(
-        q.Delete(q.Ref(q.Collection(col), id))
-    )
-}
-
-const findById = async (id, index ="identity") =>{
-
-    return await faunaSDK.query(
-        q.Get(q.Match(q.Index(index), id))
-    )
-}
+// const update = async (data, id,col) => {
 
 
-const findByIndex = async (id, index ="analyticIdentity ") =>{
+//     return await faunaSDK.query(
+//         q.Update(
+//             q.Ref(q.Collection(col), id),
+//             {data}
+//         )
+//     )
+// }
 
-    let result = await faunaSDK.query(
-        q.Paginate(q.Match(q.Index(index), id)),
-    )
+// const remove = async (id,col="theplug") => {
 
-    let exp = result.data.map((i) => q.Get(i))
+//     console.log("removing the data",id)
+//     return await faunaSDK.query(
+//         q.Delete(q.Ref(q.Collection(col), id))
+//     )
+// }
+
+// const findById = async (id, index ="identity") =>{
+
+//     return await faunaSDK.query(
+//         q.Get(q.Match(q.Index(index), id))
+//     )
+// }
 
 
-    let data = await faunaSDK.query(exp)
+// const findByIndex = async (id, index ="analyticIdentity ") =>{
 
-    return data;
-}
+//     let result = await faunaSDK.query(
+//         q.Paginate(q.Match(q.Index(index), id)),
+//     )
 
-const getAll = async (index = "genus") => {
+//     let exp = result.data.map((i) => q.Get(i))
 
-    let result = await faunaSDK.query(
-        q.Paginate(q.Documents(q.Collection(index))),
-    )
 
-    let exp = result.data.map((i) => q.Get(i))
-    let data = await faunaSDK.query(exp)
+//     let data = await faunaSDK.query(exp)
 
-    return data;
-}
+//     return data;
+// }
+
+// const getAll = async (index = "genus") => {
+
+//     let result = await faunaSDK.query(
+//         q.Paginate(q.Documents(q.Collection(index))),
+//     )
+
+//     let exp = result.data.map((i) => q.Get(i))
+//     let data = await faunaSDK.query(exp)
+
+//     return data;
+// }
 
 export {create,update,findByIndex}

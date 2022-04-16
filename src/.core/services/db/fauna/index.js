@@ -1,16 +1,30 @@
-let faunadb = require('faunadb'),
-    q = faunadb.query
-
+let faunadb;
+let q;
 let faunaSDK;
 
-const init = (key) => {
-   faunaSDK = new faunadb.Client({
-        secret: key,
-        domain: 'db.fauna.com',
-        // NOTE: Use the correct domain for your database's Region Group.
-        port: 443,
-        scheme: 'https',
-    })
+const init = (key, driver) => {
+
+    try{
+        if(driver){
+            faunadb = driver,
+                q = faunadb.query
+        }else{
+            faunadb = require('faunadb'),
+                q = faunadb.query
+        }
+       faunaSDK = new faunadb.Client({
+            secret: key,
+            domain: 'db.fauna.com',
+            // NOTE: Use the correct domain for your database's Region Group.
+            port: 443,
+            scheme: 'https',
+        })
+        
+    }catch{
+        console.log('unable to init')
+    }
+    
+  
 }
 //add trycatch for devesive coding
 const create = async (data,col) => {
@@ -89,5 +103,5 @@ const getAll = async (index = "genus", size ={}) => {
 }
 
 
-export default {create,update,read,getAll,findByIndex,init}
+export {create,update,read,getAll,findByIndex,init}
 

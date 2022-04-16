@@ -1,4 +1,4 @@
-import fauna from './db/fauna'
+import * as fauna from './db/fauna'
 import dfinity from './dfinity'
 import native from './native'
 
