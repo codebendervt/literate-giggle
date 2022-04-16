@@ -1,4 +1,5 @@
 import fauna from './db/fauna'
 import dfinity from './dfinity'
+import native from './native'
 
-export  {fauna,dfinity}
+export  {fauna,dfinity, native}

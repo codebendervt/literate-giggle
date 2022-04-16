@@ -1,11 +1,16 @@
-import { serve, serveTls } from "https://deno.land/std@0.125.0/http/server.ts";
-import { serveFile } from "https://deno.land/std@0.120.0/http/file_server.ts";
+import { serve, serveTls } from "https://deno.land/std@0.135.0/http/server.ts";
+import { serveFile } from "https://deno.land/std@0.135.0/http/file_server.ts";
+import * as actions from '../src/actions/index.js'
+
 const env = Deno.env.toObject();
+
+console.log(actions,'the actions exist')
 
 import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
 
 const isDev = env.DENO_ENV === "dev"
+const isDenoDeploy = env.IS_DENO  === true
 const port = isDev ? 8080 : 80;
 
 
@@ -175,7 +180,7 @@ const handler = async (request) => {
   return response;
 };
 
-if(isDev){
+if(isDev || isDenoDeploy){
   console.log(`HTTP webserver running. Access it at: http://localhost:${port}/`);
 await serve(handler, { port });
 }else{

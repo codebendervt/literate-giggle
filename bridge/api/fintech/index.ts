@@ -1,4 +1,4 @@
-import {getUriParams} from '../../../sdk/.core/services/native/index.js';
+import {getUriParams} from '../../../archive/services/native/index.js'
 const env = Deno.env.toObject();
 
 //figure out what is the env
@@ -64,19 +64,19 @@ const log = async(data:any, req:any) => {
     return response;
 }
 
-const verify = async (req:any) => {
+// const verify = async (req:any) => {
 
-    // let url = new URL(req.url)
-    // let searchParams = new URLSearchParams(url.search);
-    // searchParams.get('ref')
-    let ref = getUriParams({uri : req.url, query:'ref'})
+//     // let url = new URL(req.url)
+//     // let searchParams = new URLSearchParams(url.search);
+//     // searchParams.get('ref')
+//     let ref = getUriParams({uri : req.url, query:'ref'})
 
-    const uri = `${_uri}${paystack_api.verify}${ref}`
+//     const uri = `${_uri}${paystack_api.verify}${ref}`
 
-    const method = req.method;
-    response = await _fetch({uri, method});
-    return response;
-}
+//     const method = req.method;
+//     response = await _fetch({uri, method});
+//     return response;
+// }
 
 const bank = async (req:any) => {
     const uri = `${_uri}${paystack_api.bank}?currency=ZAR`
@@ -102,4 +102,4 @@ const list_accounts = async (req:any) => {
     return response
 }
 
-export default {index,verify,log,bank,create_account,list_accounts}
+export default {index,log,bank,create_account,list_accounts}

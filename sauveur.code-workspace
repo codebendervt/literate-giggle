@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"name": "home",
+			"path": "."
+		},
+		{
+			"name": "🙂sauveur.js🙂",
+			"path": "./src"
+		},
+		{
+			"name": "🙂play🙂",
+			"path": "./playground"
+		},
+		{
+			"name": "🙂bridge🙂",
+			"path": "./bridge"
+		},
+		{
+			"name": "🙂backend🙂",
+			"path": "./backend"
+		},
+ 
+	],
+	"settings": {}
+}

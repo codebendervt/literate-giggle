@@ -2,7 +2,7 @@
   "name": "sauveur.js",
   "version": "0.1.6",
   "description": "",
-  "source": "sdk/index.js",
+  "source": "src/index.js",
   "main": "core/index.js",
   "files": [
     "core"
@@ -11,11 +11,10 @@
     "start": "parcel watch",
     "build": "parcel build",
     "test": "deno test qa/",
-    "deploy": "dfx deploy --network ic sauveur",
     "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
-    "server:install": "docker-compose up -d",
-    "server:start": "docker-compose start",
-    "backend:deploy": "dfx deploy --network ic sauveur",
+    "server:start": "docker-compose up -d",
+    "server:run": "deno run --watch --allow-net --allow-read --allow-env ./bridge/server.js",
+    "backend:deploy": "dfx deploy --network ic backend",
     "play": "parcel build && parcel ./playground/index.html --dist-dir playground-dist --no-cache "
   },
   "author": "",
