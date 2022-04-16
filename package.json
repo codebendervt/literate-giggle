@@ -9,14 +9,13 @@
   ],
   "scripts": {
     "start": "parcel watch",
-    "server": "cd bridge && deno run --watch --allow-net --allow-read --allow-env server.js",
     "build": "parcel build",
-    "build:package": "parcel build",
+    "test": "deno test qa/",
     "deploy": "dfx deploy --network ic sauveur",
     "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
-    "deploy-backend": "dfx deploy --network ic sauveur",
-    "test": "deno test qa/",
-    "watch": "parcel watch --no-cache",
+    "server:install": "docker-compose up -d",
+    "server:start": "docker-compose start",
+    "backend:deploy": "dfx deploy --network ic sauveur",
     "play": "parcel build && parcel ./playground/index.html --dist-dir playground-dist --no-cache "
   },
   "author": "",

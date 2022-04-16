@@ -17,7 +17,7 @@ const Layout = () => {
 
     useEffect(async () => {
 
-        console.log(pages)
+        console.log(Studio.services.dfinity.backend.get_all_data())
         // const myArray = new Uint8Array(10);
 
         // const msg = {data:'hellow world'}

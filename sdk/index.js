@@ -1,5 +1,5 @@
 import Form from './app/studio'
 import * as App from './app'
-import {db_services} from '.core'
+import services from './.core'
 
-export {Form,db_services, App}
+export {Form,services, App}
