@@ -4,12 +4,13 @@ import * as actions from '../src/actions/index.js'
 
 const env = Deno.env.toObject();
  
+console.log(actions,'actions have been set')
 
 import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
 
 const isDev = env.DENO_ENV === "dev"
-const isDenoDeploy = env.IS_DENO  === true
+const isDenoDeploy = env.IS_DEPLOY  === "yes"
 const port = isDev ? 8080 : 80;
 
 
