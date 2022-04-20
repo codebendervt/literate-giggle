@@ -1,6 +1,6 @@
 import { render } from "react-dom";
 import { useEffect,useState } from "react";
-import {App, actions} from '../core'
+import {App, services} from '../core'
 import { decryptMessage, encryptMessage } from "./src/security";
 import {push_notification} from './src/test'
 import pages from './src'
@@ -16,7 +16,7 @@ const Layout = () => {
 
 
     useEffect(async () => {
-
+        console.log(services.dfinity.backend.get_all_data())
     },[])
 
  

@@ -13,7 +13,7 @@
     "test": "deno test qa/",
     "ic:install": "dfx canister --network ic install sauveur --mode reinstall ",
     "server:start": "docker-compose up -d",
-    "server:run": "deno run --watch --allow-net --allow-read --allow-env ./bridge/server.js",
+    "server:run": "deno run --watch --allow-net --allow-read --allow-env --allow-run ./bridge/server.js",
     "backend:deploy": "dfx deploy --network ic backend",
     "play": "parcel build && parcel ./playground/index.html --dist-dir playground-dist --no-cache "
   },

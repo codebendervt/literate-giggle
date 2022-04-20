@@ -1,6 +1,7 @@
 import { serve, serveTls } from "https://deno.land/std@0.135.0/http/server.ts";
 import { serveFile } from "https://deno.land/std@0.135.0/http/file_server.ts";
 
+
 const env = Deno.env.toObject();
  
 import { decryptMessage } from "./.core/security.js";
@@ -100,25 +101,18 @@ const handler = async (request) => {
 
         // const headers = {...request.headers};
         // console.log(request.headers.get('authorization'))
+
         if (request.method == "GET") {
           let _response = await apiHandler({ API, urlPaths, request });
 
-          if (pathname.startsWith("/push")) {
-            response = new Response(_response, {
-              headers: {
-                "content-type": "text/event-stream",
-              },
-              status: 200,
-            });
-          } else {
-            response = await new Response(JSON.stringify(_response), {
-              headers: {
-                "content-type": "application/json",
-                "Referrer-Policy": "no-referrer",
-              },
-              status: 200,
-            });
-          }
+          response = await new Response(JSON.stringify(_response), {
+            headers: {
+              "content-type": "application/json",
+              "Referrer-Policy": "no-referrer",
+            },
+            status: _response.status,
+          });
+
         } else if (request.method == "POST") {
           // request.json()
           const _data = await request.arrayBuffer();
@@ -141,7 +135,7 @@ const handler = async (request) => {
      
         if(isDev){
             // Deno.chdir("../");
-            dir = `playground-dist`
+            dir = `dist`
         }
 
       // Check if the request is for style.css.
