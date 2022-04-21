@@ -1,5 +1,5 @@
 import faunadb from 'https://cdn.skypack.dev/faunadb';
-import {create,update,read,getAll,findByIndex,init} from '../../src/.core/services/db/fauna/index.js';
+import {create,update,read,getAll,findByIndex,init} from './db/index.js';
 
  
 init(Deno.env.get("FAUNA_SECRET"), faunadb)

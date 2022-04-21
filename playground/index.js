@@ -48,7 +48,7 @@ const Layout = () => {
         //   <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
         // </div>
  
-        <App.Core pages={pages}></App.Core>
+        <App.Core pages={pages} hasBar={true}></App.Core>
         )
 
 }

@@ -1,11 +1,11 @@
 import { serve, serveTls } from "https://deno.land/std@0.135.0/http/server.ts";
 import { serveFile } from "https://deno.land/std@0.135.0/http/file_server.ts";
 
-
-const env = Deno.env.toObject();
- 
 import { decryptMessage } from "./.core/security.js";
 import API from "./api/index.ts";
+
+
+const env = Deno.env.toObject();
 
 const isDev = env.DENO_ENV === "dev"
 const isDenoDeploy = env.IS_DEPLOY  === "yes"

@@ -2,7 +2,7 @@
 const index = async () => {
 
     const out = Deno.run({
-        cmd: ["dfx", "wallet", "-network","ic", "balance"],
+        cmd: ["dfx", "wallet", "--network","ic", "balance"],
         stderr: "piped",
         stdout: "piped"
     });
