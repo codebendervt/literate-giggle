@@ -19,9 +19,6 @@ const Layout = () => {
         console.log(services.dfinity.backend.get_all_data())
     },[])
 
- 
-
-
     const handleSubmit = () => {
 
         console.log(sub)
@@ -43,6 +40,7 @@ const Layout = () => {
 
         console.log('submiting')
     }
+    
     return(
         // <div className={'w-full h-screen bg-black '}>
         //   <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
