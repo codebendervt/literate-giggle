@@ -41,12 +41,24 @@ const Layout = () => {
         console.log('submiting')
     }
     
+    const SubView = ({toggle}) => {
+        return (<>
+        hello world
+        <div onClick={() => toggle()}>close</div>
+        </>)
+    }
     return(
         // <div className={'w-full h-screen bg-black '}>
         //   <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
         // </div>
  
-        <App.Core pages={pages} hasBar={true}></App.Core>
+        <App.Core pages={pages} hasBar={true}>
+            <div>hello</div>
+            <div>
+                <div id="one" icon='meal' value="one" subPage={SubView}>one</div>
+                <div id="two" icon='meal' value="app" route={'/app'}>two</div>
+            </div>
+        </App.Core>
         )
 
 }

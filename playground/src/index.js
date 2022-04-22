@@ -81,4 +81,12 @@ const hello = () => {
     )
 }
 
-export default {index,hello}
+const error = () => {
+    return (
+        <div>
+            error
+        </div>
+    )
+}
+
+export default {index,hello,error}
