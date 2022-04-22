@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 
+
+const theme = {primary: 'bg-black', secondary: 'bg-gray-200', accent:'text-indigo-800'}
 function Container ({Comp,param}) {
 
     return (
@@ -19,18 +21,21 @@ function ActionBar ({isMenu, toggleMenu,children}) {
     const [SubPageView, setSubPage] = useState(false) 
 
  
+    const get_action = (icon) => {
+        return icon.props.isHome ? () => toggleMenu() : icon.props.route ?  () => window.location = icon.props.route : icon.props.subPage ? () => setSubPage(() => icon.props.subPage) : console.log('we are just here for display')
+    }
 
     const LoadIcons = ({icons}) => {
-       
-        return(
+    
 
-        
+        return(
+            Array.isArray(icons) ?
                 icons.map((icon) => {
 
-                    action = () => icon.props.route ?  window.location = icon.props.route : icon.props.subPage ? setSubPage(() => icon.props.subPage) : icon.props.hasMenu ? toggleMenu(isMenu) : console.log('we are just here for display')
+                    action = get_action(icon);
+
                     return (
                     
-                    <>
                     <Icon action={action} key={icon.props.id}>
                         <div className="w-full flex flex-col items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" fill="none" viewBox="0 0 24 24"> 
@@ -40,10 +45,20 @@ function ActionBar ({isMenu, toggleMenu,children}) {
                             <p className="text-xs">{icon.props.value}</p>
                         </div>
                     </Icon>
-                    </>
+                 
                     )
                 })
+            : 
             
+            <Icon action={get_action(icons)} key={icons.props.id}>
+            <div className="w-full flex flex-col items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" fill="none" viewBox="0 0 24 24"> 
+                <g fill="none"><rect className="w-4 h-4 stroke-transparent  "></rect>
+                <path d="M3 9l9-7 9 7v13H3z"  className="stroke-current fill-current "></path></g>
+                </svg>
+                <p className="text-xs">{icons.props.value}</p>
+            </div>
+        </Icon>
           
         )
     }
@@ -52,14 +67,14 @@ function ActionBar ({isMenu, toggleMenu,children}) {
         setSubPage(false)
     }
     return(
-        <div className={`w-full ${SubPageView ? 'h-64' : ''} rounded-t-xl  bg-gray-800 items-center p-2  md:rounded-xl`}>
+
+        <div className={`${SubPageView ? 'w-full h-64' : 'w-auto '} rounded-t-xl  ${theme.secondary} items-center p-2  md:rounded-xl`}>
         
             {SubPageView ?  <SubPageView toggle={closeSubPage}/>  : !toggleMenu ?
                   <></>
                   :
                   <div className="flex space-x-8 justify-center ">
                       <LoadIcons icons={children.props.children}/>
-
                   </div>
             
             }
@@ -77,19 +92,24 @@ function App ({pages, hasBar, children}) {
     const [page, setPage] = useState( )
     const [param, setParam] = useState('')
     const [pageName, setPageName]= useState()
-    const [isMenu, toggleMenu] = useState(false)
+    const [isMenu, toggleMenu] = useState(true)
     const [hasActionBar] = useState(hasBar)
 
 
-    const homeMangement = (isMenu) => {
+    const homeMangement = () => {
         toggleMenu(!isMenu)
         sessionStorage.setItem('isMenu', isMenu)
     }
 
     const menuState = () => {
-        return sessionStorage.getItem('isMenu') === "true" 
-    }
 
+        const _state = sessionStorage.getItem('isMenu');
+
+        if(_state === undefined)
+            return true
+
+        return _state === "true"
+    }
 
     
 
@@ -201,22 +221,27 @@ function App ({pages, hasBar, children}) {
 
 
 
+    const LoadComponent = ({Component}) => {
+        return <Component toggle={homeMangement}/>
+    }
+
     if(page){
         return(
 
-            <div  className={`bg-black w-screen h-screen flex  ${menuState() ? "flex-row" : " flex-col items-center"}`}>
+            <div  className={`${theme.primary} w-screen h-screen flex  ${menuState() ? "flex-row" : " flex-col items-center"}`}>
 
             {
                 menuState() ?
                 <>
-                 <div className="w-3/4 bg-gray-700 md:bg-transparent md:w-1/4  h-full  rounded-r-lg ">
+                 <div className={`w-3/4 ${theme.secondary} md:bg-transparent md:w-1/4  h-full  rounded-r-lg `}>
                     <div className="w-full flex p-2">
-                    {children[0]}
+                        <LoadComponent Component={() => children[0]}/>
+                
                     </div>
 
                 </div>
 
-                <div className="w-full w-1/4 md:w-3/4 flex" onClick={() => homeMangement(isMenu) }>
+                <div className="w-full w-1/4 md:w-3/4 flex" onClick={() => homeMangement() }>
                     <div className="w-full"></div>
                 </div>
                 </>
@@ -229,7 +254,7 @@ function App ({pages, hasBar, children}) {
                     <Container param={param} Comp={page[pageName]}/>
                 </div>
 
-            <div className={`w-full flex md:p-8 shadow md:shadow-md md:max-w-md md:w-auto ${hasActionBar ? '':'hidden'} `}>
+            <div className={`w-full flex md:p-8 shadow md:shadow-md md:max-w-md md:w-auto justify-center ${hasActionBar ? '':'hidden'} `}>
                 <ActionBar  isMenu={isMenu} toggleMenu={homeMangement}>
                     {children[1]}
                 </ActionBar>

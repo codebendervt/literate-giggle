@@ -55,8 +55,9 @@ const Layout = () => {
         <App.Core pages={pages} hasBar={true}>
             <div>hello</div>
             <div>
-                <div id="one" icon='meal' value="one" subPage={SubView}>one</div>
-                <div id="two" icon='meal' value="app" route={'/app'}>two</div>
+                {/* <div id="one" icon='meal' value="one" subPage={SubView}>one</div>
+                <div id="two" icon='meal' value="app" route={'/app'}>two</div> */}
+                <div id="home" icon='home' value="home" isHome={true}/>
             </div>
         </App.Core>
         )
