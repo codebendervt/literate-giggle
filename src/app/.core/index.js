@@ -92,6 +92,7 @@ function App ({pages, hasBar, children}) {
     const [page, setPage] = useState( )
     const [param, setParam] = useState('')
     const [pageName, setPageName]= useState()
+    const [query, setQuery]= useState()
     const [isMenu, toggleMenu] = useState(true)
     const [hasActionBar] = useState(hasBar)
 
@@ -115,7 +116,13 @@ function App ({pages, hasBar, children}) {
 
 
     useEffect(() => {
-        const path = document.location.pathname.split('/');
+
+        const uri = new URL(document.location.href);
+
+        const path = uri.pathname.split('/');
+
+        setQuery(uri.searchParams)
+
         path.shift()
         setPaths(path)
 
@@ -129,12 +136,53 @@ function App ({pages, hasBar, children}) {
         setPage(_page)
     }
 
+    // const findPage = (paths) => {
+    //     // console.log(paths,'finding page')
+    //     const path_length = paths.length
+    //     console.log(path_length)
+    //     let last_page;
+
+    //     console.log(pages)
+
+    //     paths.map((page, index) => {
+
+    //         console.log(page)
+    //         if(index !== 0 ){
+    //             try{
+    //                 setPageName(pages[page])
+    //                 last_page = page
+
+    //             }catch{
+    //                 console.log(last_page,'last page')
+    //                 // last_page = last_page['index']
+    //             }finally{
+    //                 console.log('throw an error ')
+    //             }
+    //             console.log(last_page,'last page')
+              
+    //         }else{
+    //             setPageName(pages)
+    //             try{
+    //                 last_page = 'index'
+    //             }catch{
+
+    //                 last_page = 'error'
+    //                 console.log(last_page,'last page')
+    //             } 
+    //             console.log(last_page,'last page')
+    //         }
+    //     })
+
+    //     return last_page;
+
+    // }
+
+   
     useEffect(() => {
         let _page = () => <>loading</>;
-        // console.log(paths)
+ 
         if(paths)
         {
-
             try{
                 paths.map((path,index) => {
 
@@ -174,8 +222,6 @@ function App ({pages, hasBar, children}) {
 
                 })
 
-
-
             }
             catch{
                 // TODO revisit in the near future
@@ -212,8 +258,8 @@ function App ({pages, hasBar, children}) {
                 }
 
             }
+   
             setPage(_page)
-
         }
 
 
@@ -251,7 +297,7 @@ function App ({pages, hasBar, children}) {
                 <>
                 
                 <div className="flex-grow p-2 w-full ">
-                    <Container param={param} Comp={page[pageName]}/>
+                    <Container param={param} Comp={page[pageName]} query={query}/>
                 </div>
 
             <div className={`w-full flex md:p-8 shadow md:shadow-md md:max-w-md md:w-auto justify-center ${hasActionBar ? '':'hidden'} `}>

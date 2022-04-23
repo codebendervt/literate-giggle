@@ -1,6 +1,6 @@
 import { render } from "react-dom";
 import { useEffect,useState } from "react";
-import {App, services} from '../core'
+import {App, services} from '../src'
 import { decryptMessage, encryptMessage } from "./src/security";
 import {push_notification} from './src/test'
 import pages from './src'
