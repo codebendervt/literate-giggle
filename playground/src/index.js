@@ -1,5 +1,5 @@
 import { useState } from "react"
-
+import hello from './hello'
 
 
 
@@ -66,19 +66,20 @@ import { useState } from "react"
 
 const index = () => {
     return (
-        <div className="bg-black w-full h-full">
+        <div className="bg-black w-full h-full text-white">
             well
         </div>
     )
 }
 
 
-const hello = () => {
-    return (
-        <div className="bg-black w-screen h-screen">
 
+const error = () => {
+    return (
+        <div className="text-white">
+            404
         </div>
     )
 }
 
-export default {index,hello}
+export default {index,hello,error}

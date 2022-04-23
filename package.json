@@ -1,6 +1,6 @@
 {
   "name": "sauveur.js",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "",
   "source": "src/index.js",
   "main": "core/index.js",
@@ -15,7 +15,7 @@
     "server:start": "docker-compose up -d",
     "server:run": "deno run --watch --allow-net --allow-read --allow-env --allow-run ./bridge/server.js",
     "backend:deploy": "dfx deploy --network ic backend",
-    "play": "parcel build && parcel ./playground/index.html --dist-dir playground-dist --no-cache "
+    "play": "parcel ./playground/index.html --dist-dir playground-dist --no-cache "
   },
   "author": "",
   "license": "ISC",

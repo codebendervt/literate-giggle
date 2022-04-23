@@ -1,6 +1,6 @@
 import { render } from "react-dom";
 import { useEffect,useState } from "react";
-import {App, services} from '../core'
+import {App, services} from '../src'
 import { decryptMessage, encryptMessage } from "./src/security";
 import {push_notification} from './src/test'
 import pages from './src'
@@ -41,12 +41,25 @@ const Layout = () => {
         console.log('submiting')
     }
     
+    const SubView = ({toggle}) => {
+        return (<>
+        hello world
+        <div onClick={() => toggle()}>close</div>
+        </>)
+    }
     return(
         // <div className={'w-full h-screen bg-black '}>
         //   <Studio.Form submitHandler={handleSubmit} formConfig={model}/>
         // </div>
  
-        <App.Core pages={pages} hasBar={true}></App.Core>
+        <App.Core pages={pages} hasBar={true}>
+            <div>hello</div>
+            <div>
+                {/* <div id="one" icon='meal' value="one" subPage={SubView}>one</div>
+                <div id="two" icon='meal' value="app" route={'/app'}>two</div> */}
+                <div id="home" icon='home' value="home" isHome={true}/>
+            </div>
+        </App.Core>
         )
 
 }
