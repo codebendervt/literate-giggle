@@ -44,7 +44,7 @@ const Layout = () => {
     const SubView = ({toggle}) => {
         return (<>
         hello world
-        <div onClick={() => toggle()}>close</div>
+        <div className="rounded-full" onClick={() => toggle()}>close</div>
         </>)
     }
     return(
@@ -56,8 +56,8 @@ const Layout = () => {
             <div>hello</div>
             <div>
                 {/* <div id="one" icon='meal' value="one" subPage={SubView}>one</div>
-                <div id="two" icon='meal' value="app" route={'/app'}>two</div> */}
-                <div id="home" icon='home' value="home" isHome={true}/>
+                <div id="two" icon='meal' value="app" route={'/app'}>two</div>
+                <div id="home" icon='home' value="home" isHome={true}/> */}
             </div>
         </App.Core>
         )

@@ -28,39 +28,44 @@ function ActionBar ({isMenu, toggleMenu,children}) {
     const LoadIcons = ({icons}) => {
     
 
-        return(
-            Array.isArray(icons) ?
-                icons.map((icon) => {
-
-                    action = get_action(icon);
-
-                    return (
-                    
-                    <Icon action={action} key={icon.props.id}>
-                        <div className="w-full flex flex-col items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" fill="none" viewBox="0 0 24 24"> 
-                            <g fill="none"><rect className="w-4 h-4 stroke-transparent  "></rect>
-                            <path d="M3 9l9-7 9 7v13H3z"  className="stroke-current fill-current "></path></g>
-                            </svg>
-                            <p className="text-xs">{icon.props.value}</p>
-                        </div>
-                    </Icon>
-                 
-                    )
-                })
-            : 
-            
-            <Icon action={get_action(icons)} key={icons.props.id}>
-            <div className="w-full flex flex-col items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" fill="none" viewBox="0 0 24 24"> 
-                <g fill="none"><rect className="w-4 h-4 stroke-transparent  "></rect>
-                <path d="M3 9l9-7 9 7v13H3z"  className="stroke-current fill-current "></path></g>
-                </svg>
-                <p className="text-xs">{icons.props.value}</p>
-            </div>
-        </Icon>
-          
-        )
+        try{
+            return(
+                Array.isArray(icons) ?
+                    icons.map((icon) => {
+    
+                        action = get_action(icon);
+    
+                        return (
+                        
+                        <Icon action={action} key={icon.props.id}>
+                            <div className="w-full flex flex-col items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" fill="none" viewBox="0 0 24 24"> 
+                                <g fill="none"><rect className="w-4 h-4 stroke-transparent  "></rect>
+                                <path d="M3 9l9-7 9 7v13H3z"  className="stroke-current fill-current "></path></g>
+                                </svg>
+                                <p className="text-xs">{icon.props.value}</p>
+                            </div>
+                        </Icon>
+                     
+                        )
+                    })
+                : 
+                
+                <Icon action={get_action(icons)} key={icons.props.id}>
+                <div className="w-full flex flex-col items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 fill-current" fill="none" viewBox="0 0 24 24"> 
+                    <g fill="none"><rect className="w-4 h-4 stroke-transparent  "></rect>
+                    <path d="M3 9l9-7 9 7v13H3z"  className="stroke-current fill-current "></path></g>
+                    </svg>
+                    <p className="text-xs">{icons.props.value}</p>
+                </div>
+            </Icon>
+              
+            )
+        }catch{
+            return (<></>)
+        }
+ 
     }
  
     const closeSubPage = () => {
@@ -68,7 +73,7 @@ function ActionBar ({isMenu, toggleMenu,children}) {
     }
     return(
 
-        <div className={`${SubPageView ? 'w-full h-64' : 'w-auto '} rounded-t-xl  ${theme.secondary} items-center p-2  md:rounded-xl`}>
+        <div className={`${SubPageView ? 'w-full h-64' : 'w-auto '} rounded-t-xl  ${theme.secondary} items-center p-2  md:rounded-lg`}>
         
             {SubPageView ?  <SubPageView toggle={closeSubPage}/>  : !toggleMenu ?
                   <></>
@@ -111,8 +116,6 @@ function App ({pages, hasBar, children}) {
 
         return _state === "true"
     }
-
-    
 
 
     useEffect(() => {
@@ -281,7 +284,12 @@ function App ({pages, hasBar, children}) {
                 <>
                  <div className={`w-3/4 ${theme.secondary} md:bg-transparent md:w-1/4  h-full  rounded-r-lg `}>
                     <div className="w-full flex p-2">
+                        {
+                        children ? 
                         <LoadComponent Component={() => children[0]}/>
+                        : <></>
+                        }
+                 
                 
                     </div>
 
@@ -301,9 +309,12 @@ function App ({pages, hasBar, children}) {
                 </div>
 
             <div className={`w-full flex md:p-8 shadow md:shadow-md md:max-w-md md:w-auto justify-center ${hasActionBar ? '':'hidden'} `}>
+
+                {children ? 
                 <ActionBar  isMenu={isMenu} toggleMenu={homeMangement}>
-                    {children[1]}
-                </ActionBar>
+                    { children[1]}
+                </ActionBar> : <></> }
+                
             </div>  
                 </>
             }
