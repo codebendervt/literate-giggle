@@ -8,5 +8,11 @@ const index = () => {
 }
 
 
+const bye = () => {
+    return (
+        <>bye</>
+    )
+}
 
-export default {index}
+
+export default {index,bye}

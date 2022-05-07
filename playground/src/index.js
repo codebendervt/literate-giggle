@@ -64,7 +64,7 @@ import hello from './hello'
 
 
 
-const index = () => {
+const index = ({param}) => {
     return (
         <div className="bg-black w-full h-full text-white">
             well

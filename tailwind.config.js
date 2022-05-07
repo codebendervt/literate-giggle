@@ -3,7 +3,7 @@ module.exports = {
     "./src/app/.core/**/*.{html,js}",
     "./src/**/*.{html,js}",
     "./sdk/**/*.{html,js}",
-    "./playground/**/*.{html,js}"
+    "./playground/src/views/*.{html,js}"
 ],
     theme: {
         extend: {},
