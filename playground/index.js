@@ -153,8 +153,6 @@ const lazy_load_templates = async () => {
 
     try{
 
- 
-
         Object.entries(templates).map(async ([key, value]) => {
             let doc = document.implementation.createHTMLDocument("New Document");
             doc.body.innerHTML = await load_html(value);
@@ -171,8 +169,12 @@ const lazy_load_templates = async () => {
                         let template = doc.getElementById(element_name);
                         let templateContent = template.content;
 
+                    
                         const shadowRoot = this.attachShadow({mode: 'open'});
                         shadowRoot.appendChild(templateContent.cloneNode(true));
+
+                        // console.log(shadowRoot,'content')
+                        init_listeners(shadowRoot)
                     }
                 }
             );
@@ -184,6 +186,54 @@ const lazy_load_templates = async () => {
     }
 }
 
+const init_listeners = (doc) => {
+    const event_nodes = [...doc.querySelectorAll('input'), ...document.querySelectorAll('button')]
+
+    console.log(event_nodes,'event nodes')
+    // console.log(root_doc)
+    
+    // console.log(root_doc.childNodes)
+
+    // console.log('page name',name)
+    // console.log('action index',actions.index)
+
+    // proccess js 
+    // learn how to move this to the compiler level
+
+    event_nodes.map((node) => {
+        let action = actions; 
+        if(node.id){
+            let action_route = node.id.split('/')
+            action_route.map((act) => {
+                if(act in action)
+                    action = action[act]
+            })  
+        }
+
+        try{
+            switch(node.nodeName) {
+                case 'BUTTON':
+                    node.addEventListener('click',() => action(node,formData))
+                    break;
+                case 'INPUT':
+                    node.addEventListener('input',() => action(node,formData))
+                    break;
+                default:
+                    break;
+            }
+
+            // if(element.nodeName.includes('-')){
+            //     // console.log('initialize template',element.nodeName)
+            //     initalize_templates(element.nodeName.replace('-','_').toLowerCase())
+            // }
+
+        }catch(e){
+            console.log('can not bind data',e)
+        }
+
+    })
+}
+
 const render = (view,name) => {
 
     const run = async () => {
@@ -192,56 +242,8 @@ const render = (view,name) => {
  
             const root_doc = document.getElementById('root')
             lazy_load_templates()
-    
-            // console.log(root_doc)
+            init_listeners(document)
             
-            // console.log(root_doc.childNodes)
-
-            // console.log('page name',name)
-            // console.log('action index',actions.index)
-    
-            // proccess js 
-            // learn how to move this to the compiler level
-            root_doc.childNodes.forEach(( element, currentIndex, listObj) => {
-                let action = actions;
-
-          
-          
-                if(element.id){
-                    let action_route = element.id.split('/')
-                    action_route.map((act) => {
-                        if(act in action)
-                            action = action[act]
-                    })  
-                }
-                    
-            
- 
-                try{
-                    switch(element.nodeName) {
-                        case 'BUTTON':
-                            element.addEventListener('click',() => action(element,formData))
-                            break;
-                        case 'INPUT':
-                            element.addEventListener('input',() => action(element,formData))
-                            break;
-                        default:
-                            break;
-                    }
-
-                    // if(element.nodeName.includes('-')){
-                    //     // console.log('initialize template',element.nodeName)
-                    //     initalize_templates(element.nodeName.replace('-','_').toLowerCase())
-                    // }
-
-                }catch(e){
-                    console.log('can not bind data',e)
-                }
-                 
-                
-            })
-
-
             // run on mount function
             try{
                 let action = actions
@@ -265,6 +267,9 @@ const render = (view,name) => {
 }
 
 const routeValidation = ( ) => {
+
+    // document.querySelector('html').insertAdjacentHTML("afterbegin",'<div></div>')
+
         const uri = new URL(document.location.href);
         let last_valid = views;
 
